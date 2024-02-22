@@ -1,0 +1,115 @@
+,ID,contract,name,address,banking,bonus,stands,position_lat,position_lng,status
+0,42,dublin,SMITHFIELD NORTH,Smithfield North,False,False,30,53.349562,-6.278198,OPEN
+1,30,dublin,PARNELL SQUARE NORTH,Parnell Square North,False,False,20,53.3537415547453,-6.26530144781526,OPEN
+2,54,dublin,CLONMEL STREET,Clonmel Street,False,False,33,53.336021,-6.26298,OPEN
+3,108,dublin,AVONDALE ROAD,Avondale Road,False,False,35,53.359405,-6.276142,OPEN
+4,20,dublin,JAMES STREET EAST,James Street East,False,False,30,53.336597,-6.248109,OPEN
+5,56,dublin,MOUNT STREET LOWER,Mount Street Lower,False,False,40,53.33796,-6.24153,OPEN
+6,6,dublin,CHRISTCHURCH PLACE,Christchurch Place,False,False,20,53.343368,-6.27012,OPEN
+7,18,dublin,GRANTHAM STREET,Grantham Street,False,False,30,53.334123,-6.265436,OPEN
+8,32,dublin,PEARSE STREET,Pearse Street,False,False,30,53.344304,-6.250427,OPEN
+9,52,dublin,YORK STREET EAST,York Street East,False,False,32,53.338755,-6.262003,OPEN
+10,48,dublin,EXCISE WALK,Excise Walk,False,False,40,53.347777,-6.244239,OPEN
+11,13,dublin,FITZWILLIAM SQUARE WEST,Fitzwilliam Square West,False,False,30,53.336074,-6.252825,OPEN
+12,43,dublin,PORTOBELLO ROAD,Portobello Road,False,False,30,53.330091,-6.268044,OPEN
+13,31,dublin,PARNELL STREET,Parnell Street,False,False,20,53.350929,-6.265125,OPEN
+14,98,dublin,FREDERICK STREET SOUTH,Frederick Street South,False,False,40,53.341515,-6.256853,OPEN
+15,14,dublin,FOWNES STREET UPPER,Fownes Street Upper,False,False,30,53.344603,-6.263371,OPEN
+16,1,dublin,CLARENDON ROW,Clarendon Row,False,False,31,53.340927,-6.262501,OPEN
+17,23,dublin,CUSTOM HOUSE,Custom House,False,False,30,53.348279,-6.254662,OPEN
+18,106,dublin,RATHDOWN ROAD,Rathdown Road,False,False,40,53.35893,-6.280337,OPEN
+19,112,dublin,NORTH CIRCULAR ROAD (O'CONNELL'S),North Circular Road (O'Connell's),False,False,30,53.357841,-6.251557,OPEN
+20,68,dublin,HANOVER QUAY,Hanover Quay,False,False,40,53.344115,-6.237153,OPEN
+21,74,dublin,OLIVER BOND STREET,Oliver Bond Street,False,False,30,53.343893,-6.280531,OPEN
+22,87,dublin,COLLINS BARRACKS MUSEUM,Collins Barracks Museum,False,False,38,53.347477,-6.28525,OPEN
+23,84,dublin,BROOKFIELD ROAD,Brookfield Road,False,False,30,53.339005,-6.300217,OPEN
+24,90,dublin,BENSON STREET,Benson Street,False,False,40,53.344153,-6.233451,OPEN
+25,11,dublin,EARLSFORT TERRACE,Earlsfort Terrace,False,False,30,53.334295,-6.258503,OPEN
+26,17,dublin,GOLDEN LANE,Golden Lane,False,False,20,53.340803,-6.267732,OPEN
+27,45,dublin,DEVERELL PLACE,Deverell Place,False,False,30,53.351464,-6.255265,OPEN
+28,114,dublin,WILTON TERRACE (PARK),Wilton Terrace (Park),False,False,40,53.333653,-6.248345,OPEN
+29,72,dublin,JOHN STREET WEST,John Street West,False,False,31,53.343105,-6.277167,OPEN
+30,63,dublin,FENIAN STREET,Fenian Street,False,False,35,53.341428,-6.24672,OPEN
+31,113,dublin,MERRION SQUARE SOUTH,Merrion Square South,False,False,40,53.338614,-6.248606,OPEN
+32,91,dublin,SOUTH DOCK ROAD,South Dock Road,False,False,30,53.341833,-6.231291,OPEN
+33,99,dublin,CITY QUAY,City Quay,False,False,30,53.346637,-6.246154,OPEN
+34,9,dublin,EXCHEQUER STREET,Exchequer Street,False,False,24,53.343034,-6.263578,OPEN
+35,67,dublin,THE POINT,The Point,False,False,40,53.346867,-6.230852,OPEN
+36,116,dublin,BROADSTONE,Broadstone,False,False,30,53.3547,-6.272314,OPEN
+37,55,dublin,HATCH STREET,Hatch Street,False,False,36,53.33403,-6.260714,OPEN
+38,62,dublin,LIME STREET,Lime Street,False,False,40,53.346026,-6.243576,OPEN
+39,5,dublin,CHARLEMONT PLACE,Charlemont Street,False,False,40,53.330662,-6.260177,OPEN
+40,97,dublin,KILMAINHAM GAOL,Kilmainham Gaol,False,False,40,53.342113,-6.310015,OPEN
+41,61,dublin,HARDWICKE PLACE,Hardwicke Place,False,False,25,53.357043,-6.263232,OPEN
+42,77,dublin,WOLFE TONE STREET,Wolfe Tone Street,False,False,29,53.348875,-6.267459,OPEN
+43,73,dublin,FRANCIS STREET,Francis Street,False,False,30,53.342081,-6.275233,OPEN
+44,4,dublin,GREEK STREET,Greek Street,False,False,20,53.346874,-6.272976,OPEN
+45,49,dublin,GUILD STREET,Guild Street,False,False,40,53.347932,-6.240928,OPEN
+46,19,dublin,HERBERT PLACE,Herbert Place,False,False,30,53.334432,-6.245575,OPEN
+47,7,dublin,HIGH STREET,High Street,False,False,29,53.343565,-6.275071,OPEN
+48,60,dublin,NORTH CIRCULAR ROAD,North Circular Road,False,False,30,53.359624,-6.260348,OPEN
+49,102,dublin,WESTERN WAY,Western Way,False,False,40,53.354929,-6.269425,OPEN
+50,38,dublin,TALBOT STREET,Talbot Street,False,False,40,53.350974,-6.25294,OPEN
+51,53,dublin,NEWMAN HOUSE,Newman House,False,False,40,53.337132,-6.26059,OPEN
+52,58,dublin,SIR PATRICK DUN'S,Sir Patrick's Dun,False,False,40,53.339218,-6.240642,OPEN
+53,66,dublin,NEW CENTRAL BANK,New Central Bank,False,False,40,53.347122,-6.234749,OPEN
+54,104,dublin,GRANGEGORMAN LOWER (CENTRAL),Grangegorman Lower (Central),False,False,40,53.355173,-6.278424,OPEN
+55,101,dublin,KING STREET NORTH,King Street North,False,False,30,53.350291,-6.273507,OPEN
+56,115,dublin,KILLARNEY STREET,Killarney Street,False,False,30,53.354845,-6.247579,OPEN
+57,47,dublin,HERBERT STREET,Herbert Street,False,False,40,53.335742,-6.24551,OPEN
+58,117,dublin,HANOVER QUAY EAST,Hanover Quay East,False,False,40,53.343653,-6.231755,OPEN
+59,8,dublin,CUSTOM HOUSE QUAY,Custom House Quay,False,False,30,53.347884,-6.248048,OPEN
+60,27,dublin,MOLESWORTH STREET,Molesworth Street,False,False,20,53.341288,-6.258117,OPEN
+61,16,dublin,GEORGES QUAY,Georges Quay,False,False,20,53.347508,-6.252192,OPEN
+62,96,dublin,KILMAINHAM LANE,Kilmainham Lane,False,False,30,53.341805,-6.305085,OPEN
+63,82,dublin,MOUNT BROWN,Mount Brown,False,False,22,53.341645,-6.29719,OPEN
+64,76,dublin,MARKET STREET SOUTH,Market Street South,False,False,38,53.342296,-6.287661,OPEN
+65,71,dublin,KEVIN STREET,Kevin Street,False,False,40,53.337757,-6.267699,OPEN
+66,79,dublin,ECCLES STREET EAST,Eccles Street East,False,False,27,53.358115,-6.265601,OPEN
+67,69,dublin,GRAND CANAL DOCK,Grand Canal Dock,False,False,40,53.342638,-6.238695,OPEN
+68,25,dublin,MERRION SQUARE EAST,Merrion Square East,False,False,30,53.339434,-6.246548,OPEN
+69,51,dublin,YORK STREET WEST,York Street West,False,False,40,53.339334,-6.264699,OPEN
+70,37,dublin,ST. STEPHEN'S GREEN SOUTH,St. Stephen's Green South,True,False,30,53.337494,-6.26199,OPEN
+71,59,dublin,DENMARK STREET GREAT,Denmark Street Great,False,False,20,53.35561,-6.261397,OPEN
+72,95,dublin,ROYAL HOSPITAL,Royal Hospital,False,False,40,53.343897,-6.29706,OPEN
+73,94,dublin,HEUSTON STATION (CAR PARK),Heuston Station (Car Park),False,False,40,53.346985,-6.297804,OPEN
+74,105,dublin,GRANGEGORMAN LOWER (NORTH),Grangegorman Lower (North),False,False,36,53.355954,-6.278378,OPEN
+75,36,dublin,ST. STEPHEN'S GREEN EAST,St. Stephen's Green East,False,False,40,53.337824,-6.256035,OPEN
+76,93,dublin,HEUSTON STATION (CENTRAL),Heuston Station (Central),False,False,40,53.346603,-6.296924,OPEN
+77,22,dublin,TOWNSEND STREET,Townsend Street,False,False,20,53.345922,-6.254614,OPEN
+78,50,dublin,GEORGES LANE,George's Lane,False,False,40,53.35023,-6.279696,OPEN
+79,110,dublin,PHIBSBOROUGH ROAD,Phibsborough Road,False,False,40,53.356307,-6.273717,OPEN
+80,12,dublin,ECCLES STREET,Eccles Street,False,False,20,53.359246,-6.269779,OPEN
+81,34,dublin,PORTOBELLO HARBOUR,Portobello Harbour,False,False,30,53.330362,-6.265163,OPEN
+82,78,dublin,MATER HOSPITAL,Mater Hospital,False,False,40,53.359967,-6.264828,OPEN
+83,2,dublin,BLESSINGTON STREET,Blessington Street,False,False,20,53.356769,-6.26814,OPEN
+84,75,dublin,JAMES STREET,James Street,False,False,40,53.343456,-6.287409,OPEN
+85,111,dublin,MOUNTJOY SQUARE EAST,Mountjoy Square East,False,False,40,53.356717,-6.256359,OPEN
+86,26,dublin,MERRION SQUARE WEST,Merrion Square West,True,False,20,53.339764,-6.251988,OPEN
+87,65,dublin,CONVENTION CENTRE,Convention Centre,True,False,40,53.34744,-6.238523,OPEN
+88,15,dublin,HARDWICKE STREET,Hardwicke Street,False,False,16,53.355473,-6.264423,OPEN
+89,86,dublin,PARKGATE STREET,Parkgate Street,False,False,38,53.347972,-6.291804,OPEN
+90,35,dublin,SMITHFIELD,Smithfield,False,False,30,53.347692,-6.278214,OPEN
+91,10,dublin,DAME STREET,Dame Street,True,False,16,53.344007,-6.266802,OPEN
+92,100,dublin,HEUSTON BRIDGE (SOUTH),Heuston Bridge (South),False,False,25,53.347106,-6.292041,OPEN
+93,24,dublin,CATHAL BRUGHA STREET,Cathal Brugha Street,False,False,20,53.352149,-6.260533,OPEN
+94,64,dublin,SANDWITH STREET,Sandwith Street,False,False,40,53.345203,-6.247163,OPEN
+95,109,dublin,BUCKINGHAM STREET LOWER,Buckingham Street Lower,False,False,29,53.353331,-6.249319,OPEN
+96,85,dublin,ROTHE ABBEY,Rothe Abbey,False,False,35,53.338776,-6.30395,OPEN
+97,107,dublin,CHARLEVILLE ROAD,Charleville Road,False,False,40,53.359157,-6.281866,OPEN
+98,33,dublin,PRINCES STREET / O'CONNELL STREET,Princes Street / O'Connell Street,True,False,23,53.349013,-6.260311,OPEN
+99,44,dublin,UPPER SHERRARD STREET,Upper Sherrard Street,False,False,30,53.358437,-6.260641,OPEN
+100,89,dublin,FITZWILLIAM SQUARE EAST,Fitzwilliam Square East,False,False,40,53.335211,-6.2509,OPEN
+101,57,dublin,GRATTAN STREET,Grattan Street,False,False,23,53.339629,-6.243778,OPEN
+102,80,dublin,ST JAMES HOSPITAL (LUAS),St James Hospital (Luas),False,False,40,53.341359,-6.292951,OPEN
+103,41,dublin,HARCOURT TERRACE,Harcourt Terrace,False,False,20,53.332763,-6.257942,OPEN
+104,3,dublin,BOLTON STREET,Bolton Street,False,False,20,53.351182,-6.269859,OPEN
+105,40,dublin,JERVIS STREET,Jervis Street,False,False,21,53.3483,-6.266651,OPEN
+106,29,dublin,ORMOND QUAY UPPER,Ormond Quay Upper,False,False,29,53.346057,-6.268001,OPEN
+107,103,dublin,GRANGEGORMAN LOWER (SOUTH),Grangegorman Lower (South),False,False,40,53.354663,-6.278681,OPEN
+108,28,dublin,MOUNTJOY SQUARE WEST,Mountjoy Square West,False,False,30,53.356299,-6.258586,OPEN
+109,39,dublin,WILTON TERRACE,Wilton Terrace,False,False,20,53.332383,-6.252717,OPEN
+110,83,dublin,EMMET ROAD,Emmet Road,False,False,40,53.340714,-6.308191,OPEN
+111,92,dublin,HEUSTON BRIDGE (NORTH),Heuston Bridge (North),False,False,40,53.347802,-6.292432,OPEN
+112,21,dublin,LEINSTER STREET SOUTH,Leinster Street South,False,False,30,53.34218,-6.254485,OPEN
+113,88,dublin,BLACKHALL PLACE,Blackhall Place,False,False,30,53.3488,-6.281637,OPEN
