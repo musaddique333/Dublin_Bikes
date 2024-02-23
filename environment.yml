@@ -179,6 +179,10 @@ dependencies:
   - zlib=1.2.13=h5a0b063_0
   - zstd=1.5.5=hd90d995_0
   - pip:
+      - cryptography==42.0.4
       - flask-sqlalchemy==3.1.1
+      - jaraco-classes==3.3.1
+      - keyring==24.3.0
+      - more-itertools==10.2.0
       - mysql-connector-python==8.3.0
 prefix: /Users/musaddique33/anaconda3/envs/comp30830

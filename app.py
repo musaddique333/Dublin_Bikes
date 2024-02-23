@@ -1,15 +1,23 @@
 from flask import Flask, jsonify
-import sqlalchemy
+import mysql.connector
 from sqlalchemy import create_engine, exc
 from sqlalchemy import text
 import requests
 import datetime
 import pandas as pd
 import json
+from cryptography.fernet import Fernet
 import os
 
 app = Flask(__name__)
-API_KEY = '681b757e032447abea03a11443b614d0ba3cf5ef'
+
+with open('keys/JCDecaux.key', 'rb') as filekey:
+    key = filekey.read()
+with open('keys/JCDecaux.enc', 'rb') as fileenc:
+    cipher_text = fileenc.read()
+cipher_suite = Fernet(key)
+API_KEY = cipher_suite.decrypt(cipher_text).decode()
+
 NAME = "Dublin"
 STATIONS = "https://api.jcdecaux.com/vls/v1/stations"
 
@@ -18,8 +26,33 @@ def connect_to_db():
     PORT='3306'
     DB='dublinBikes29'
     USER='musaddique333'
-    PASSWORD='7483854963Mus#'
+    
+    with open('keys/RDS.key', 'rb') as filekey:
+        key = filekey.read()
+    with open('keys/RDS.enc', 'rb') as fileenc:
+        cipher_text = fileenc.read()
+
+    cipher_suite = Fernet(key)
+    PASSWORD = cipher_suite.decrypt(cipher_text).decode()
+
+    try:
+        connection = mysql.connector.connect(
+            host=URL,
+            user=USER,
+            password=PASSWORD,
+            database=DB
+        )
+        if connection.is_connected():
+            db_Info = connection.get_server_info()
+            print(f"Successfully connected to MySQL Server version {db_Info}")
+            connection.close()
+        else:
+            print("Failed to connect to the database.")
+    except mysql.connector.Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+    
     engine=create_engine(f'mysql+mysqldb://{USER}:{PASSWORD}@{URL}:{PORT}/{DB}', echo=True)
+
     return engine
 
 def write_static(data, engine):

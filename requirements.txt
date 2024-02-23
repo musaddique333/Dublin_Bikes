@@ -18,6 +18,7 @@ charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654
 click @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_61srkg7e2e/croot/click_1698129815327/work
 comm @ file:///home/conda/feedstock_root/build_artifacts/comm_1704278392174/work
 contourpy @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_041uwyxdzo/croot/contourpy_1700583585236/work
+cryptography==42.0.4
 cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
 debugpy @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_563_nwtkoc/croot/debugpy_1690905063850/work
 decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
@@ -44,6 +45,7 @@ ipykernel @ file:///Users/runner/miniforge3/conda-bld/ipykernel_1707326353119/wo
 ipython @ file:///home/conda/feedstock_root/build_artifacts/ipython_1706795662110/work
 isoduration @ file:///home/conda/feedstock_root/build_artifacts/isoduration_1638811571363/work/dist
 itsdangerous @ file:///tmp/build/80754af9/itsdangerous_1621432558163/work
+jaraco.classes==3.3.1
 jedi @ file:///home/conda/feedstock_root/build_artifacts/jedi_1696326070614/work
 Jinja2 @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_7dognxkzoy/croot/jinja2_1706733627811/work
 json5 @ file:///home/conda/feedstock_root/build_artifacts/json5_1708426315453/work
@@ -59,11 +61,13 @@ jupyter_server_terminals @ file:///home/conda/feedstock_root/build_artifacts/jup
 jupyterlab @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_1708384590440/work
 jupyterlab_pygments @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_pygments_1707149102966/work
 jupyterlab_server @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_server-split_1707957746009/work
+keyring==24.3.0
 kiwisolver @ file:///Users/cbousseau/work/recipes/ci_py311/kiwisolver_1677925326358/work
 MarkupSafe @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_a84ni4pci8/croot/markupsafe_1704206002077/work
 matplotlib @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_21m9ylm_7k/croot/matplotlib-suite_1698692123710/work
 matplotlib-inline @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-inline_1660814786464/work
 mistune @ file:///home/conda/feedstock_root/build_artifacts/mistune_1698947099619/work
+more-itertools==10.2.0
 munkres==1.1.4
 mysql-connector-python==8.3.0
 mysqlclient @ file:///Users/cbousseau/work/recipes/ci_py311/mysqlclient_1677999649982/work
