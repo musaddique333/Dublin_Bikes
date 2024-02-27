@@ -1,7 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, request, redirect
 from apscheduler.schedulers.background import BackgroundScheduler
 import mysql.connector
 from sqlalchemy import create_engine, exc
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 import requests
 from datetime import datetime
@@ -9,8 +10,6 @@ import pandas as pd
 import json
 from cryptography.fernet import Fernet
 import logging
-import time
-import os
 
 app = Flask(__name__)
 
@@ -60,32 +59,7 @@ def connect_to_db():
 
     return engine
 
-def create_new_table(query, engine, tablename):
-    try:
-        with engine.connect() as conn:
-            conn.execute(text(f'''DROP TABLE IF EXISTS {tablename}'''))
-            result = conn.execute(text(query))
-            print(result.fetchall())
-    except exc.SQLAlchemyError as e:
-        print(f"SQLAlchemy Error during table creation: {e}")
-    except Exception as e:
-        print(f"Error creating table: {e}")
-
 def write_static(data, engine):
-    query = '''CREATE TABLE IF NOT EXISTS station 
-        (ID INTEGER,
-        contract VARCHAR (256),
-        name VARCHAR (256),
-        address VARCHAR (256), 
-        banking INTEGER,
-        bonus INTEGER,
-        stands INTEGER,    
-        position_lat REAL, 
-        position_lng REAL, 
-        status VARCHAR (256))'''
-
-    create_new_table(query, engine, 'station')
-
     df = data.copy()
     columns = ['number', 'contract_name', 'name', 'address', 
                'banking', 'bonus', 'bike_stands', 
@@ -111,6 +85,15 @@ def write_static(data, engine):
     df.to_csv(filename, index=True)
 
     try:
+        with engine.connect() as conn:
+            conn.execute("DELETE FROM station")
+            conn.commit()
+    except exc.SQLAlchemyError as e:
+        print(f"SQLAlchemy Error: {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+    try:
         df.to_sql('station', con=engine, index=False, if_exists='append', method='multi')
     except exc.SQLAlchemyError as e:
         print(f"SQLAlchemy Error during insert: {e}")
@@ -118,14 +101,6 @@ def write_static(data, engine):
         print(f"Unexpected error during insert: {e}")
     
 def write_dynamic(data, engine):
-    query = '''CREATE TABLE IF NOT EXISTS availability 
-        (ID INTEGER, 
-        bikes INTEGER, 
-        bike_stands INTEGER, 
-        last_update INTEGER)'''
-    
-    create_new_table(query, engine, 'availability')
-
     df = data.copy()
     columns = ['number', 'available_bikes', 'available_bike_stands', 'last_update']
     df = df[columns]
@@ -148,26 +123,22 @@ def write_dynamic(data, engine):
     except Exception as e:
         print(f"Unexpected error during insert: {e}")
 
-def write_to_db(data):
-    data = json.loads(data)
-    data = pd.json_normalize(data)
-    engine = connect_to_db()
 
-    # write_static(data, engine) #Need to be done only one, no problem even if done cause it will overrite
-
-    write_dynamic(data, engine)
-
-def fetch_bike_data():
+def fetch_static_data():
     try:
         now = datetime.now()
         response = requests.get(STATIONS, params={"apiKey": API_KEY, "contract": NAME})
         response.raise_for_status()
 
         data = response.text
-        write_to_db(data)
-        
-        logging.info(f"Data fetched successfully at {now}")
-        
+        data = json.loads(data)
+        data = pd.json_normalize(data)
+
+        engine = connect_to_db()
+
+        write_static(data, engine)
+
+        logging.info(f"Static data fetched and written to DB successfully. at {now}")
     except requests.exceptions.HTTPError as e:
         logging.error(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
     except requests.exceptions.ConnectionError:
@@ -179,16 +150,92 @@ def fetch_bike_data():
     except Exception as e:
         logging.error(f"An unexpected error occurred: {e}")
 
+def fetch_dynamic_data():
+    try:
+        now = datetime.now()
+        response = requests.get(STATIONS, params={"apiKey": API_KEY, "contract": NAME})
+        response.raise_for_status()
+
+        data = response.text
+        data = json.loads(data)
+        data = pd.json_normalize(data)
+        engine = connect_to_db()
+
+        write_dynamic(data, engine)
+
+        logging.info(f"Dynamic data fetched and written to DB successfully. at {now}")
+    except requests.exceptions.HTTPError as e:
+        logging.error(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
+    except requests.exceptions.ConnectionError:
+        logging.error("Connection error occurred")
+    except requests.exceptions.Timeout:
+        logging.error("The request timed out")
+    except requests.exceptions.RequestException as e:
+        logging.error(f"An error occurred while fetching data: {e}")
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
+
+def station_markers():
+    engine = connect_to_db()
+    try:
+        with engine.connect() as conn:
+            query = '''SELECT * FROM station'''
+            df = conn.execute(text(query))
+            station_data = []
+            for row in df:
+                temp = {
+                    'locationName': str(row[2]).replace('\'', ''),
+                    'lat': row[7],
+                    'lng': row[8],
+                    'address': str(row[3]).replace('\'', ''),
+                    'banking': row[4],
+                    'bonus': row[5],
+                    'total': row[6],
+                    'status': row[9]
+                }
+                station_data.append(temp)
+            
+            query = '''SELECT * FROM availability'''
+            df = conn.execute(text(query))
+            availability_data = []
+            for row in df:
+                timeStamp = int(row[3]) / 1000
+                lastUpdate = datetime.utcfromtimestamp(timeStamp)
+                lastUpdate = str(lastUpdate.strftime('%Y-%m-%d %H:%M:%S'))
+                temp = {
+                    'bikes':row[1],
+                    'stands':row[2],
+                    'lastUpdate':lastUpdate
+                }
+                availability_data.append(temp)
+
+            return station_data, availability_data
+    except exc.SQLAlchemyError as e:
+        print(f"SQLAlchemy Error: {e}")
+        return [], []
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return [], []
+
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=fetch_bike_data, trigger="interval", minutes=5)
+scheduler.add_job(func=fetch_static_data, trigger="interval", hours=24)
+
+scheduler.add_job(func=fetch_dynamic_data, trigger="interval", minutes=5)
 scheduler.start()
 
+app.secret_key = cipher_suite.decrypt(cipher_text).decode()
 @app.route('/')
+def welcome():
+    return render_template('index.html')
+
+@app.route("/home")
 def home():
-    return jsonify({"message": "The Flask app with APScheduler is running. Data fetch is scheduled every 5 minutes."})
+    station_data, availability_data = station_markers()
+    return render_template('home.html', station_data=json.dumps(station_data), availability_data=json.dumps(availability_data))
+    # return jsonify(station_data)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
     try:
         app.run(debug=True, use_reloader=False)
     except (KeyboardInterrupt, SystemExit):
