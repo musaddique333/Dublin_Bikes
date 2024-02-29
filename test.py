@@ -1,21 +1,12 @@
 from datetime import datetime
 
-def convert_timestamp(timestamp_ms):
-    timestamp_sec = timestamp_ms / 1000
-    datetime_object = datetime.utcfromtimestamp(timestamp_sec)
-    return datetime_object.isoformat()
+# Assuming your timestamp is in seconds
+timestamp = 1709210210
 
-# Example usage
-timestamp_ms = 1708951351000
-readable_date_time = convert_timestamp(timestamp_ms)
+# Convert timestamp to datetime object
+date_time = datetime.fromtimestamp(timestamp)
 
-print(readable_date_time)
+# Format the datetime object to a string in the format 'YYYY-MM-DD HH:MM:SS'
+formatted_date_time = date_time.strftime('%Y-%m-%d %H:%M:%S')
 
-datetime_object = datetime.strptime(readable_date_time, '%Y-%m-%dT%H:%M:%S')
-
-print(datetime_object, type(datetime_object))
-
-# Format the datetime object to the desired format
-formatted_datetime_str = datetime_object.strftime('%Y-%m-%d %H:%M:%S')
-
-print(formatted_datetime_str, type(formatted_datetime_str))
+print(f"Date and Time: {formatted_date_time}")

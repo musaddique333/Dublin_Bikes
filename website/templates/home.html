@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="../static/styles/home.css">
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
     <header>
@@ -13,10 +13,10 @@
     <main>
         <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
         <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
-        <div id="google-map">
-         </div>
+        <div id="weatherData" data-weather='{{ weather_data|safe }}' style="display:none;"></div>
+        <div id="google-map"></div>
     </main>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJgQ81odB2Zh5Esp0Ewbg1PydaUSttZVM&callback=initMap"></script>
-    <script src="../static/scripts/home.js"></script>
+    <script src="../static/js/home.js"></script>
 </body>
 </html>

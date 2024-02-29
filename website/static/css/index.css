@@ -13,9 +13,9 @@ body {
     align-items: center;
     justify-content: center;
     font-family: arial;
-    gap: 20px;
+    gap: 1vh;
     height: 100vh;
-    background-image: url('../images/background_images/background.webp');
+    background-image: url('../img/background_images/background.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -25,7 +25,7 @@ body {
     font-weight: bold;
 }
 
-.background{
+.background {
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -37,7 +37,7 @@ body {
     position: relative;
     z-index: 2;
     display: flex;
-    font-size: 100px;
+    font-size: 7vw;
     font-weight: 900;
 }
 
@@ -106,10 +106,10 @@ body {
     opacity: 0;
     animation: drop .4s linear forwards 2.0s;
     color: #9b5de5;
-    font-size: 90px;
-    margin-left: 15px;
+    font-size: 7vw;
 }
-.dublinBikes{
+
+.dublinBikes {
     position: relative;
     z-index: 2;
 }
@@ -117,7 +117,7 @@ body {
 .dublinBikes span {
     opacity: 0;
     animation: fadeIn 1s forwards 2s;
-    font-size: 100px;
+    font-size: 9vw;
     color: #00bbf9;
 }
 
@@ -175,38 +175,36 @@ body {
 .groupProject {
     position: relative;
     z-index: 2;
-    font-size: 20px;
+    font-size: 2vw;
     color: #fee440;
 }
 
-.continuebtn{
+.continuebtn {
     position: relative;
     z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 50px;
     visibility: hidden;
     animation: appear 0s linear 3.5s forwards;
 }
 
 @keyframes appear {
     to {
-      visibility: visible;
+        visibility: visible;
     }
 }
 
 .continuebtn a {
     position: relative;
     display: inline-block;
-    padding: 50px 50px;
+    padding: 3vh 3vw;
     color: #03e9f4;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.7s;
     letter-spacing: 4px;
     overflow: hidden;
-    margin-right: 50px;
     background-color: #f0f8ff08;
     border-radius: 2px;
 }
@@ -318,29 +316,92 @@ body {
     }
 }
 
-.social-menu{
+.social-menu {
     position: relative;
     z-index: 2;
     padding: 0;
     margin: 0;
-    margin-top: 100px;
+    margin-top: 6vh;
 }
 
-.social-menu .fab{
-    font-size: 70px;
+.social-menu .fab {
+    font-size: 4vw;
     color: #fff;
 }
 
-.social-menu .fab:hover{
+.social-menu .fab:hover {
     color: #797979;
     transform: translateY(-20px);
     transition: .6s;
 }
 
-.social-menu a{
+.social-menu a {
     padding: 0;
     margin: 0 0;
     position: relative;
     text-align: center;
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    #text-drop {
+        font-size: 50px;
+    }
+
+    .smile {
+        font-size: 50px;
+    }
+
+    .dublinBikes span {
+        font-size: 50px;
+    }
+
+    .groupProject {
+        font-size: 16px;
+
+        .continuebtn a {
+            padding: 25px 25px;
+        }
+
+        .social-menu .fab {
+            font-size: 50px;
+        }
+    }
+
+
+@media (max-width: 480px) {
+    body {
+        gap: 10px;
+    }
+
+    #text-drop {
+        flex-direction: column;
+        font-size: 30px;
+    }
+
+    .smile {
+        font-size: 30px;
+    }
+
+    .dublinBikes span {
+        font-size: 30px;
+    }
+
+    .groupProject {
+        font-size: 10px;
+    }
+
+    .continuebtn a {
+        padding: 20px 20px;
+        font-size: 14px;
+    }
+
+    .social-menu {
+        margin-top: 50px;
+    }
+
+    .social-menu .fab {
+        font-size: 40px;
+    }
+}
 }
