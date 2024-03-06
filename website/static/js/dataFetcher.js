@@ -25,7 +25,8 @@ function loadDataAndCreateMarkers(markers, map) {
             position: { lat: parseFloat(markerData.lat), lng: parseFloat(markerData.lng) },
             map: null, // Initially, don't add the marker to the map
             title: markerData.locationName,
-            markerDict: markerDict
+            markerDict: markerDict,
+            animation: google.maps.Animation.DROP,
         });
 
         addInfoWindow(marker, map);

@@ -49,7 +49,7 @@ function dropdownNearest(nearestMarkersData, map, markers) {
         option.textContent = station.title;
 
         const nearMarker = new google.maps.Marker({
-            map: null,
+            map: map,
             animation: google.maps.Animation.DROP,
             position: station.position,
             zoom: 17,

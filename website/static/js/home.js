@@ -152,15 +152,15 @@ function initMap() {
         ]
     };
     map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-    currentLocation(map, markers);
+    currentLocation(map);
+
     searchBox(markers, map);
     loadDataAndCreateMarkers(markers, map);
 
     const currentLocationbtn = document.getElementById('currentLocation');
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(currentLocationbtn);
     currentLocationbtn.addEventListener('click', () => {
-        markers.forEach(marker => marker.setMap(null));
-        currentLocation(map, markers);
+        currentLocation(map);
     });
 }
 

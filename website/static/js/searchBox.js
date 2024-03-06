@@ -2,6 +2,9 @@ import { showNearestMarkers } from './nearestMarker.js';
 
 function searchBox(markers, map){
     // Create a search box and link it to the UI element.
+    const checkbox = document.getElementById('toggle-markers');
+    const label = document.querySelector('.toggle-label');
+
     const input = document.getElementById('map-search');
     const searchBox = new google.maps.places.SearchBox(input);
     const search_container = document.getElementById('search-container')
@@ -33,12 +36,16 @@ function searchBox(markers, map){
         // Clear out the old markers.
         searchMarkers.forEach(marker => marker.setMap(null));
         searchMarkers = [];
+        nearestMarkersarr.forEach(marker => marker.setMap(null));
+        nearestMarkersarr = [];
+        checkbox.checked = false;
         
         // Mark the search location on the map
         const searchMarker = new google.maps.Marker({
             position: searchLocation,
             map: map,
-            title: places[0].name // Use the name of the place as the marker title
+            title: places[0].name, // Use the name of the place as the marker title
+            animation: google.maps.Animation.DROP,
         });
         searchMarkers.push(searchMarker); // Add the new marker to the array
 
@@ -48,23 +55,21 @@ function searchBox(markers, map){
 
 
         // const nearestMarkersData = showNearestMarkers(searchLocation, markers, map);
-        nearestMarkersarr = [];
         nearestMarkersarr = showNearestMarkers(searchLocation, markers, map);
     });
 
-    const checkbox = document.getElementById('toggle-markers');
-    const label = document.querySelector('.toggle-label');
-
     checkbox.addEventListener('change', () => {
         if (checkbox.checked){
-            label.textContent = 'Markers on'
+            label.innerHTML = '<strong>Markers on</strong>'
+            label.style.color = '#ff0000';
         } else {
-            label.textContent = 'Markers off'
+            label.innerHTML = '<strong>Markers off</strong>'
+            label.style.color = '#fff';
         }
     });
 
     // Add a listener to the toggle button
-    document.getElementById('toggle-markers').addEventListener('click', function() {
+    checkbox.addEventListener('click', function() {
         markers.forEach(marker => {
             if (marker.getMap()) {
                 marker.setMap(null);
@@ -75,6 +80,7 @@ function searchBox(markers, map){
                 }
             } else {
                 marker.setMap(map);
+                marker.setAnimation(google.maps.Animation.DROP)
                 if(nearestMarkersarr.length !== 0){
                     nearestMarkersarr.forEach(element => {
                         element.setMap(map);

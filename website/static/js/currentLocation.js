@@ -1,5 +1,7 @@
-function currentLocation (map, markers){
-    // Current Location
+let currentMarker = null; // Add this line outside of your function to keep track of the current marker
+
+function currentLocation(map) {
+    // Check for Geolocation support
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             const userLocation = {
@@ -7,15 +9,21 @@ function currentLocation (map, markers){
                 lng: position.coords.longitude
             };
 
-            
-            // Create a marker for the user's location
-            const userMarker = new google.maps.Marker({
+            // If a marker already exists, remove it
+            if (currentMarker) {
+                currentMarker.setMap(null);
+            }
+
+            // Create a new marker for the user's location
+            currentMarker = new google.maps.Marker({
                 position: userLocation,
                 map: map,
                 title: "Your Location",
                 animation: google.maps.Animation.DROP,
-                // icon :
             });
+
+            // Center the map on the user's location
+            map.setCenter(userLocation);
 
             const hoverContent = `<div class="marker-content"><br>You are here</div>`;
             const hoverInfoWindow = new google.maps.InfoWindow({
@@ -23,22 +31,19 @@ function currentLocation (map, markers){
             });
 
             // Open InfoWindow on mouseover
-            google.maps.event.addListener(userMarker, 'mouseover', function() {
-                hoverInfoWindow.open(map, userMarker);
+            google.maps.event.addListener(currentMarker, 'mouseover', function() {
+                hoverInfoWindow.open(map, currentMarker);
             });
 
             // Close InfoWindow on mouseout
-            google.maps.event.addListener(userMarker, 'mouseout', function() {
+            google.maps.event.addListener(currentMarker, 'mouseout', function() {
                 hoverInfoWindow.close();
             });
-
-            // Optionally, center the map on the user's location
-            map.setCenter(userLocation);
         }, function() {
             handleLocationError(true, map.getCenter());
         });
     } else {
-        // Browser doesn't support Geolocation
+        // Handle the case where the browser doesn't support Geolocation
         handleLocationError(false, map.getCenter());
     }
 }
