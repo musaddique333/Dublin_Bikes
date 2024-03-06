@@ -16,6 +16,6 @@ def home():
 
     station_data = session.fetch_station_data()
     availability_data = session.fetch_availability_data()
-    weather_data = session.fetch_weather_data()
+    # return jsonify(availability_data)
 
-    return render_template('home.html', station_data=json.dumps(station_data), availability_data=json.dumps(availability_data), weather_data=json.dumps(weather_data))
+    return render_template('home.html', station_data=json.dumps(station_data), availability_data=json.dumps(availability_data))

@@ -1,22 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="../static/css/home.css">
-</head>
-<body>
-    <header>
+{% extends "/layouts/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="../static/css/home.css">
+{% endblock %}
+{% block title %}Welcome{% endblock %}
+{% block body %}
+<header>
 
-    </header>
-    <main>
-        <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
-        <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
-        <div id="weatherData" data-weather='{{ weather_data|safe }}' style="display:none;"></div>
-        <div id="google-map"></div>
-    </main>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJgQ81odB2Zh5Esp0Ewbg1PydaUSttZVM&callback=initMap"></script>
-    <script src="../static/js/home.js"></script>
-</body>
-</html>
+</header>
+<aside>
+    <div id="station-info-bar">
+        <div class="close-info-bar">⏏︎</div>
+    </div>
+</aside>
+<main>
+    <div id="search-container">
+        <div class="search-bar-container active">
+            <img src="../static/img/icons/magnifier-512.webp" alt="magnifier"
+                class="magnifier">
+            <input id="map-search" type="text" class="input" placeholder="Search ..." />
+        </div>
+        <label class="toggle">
+            <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label">Markers off</span>
+        </label>
+    </div>
+    <div id="currentLocation">
+        <img src="../static/img/icons/currentLocation.svg" alt="X">
+    </div>
+    <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
+    <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
+    <div id="google-map"></div>
+</main>
+
+<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJgQ81odB2Zh5Esp0Ewbg1PydaUSttZVM&libraries=places,geometry&callback=initMap"></script> -->
+<script type="module" src="../static/js/home.js"></script>
+{% endblock %}
