@@ -1,0 +1,20 @@
+#station-info-bar{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+    position: fixed;
+    top: 5vh;
+    right: 2.3vw;
+    z-index: 3;
+    width: 20vw;
+    height: 90vh;
+    border-radius: 10px;
+    border: black 2px solid;
+    box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
+    background-color: rgb(71, 123, 255);
+  }
+  
+  .close-info-bar{
+    align-items: ;
+  }

@@ -1,14 +1,19 @@
 {% extends "/layouts/base.html" %}
 {% block head %}
 <link rel="stylesheet" href="../static/css/home.css">
+<link rel="stylesheet" href="../static/css/side_info_bar.css">
 {% endblock %}
 {% block title %}Welcome{% endblock %}
 {% block body %}
+<div class="loader"></div>
 <header>
 
 </header>
 <aside>
     <div id="station-info-bar">
+        <div class="start-loc">
+            <input type="text" placeholder="Starting Station">
+        </div>
         <div class="close-info-bar">⏏︎</div>
     </div>
 </aside>
@@ -22,7 +27,7 @@
         <label class="toggle">
             <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
             <div class="toggle-switch"></div>
-            <span class="toggle-label"><strong>Markers off</strong></span>
+            <span class="toggle-label"><strong>All Stations</strong></span>
         </label>
     </div>
     <div id="currentLocation">
@@ -32,7 +37,12 @@
     <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
     <div id="google-map"></div>
 </main>
-
-<!-- <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJgQ81odB2Zh5Esp0Ewbg1PydaUSttZVM&libraries=places,geometry&callback=initMap"></script> -->
+<script>
+    window.addEventListener("load", () => {
+        const loader = document.querySelector(".loader");
+        loader.classList.add("loader--hidden");
+            document.body.removeChild(loader);
+    });
+</script>
 <script type="module" src="../static/js/home.js"></script>
 {% endblock %}

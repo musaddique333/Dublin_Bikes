@@ -1,5 +1,6 @@
 import { showNearestMarkers } from './nearestMarker.js';
 
+let searchLocation = { lat: 53.3470411, lng: -6.2787019 };
 function searchBox(markers, map){
     // Create a search box and link it to the UI element.
     const checkbox = document.getElementById('toggle-markers');
@@ -15,6 +16,20 @@ function searchBox(markers, map){
 
     magnifierEl.addEventListener("click", () => {
         searchBarContainerEl.classList.toggle("active");
+        if (searchBarContainerEl.classList.contains('active')) {
+            const dropdown = document.getElementById('search-dropdown')
+            if (dropdown != null){
+                dropdown.style.display = 'none';
+            }
+        }
+        else {
+            const dropdown = document.getElementById('search-dropdown')
+            if (dropdown != null){
+                setTimeout(() => {
+                    dropdown.style.display = 'flex';
+                }, 900);
+            }
+        }
     });
 
     // Bias the SearchBox results towards current map's viewport.
@@ -31,7 +46,7 @@ function searchBox(markers, map){
         if (places.length == 0) {
             return;
         }
-        const searchLocation = places[0].geometry.location;
+        searchLocation = places[0].geometry.location;
         
         // Clear out the old markers.
         searchMarkers.forEach(marker => marker.setMap(null));
@@ -46,12 +61,18 @@ function searchBox(markers, map){
             map: map,
             title: places[0].name, // Use the name of the place as the marker title
             animation: google.maps.Animation.DROP,
+            icon: {
+                url: '../static/img/icons/search.svg', // URL to the SVG or image file
+                scaledSize: new google.maps.Size(40, 40), // The size you want the icon to be
+                origin: new google.maps.Point(0, 0), // The origin for this image is (0, 0)
+                anchor: new google.maps.Point(16, 16) // The anchor for this image is the base at (16, 16)
+            },
         });
         searchMarkers.push(searchMarker); // Add the new marker to the array
 
-         // Optionally center the map on the search location and adjust zoom
+        // Optionally center the map on the search location and adjust zoom
         map.setCenter(searchLocation);
-        map.setZoom(17); // Zoom in closer to the search location
+        map.setZoom(15); // Zoom in closer to the search location
 
 
         // const nearestMarkersData = showNearestMarkers(searchLocation, markers, map);
@@ -60,10 +81,8 @@ function searchBox(markers, map){
 
     checkbox.addEventListener('change', () => {
         if (checkbox.checked){
-            label.innerHTML = '<strong>Markers on</strong>'
             label.style.color = '#ff0000';
         } else {
-            label.innerHTML = '<strong>Markers off</strong>'
             label.style.color = '#fff';
         }
     });
@@ -73,16 +92,27 @@ function searchBox(markers, map){
         markers.forEach(marker => {
             if (marker.getMap()) {
                 marker.setMap(null);
+                if (searchLocation.lat === 53.3470411 && searchLocation.lng === -6.2787019){
+                    console.log('true')
+                    map.setZoom(11);
+                }
+                else{
+                    map.setZoom(16.5);
+                }
                 if(nearestMarkersarr.length !== 0){
                     nearestMarkersarr.forEach(element => {
-                        element.setMap(null);
+                        element.setAnimation(google.maps.Animation.DROP)
+                        element.setMap(map);
                     });
                 }
             } else {
+                map.setCenter(searchLocation);
+                map.setZoom(14);
                 marker.setMap(map);
                 marker.setAnimation(google.maps.Animation.DROP)
                 if(nearestMarkersarr.length !== 0){
                     nearestMarkersarr.forEach(element => {
+                        element.setAnimation(google.maps.Animation.DROP)
                         element.setMap(map);
                     });
                 }

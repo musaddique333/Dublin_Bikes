@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+    text-shadow: -5px 6px 7px rgb(0 0 0);
 }
 
 body {
@@ -13,14 +14,14 @@ body {
     align-items: center;
     justify-content: center;
     font-family: arial;
-    gap: 1vh;
+    gap: 2vh;
     height: 100vh;
-    background-image: url('../img/background_images/background.webp');
+    background-image: url('../img/background_images/background4.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    -webkit-backdrop-filter: blur(1.5px);
-    backdrop-filter: blur(1.5px);
+    /* -webkit-backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1px); */
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
 }
@@ -30,7 +31,7 @@ body {
     width: 100vw;
     position: absolute;
     z-index: 1;
-    background-color: #01062fac;
+    background-color: #120e2f6f;
 }
 
 #text-drop {
@@ -118,7 +119,7 @@ body {
     opacity: 0;
     animation: fadeIn 1s forwards 2s;
     font-size: 9vw;
-    color: #00bbf9;
+    color: #ff7d00;
 }
 
 @keyframes fadeIn {
@@ -176,7 +177,7 @@ body {
     position: relative;
     z-index: 2;
     font-size: 2vw;
-    color: #fee440;
+    color: #e1f1ff;
 }
 
 .continuebtn {
@@ -198,7 +199,7 @@ body {
 .continuebtn a {
     position: relative;
     display: inline-block;
-    padding: 3vh 3vw;
+    padding: 5vh 4vw;
     color: #03e9f4;
     text-decoration: none;
     text-transform: uppercase;
@@ -211,7 +212,7 @@ body {
 
 .continuebtn a:hover {
     background: #03e9f4;
-    color: #050801;
+    color: #000ac1;
     box-shadow: 0 0 5px #03e9f4,
         0 0 25px #03e9f4,
         0 0 50px #03e9f4,
@@ -236,7 +237,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 5px;
+    height: 6px;
     background: linear-gradient(90deg, transparent, #03e9f4);
     animation: animate1 1s linear infinite;
 }
@@ -255,7 +256,7 @@ body {
 .continuebtn a span:nth-child(2) {
     top: -100%;
     right: 0;
-    width: 5px;
+    width: 6px;
     height: 100%;
     background: linear-gradient(180deg, transparent, #03e9f4);
     animation: animate2 1s linear infinite;
@@ -277,7 +278,7 @@ body {
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 5px;
+    height: 6px;
     background: linear-gradient(270deg, transparent, #03e9f4);
     animation: animate3 1s linear infinite;
     animation-delay: 0.50s;
@@ -298,7 +299,7 @@ body {
 .continuebtn a span:nth-child(4) {
     bottom: -100%;
     left: 0;
-    width: 5px;
+    width: 6px;
     height: 100%;
     background: linear-gradient(360deg, transparent, #03e9f4);
     animation: animate4 1s linear infinite;

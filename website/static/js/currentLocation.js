@@ -20,6 +20,12 @@ function currentLocation(map) {
                 map: map,
                 title: "Your Location",
                 animation: google.maps.Animation.DROP,
+                icon: {
+                    url: '../static/img/icons/current.svg', // URL to the SVG or image file
+                    scaledSize: new google.maps.Size(40, 40), // The size you want the icon to be
+                    origin: new google.maps.Point(0, 0), // The origin for this image is (0, 0)
+                    anchor: new google.maps.Point(16, 16) // The anchor for this image is the base at (16, 16)
+                },
             });
 
             // Center the map on the user's location
@@ -39,6 +45,7 @@ function currentLocation(map) {
             google.maps.event.addListener(currentMarker, 'mouseout', function() {
                 hoverInfoWindow.close();
             });
+            return userLocation;
         }, function() {
             handleLocationError(true, map.getCenter());
         });

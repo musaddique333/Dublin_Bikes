@@ -27,6 +27,12 @@ function loadDataAndCreateMarkers(markers, map) {
             title: markerData.locationName,
             markerDict: markerDict,
             animation: google.maps.Animation.DROP,
+            icon: {
+                url: '../static/img/icons/marker3.svg', // URL to the SVG or image file
+                scaledSize: new google.maps.Size(40, 40), // The size you want the icon to be
+                origin: new google.maps.Point(0, 0), // The origin for this image is (0, 0)
+                anchor: new google.maps.Point(16, 16) // The anchor for this image is the base at (16, 16)
+            },
         });
 
         addInfoWindow(marker, map);

@@ -5,10 +5,10 @@ import { loadDataAndCreateMarkers } from './dataFetcher.js';
 let map, markers = [];
 
 function initMap() {
-    const centerMap = { lat: 53.3470411, lng: -6.2787019 };
+    let centerMap = { lat: 53.3470411, lng: -6.2787019 };
     const mapOptions = { 
         center: centerMap,
-        zoom: 17,
+        zoom: 11,
         disableDefaultUI: false,
         mapTypeControl: false,
         streetViewControl: false,
@@ -152,7 +152,9 @@ function initMap() {
         ]
     };
     map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-    currentLocation(map);
+    currentLocation(map)
+    // map.setCenter(currentLocation(map));
+    // map.setZoom(17);
 
     searchBox(markers, map);
     loadDataAndCreateMarkers(markers, map);
@@ -160,7 +162,7 @@ function initMap() {
     const currentLocationbtn = document.getElementById('currentLocation');
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(currentLocationbtn);
     currentLocationbtn.addEventListener('click', () => {
-        currentLocation(map);
+        map.setCenter(currentLocation(map));
     });
 }
 

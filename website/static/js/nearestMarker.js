@@ -14,12 +14,12 @@ function showNearestMarkers(searchLocation, markers, map) {
     distances.sort((a, b) => a.distance - b.distance);
 
     // Get the 5 nearest markers
-    const nearestMarkers = distances.slice(0, 5);
+    const nearestMarkers = distances.slice(0, 5).map(item => item.marker);
 
     // Display the 5 nearest markers
-    nearestMarkers.forEach(nearest => {
-        nearest.marker.setMap(map);
-    });
+    // nearestMarkers.forEach(nearest => {
+    //     nearest.marker.setMap(map);
+    // });
 
     // // Optionally, adjust the map view. For simplicity, center on the nearest marker.
     // You might want to adjust this to better fit all 5 markers.
@@ -32,12 +32,8 @@ function showNearestMarkers(searchLocation, markers, map) {
     //     title: nearest.marker.getTitle(),
     //     element: nearest.marker // Assuming getTitle() gives you the name or ID
     // }));
-
-    return dropdownNearest(nearestMarkers.map(nearest => ({
-                position: nearest.marker.getPosition(),
-                title: nearest.marker.getTitle(),
-                element: nearest.marker // Assuming getTitle() gives you the name or ID
-            })), map, markers);
+    dropdownNearest(nearestMarkers, map, markers)
+    return nearestMarkers;
 
 }
 

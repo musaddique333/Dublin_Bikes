@@ -11,6 +11,48 @@ main {
   align-items: center;
 }
 
+body{
+  background-image: url('../img/background_images/background.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.loader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display:  flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader::after{
+  content: '';
+  width: 150px;
+  height: 150px;
+  border: 15px solid rgb(255, 255, 255);
+  border-top-color: rgb(255, 0, 0);
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+  from { transform: rotate(0turn); }
+  to { transform: rotate(1turn); }
+}
+
 #google-map {
   position: relative;
   z-index: 2;
@@ -69,9 +111,12 @@ main {
 }
 
 .option{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   cursor: pointer;
-  padding: 10px;
-  width: auto;
+  padding: 5px;
+  width: 280px;
   font-size: 12px;
   background-color: #22a8eb;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
@@ -90,6 +135,11 @@ main {
   background-color: #6d74a0c1;
   display: flex;
   justify-content: center;
+}
+
+.option-name{
+  width:120px;
+  text-wrap: wrap;
 }
 
 .toggle {
@@ -143,20 +193,6 @@ main {
 	margin-left: 5px;
 	position: relative;
 	top: 2px;
-}
-
-#station-info-bar{
-  display: none;
-  position: fixed;
-  top: 5vh;
-  right: 2.3vw;
-  z-index: 3;
-  width: 20vw;
-  height: 90vh;
-  border-radius: 10px;
-  border: black 2px solid;
-  box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
-  background-color: tomato;
 }
 
 #currentLocation{
