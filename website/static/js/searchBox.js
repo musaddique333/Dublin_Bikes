@@ -1,8 +1,7 @@
 import { showNearestMarkers } from './nearestMarker.js';
 
 let searchLocation = { lat: 53.3470411, lng: -6.2787019 };
-function searchBox(markers, map){
-    // Create a search box and link it to the UI element.
+function searchBox(markers, map) {
     const checkbox = document.getElementById('toggle-markers');
     const label = document.querySelector('.toggle-label');
 
@@ -18,13 +17,13 @@ function searchBox(markers, map){
         searchBarContainerEl.classList.toggle("active");
         if (searchBarContainerEl.classList.contains('active')) {
             const dropdown = document.getElementById('search-dropdown')
-            if (dropdown != null){
+            if (dropdown != null) {
                 dropdown.style.display = 'none';
             }
         }
         else {
             const dropdown = document.getElementById('search-dropdown')
-            if (dropdown != null){
+            if (dropdown != null) {
                 setTimeout(() => {
                     dropdown.style.display = 'flex';
                 }, 900);
@@ -32,29 +31,28 @@ function searchBox(markers, map){
         }
     });
 
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
+    map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
     });
 
     let searchMarkers = [];
     let nearestMarkersarr = [];
-    // Listen for the event fired when the user selects a prediction and retrieve more details for that place.
-    searchBox.addListener('places_changed', function() {
+
+    searchBox.addListener('places_changed', function () {
         const places = searchBox.getPlaces();
 
         if (places.length == 0) {
             return;
         }
         searchLocation = places[0].geometry.location;
-        
+
         // Clear out the old markers.
         searchMarkers.forEach(marker => marker.setMap(null));
         searchMarkers = [];
         nearestMarkersarr.forEach(marker => marker.setMap(null));
         nearestMarkersarr = [];
         checkbox.checked = false;
-        
+
         // Mark the search location on the map
         const searchMarker = new google.maps.Marker({
             position: searchLocation,
@@ -80,7 +78,7 @@ function searchBox(markers, map){
     });
 
     checkbox.addEventListener('change', () => {
-        if (checkbox.checked){
+        if (checkbox.checked) {
             label.style.color = '#ff0000';
         } else {
             label.style.color = '#fff';
@@ -88,18 +86,18 @@ function searchBox(markers, map){
     });
 
     // Add a listener to the toggle button
-    checkbox.addEventListener('click', function() {
+    checkbox.addEventListener('click', function () {
         markers.forEach(marker => {
             if (marker.getMap()) {
                 marker.setMap(null);
-                if (searchLocation.lat === 53.3470411 && searchLocation.lng === -6.2787019){
+                if (searchLocation.lat === 53.3470411 && searchLocation.lng === -6.2787019) {
                     console.log('true')
                     map.setZoom(11);
                 }
-                else{
+                else {
                     map.setZoom(16.5);
                 }
-                if(nearestMarkersarr.length !== 0){
+                if (nearestMarkersarr.length !== 0) {
                     nearestMarkersarr.forEach(element => {
                         element.setAnimation(google.maps.Animation.DROP)
                         element.setMap(map);
@@ -110,7 +108,7 @@ function searchBox(markers, map){
                 map.setZoom(14);
                 marker.setMap(map);
                 marker.setAnimation(google.maps.Animation.DROP)
-                if(nearestMarkersarr.length !== 0){
+                if (nearestMarkersarr.length !== 0) {
                     nearestMarkersarr.forEach(element => {
                         element.setAnimation(google.maps.Animation.DROP)
                         element.setMap(map);
@@ -120,10 +118,10 @@ function searchBox(markers, map){
         });
     });
 
-    // Limit the search box to Dublin area
+
     const dublinBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(53.298810877564875, -6.387438537597656), // Southwest corner of Dublin
-        new google.maps.LatLng(53.41058064672438, -6.114489196777343) // Northeast corner of Dublin
+        new google.maps.LatLng(53.298810877564875, -6.387438537597656),
+        new google.maps.LatLng(53.41058064672438, -6.114489196777343)
     );
 }
 

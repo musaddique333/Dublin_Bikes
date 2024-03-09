@@ -2,7 +2,7 @@ const station_data = JSON.parse(document.getElementById('stationData').getAttrib
 const availability_data = JSON.parse(document.getElementById('availabilityData').getAttribute('data-availability'));
 
 function loadDataAndCreateMarkers(markers, map) {
-    let station_info_bar = document.getElementById('station-info-bar');
+    const station_info_bar = document.getElementById('station-info-bar');
     station_info_bar.style.display = 'none'
 
     station_data.forEach((markerData, index) => {
@@ -38,12 +38,7 @@ function loadDataAndCreateMarkers(markers, map) {
         addInfoWindow(marker, map);
 
         marker.addListener("click", () => {
-            console.log(station_info_bar.style.display)
-            if (station_info_bar.style.display == 'none') {
-                station_info_bar.style.display = 'flex';
-            } else {
-                station_info_bar.style.display = 'none';
-            }
+            station_info_bar.style.display = 'flex';
         });
 
         markers.push(marker);

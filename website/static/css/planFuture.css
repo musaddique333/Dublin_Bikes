@@ -1,0 +1,9 @@
+.planforFuture{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20vw;
+    height: 50vh;
+    background-color: black;
+    z-index: 100000;
+}

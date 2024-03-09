@@ -1,35 +1,44 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 main {
   display: flex;
-  padding: 5vh 3vw;
-  flex-direction: column;
-  justify-content: center;
+  padding: 5vh 1vw;
+  gap: 1vw;
+  justify-content: space-around;
   align-items: center;
+}
+html, body {
+  height: 100%;
 }
 
 body{
-  background-image: url('../img/background_images/background.webp');
+  background-image: url('../img/background_images/background6.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(1px);
 }
 
-.loader{
+.loader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  display:  flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  background-image: url('../img/background_images/background6.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   transition: opacity 0.75s, visibility 0.75s;
 }
 
@@ -38,33 +47,45 @@ body{
   visibility: hidden;
 }
 
-.loader::after{
+.loader::after {
   content: '';
-  width: 150px;
-  height: 150px;
-  border: 15px solid rgb(255, 255, 255);
-  border-top-color: rgb(255, 0, 0);
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 8px;
   border-radius: 50%;
-  animation: loading 0.75s ease infinite;
+  border: 12px solid;
+  border-color: #009A44 transparent #ffffff transparent;
+  animation: loading 1s infinite;
 }
 
 @keyframes loading {
-  from { transform: rotate(0turn); }
-  to { transform: rotate(1turn); }
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    border-color: #FF8200 transparent #ffffff transparent;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
+
 
 #google-map {
   position: relative;
+  align-self: flex-end;
   z-index: 2;
-  width: 94vw;
-  height: 90vh;
+  width: 74vw;
+  height: 80vh;
   border-radius: 10px;
   border: black 2px solid;
   box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
 }
 
 #search-container {
-  display: flex;
+  display: none;
   margin: 1vmin;
   gap: 1vmin;
 }
@@ -196,6 +217,7 @@ body{
 }
 
 #currentLocation{
+    display: none;
     background-color: #fff;
     height: 40px;
     width: 40px;

@@ -152,9 +152,16 @@ function initMap() {
         ]
     };
     map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-    currentLocation(map)
-    // map.setCenter(currentLocation(map));
-    // map.setZoom(17);
+    // currentLocation(map)
+
+    google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+        document.getElementById('search-container').style.display = 'flex';
+        document.getElementById('currentLocation').style.display = 'flex';
+        const loader = document.querySelector(".loader");
+        loader.classList.add("loader--hidden");
+        document.body.removeChild(loader);
+
+    });
 
     searchBox(markers, map);
     loadDataAndCreateMarkers(markers, map);
@@ -163,6 +170,12 @@ function initMap() {
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(currentLocationbtn);
     currentLocationbtn.addEventListener('click', () => {
         map.setCenter(currentLocation(map));
+    });
+
+    const close_info_bar = document.getElementById('close-info-bar');
+    const station_info_bar = document.getElementById('station-info-bar');
+    close_info_bar.addEventListener('click', () =>{
+        station_info_bar.style.display = 'none';
     });
 }
 
