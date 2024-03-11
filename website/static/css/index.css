@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    text-shadow: -5px 6px 7px rgb(0 0 0);
+}
+
+body {
+    display: flex;
+    z-index: 0;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-family: arial;
+    gap: 2vh;
+    height: 100vh;
+    background-image: url('../img/background_images/background4.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* -webkit-backdrop-filter: blur(1.5px);
+    backdrop-filter: blur(1px); */
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+
+.background {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    background-color: #120e2f6f;
+}
+
+#text-drop {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    font-size: 7vw;
+    font-weight: 900;
+}
+
+.h {
+    opacity: 0;
+    animation: drop .4s linear forwards;
+    color: #9b5de5;
+}
+
+.e {
+    opacity: 0;
+    animation: drop .4s linear forwards .4s;
+    color: #f15bb5;
+}
+
+.l {
+    opacity: 0;
+    animation: drop .4s linear forwards .8s;
+    color: #fee440;
+}
+
+.l2 {
+    opacity: 0;
+    animation: drop .4s linear forwards 1.2s;
+    color: #00bbf9;
+}
+
+.o {
+    opacity: 0;
+    animation: drop .4s linear forwards 1.6s;
+    color: #00f5d4;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(-200px) scaleY(0.9);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: .7;
+    }
+
+    50% {
+        transform: translateY(0px) scaleY(1);
+        opacity: 1;
+    }
+
+    65% {
+        transform: translateY(-17px) scaleY(.9);
+        opacity: 1;
+    }
+
+    75% {
+        transform: translateY(-22px) scaleY(.9);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0px) scaleY(1);
+        opacity: 1;
+    }
+}
+
+.smile {
+    opacity: 0;
+    animation: drop .4s linear forwards 2.0s;
+    color: #9b5de5;
+    font-size: 7vw;
+}
+
+.dublinBikes {
+    position: relative;
+    z-index: 2;
+}
+
+.dublinBikes span {
+    opacity: 0;
+    animation: fadeIn 1s forwards 2s;
+    font-size: 9vw;
+    color: #ff7d00;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.dublinBikes span:nth-child(1) {
+    animation-delay: 2.5s;
+}
+
+.dublinBikes span:nth-child(2) {
+    animation-delay: 2.6s;
+}
+
+.dublinBikes span:nth-child(3) {
+    animation-delay: 2.7s;
+}
+
+.dublinBikes span:nth-child(4) {
+    animation-delay: 2.8s;
+}
+
+.dublinBikes span:nth-child(5) {
+    animation-delay: 2.9s;
+}
+
+.dublinBikes span:nth-child(6) {
+    animation-delay: 3s;
+}
+
+.dublinBikes span:nth-child(7) {
+    animation-delay: 3.1s;
+}
+
+.dublinBikes span:nth-child(8) {
+    animation-delay: 3.2s;
+}
+
+.dublinBikes span:nth-child(9) {
+    animation-delay: 3.3s;
+}
+
+.dublinBikes span:nth-child(10) {
+    animation-delay: 3.4s;
+}
+
+.dublinBikes span:nth-child(11) {
+    animation-delay: 3.5s;
+}
+
+
+.groupProject {
+    position: relative;
+    z-index: 2;
+    font-size: 2vw;
+    color: #e1f1ff;
+}
+
+.continuebtn {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    animation: appear 0s linear 3.5s forwards;
+}
+
+@keyframes appear {
+    to {
+        visibility: visible;
+    }
+}
+
+.continuebtn a {
+    position: relative;
+    display: inline-block;
+    padding: 5vh 4vw;
+    color: #03e9f4;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.7s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background-color: #f0f8ff08;
+    border-radius: 2px;
+}
+
+.continuebtn a:hover {
+    background: #03e9f4;
+    color: #000ac1;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 200px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.continuebtn a:nth-child(1) {
+    filter: hue-rotate(270deg);
+}
+
+.continuebtn a:nth-child(2) {
+    filter: hue-rotate(110deg);
+}
+
+.continuebtn a span {
+    position: absolute;
+    display: block;
+}
+
+.continuebtn a span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.continuebtn a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.continuebtn a span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+
+.continuebtn a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+.social-menu {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    margin-top: 6vh;
+}
+
+.social-menu .fab {
+    font-size: 4vw;
+    color: #fff;
+}
+
+.social-menu .fab:hover {
+    color: #797979;
+    transform: translateY(-20px);
+    transition: .6s;
+}
+
+.social-menu a {
+    padding: 0;
+    margin: 0 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    #text-drop {
+        font-size: 50px;
+    }
+
+    .smile {
+        font-size: 50px;
+    }
+
+    .dublinBikes span {
+        font-size: 50px;
+    }
+
+    .groupProject {
+        font-size: 16px;
+
+        .continuebtn a {
+            padding: 25px 25px;
+        }
+
+        .social-menu .fab {
+            font-size: 50px;
+        }
+    }
+
+
+@media (max-width: 480px) {
+    body {
+        gap: 10px;
+    }
+
+    #text-drop {
+        flex-direction: column;
+        font-size: 30px;
+    }
+
+    .smile {
+        font-size: 30px;
+    }
+
+    .dublinBikes span {
+        font-size: 30px;
+    }
+
+    .groupProject {
+        font-size: 10px;
+    }
+
+    .continuebtn a {
+        padding: 20px 20px;
+        font-size: 14px;
+    }
+
+    .social-menu {
+        margin-top: 50px;
+    }
+
+    .social-menu .fab {
+        font-size: 40px;
+    }
+}
+}

@@ -1,3 +1,5 @@
 keys/
 config.py
-website/
+website/fetcher.py
+website/models.py
+website/scrapper.py

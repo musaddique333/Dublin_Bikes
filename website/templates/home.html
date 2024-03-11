@@ -1,0 +1,120 @@
+{% extends "/layouts/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="../static/css/home.css">
+<link rel="stylesheet" href="../static/css/side_info_bar.css">
+<link rel="stylesheet" href="../static/css/weather.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/weather-icons/css/weather-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&family=Dancing+Script:wght@600&family=Exo:wght@300&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu&display=swap" rel="stylesheet">
+{% endblock %}
+{% block title %}Welcome{% endblock %}
+{% block body %}
+<div class="loader"></div>
+<header>
+
+</header>
+<aside>
+    <div id="station-info-bar">
+        <div class="route">
+            <div class="start-loc box">
+                <input class="source input-route" type="text" name="" placeholder="Source...">
+            </div>
+            <div class="end-loc box">
+                <input class="destination input-route" type="text" name="" placeholder="Destination...">
+            </div>
+            <div class="serch-route">Direction</div>
+        </div>
+        <div class="directions">
+        
+        </div>
+        <div id="close-info-bar">⏏︎</div>
+    </div>
+</aside>
+<main>
+    <div class="start-loc">
+        <div class="lat"></div>
+        <div class="lng"></div>
+        <div class="name"></div>
+    </div>
+    <div id="search-container">
+        <div class="search-bar-container active">
+            <img src="../static/img/icons/magnifier-512.webp" alt="magnifier"
+                class="magnifier">
+            <input id="map-search" type="text" class="input" placeholder="Search ..." />
+        </div>
+        <label class="toggle">
+            <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label"><strong>All Stations</strong></span>
+        </label>
+    </div>
+    <div id="currentLocation">
+        <img src="../static/img/icons/currentLocation.svg" alt="X">
+    </div>
+
+
+    <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
+    <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
+
+
+    <div class="info-container">
+        <div class="weather-app">
+            <div class="weather-app-container">
+                <div class="weather-disp">
+                    <div class="weather-disp-container">
+                        <div class="info">
+                            <div class="weather-text">
+                            </div>
+                            <div class="wind-speed">
+                            </div>
+                        </div>
+                        <div class="weather-ico">
+                        </div>
+                    </div>
+                </div>
+                <div class="loc-temp">
+                    <div class="loc-temp-up">
+                        <div class="day-name">
+                            
+                        </div>
+                        <div class="location-name">
+                            Dublin, Ireland
+                        </div>
+                    </div>
+                    <div class="loc-temp-down">
+                        <div class="loc-temp-info">
+                            <div class="temp">
+                                <div class="temp-head">Temperature</div>
+                                <div class="temp-value">10'C</div>
+                            </div>
+                            <div class="feel-temp">
+                                <div class="temp-head">Feels Like</div>
+                                <div class="temp-value">10'C</div>
+                            </div>
+                        </div>
+                        <div class="temp-img">
+                            <img src="../static/img/icons/temp.svg" alt="temp-icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="time-date">
+                <div class="date">
+    
+                </div>
+                <div class="time">
+                </div>
+            </div>
+        </div>
+        <div class="planforFuture">
+
+        </div>
+    </div>
+
+
+    <div id="google-map"></div>
+</main>
+<script src="../static/js/weather.js"></script>
+<script type="module" src="../static/js/home.js"></script>
+{% endblock %}
