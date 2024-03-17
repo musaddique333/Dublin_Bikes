@@ -19,7 +19,7 @@ async function initMap() {
                 "elementType": "geometry",
                 "stylers": [
                     {
-                        "color": "#202c3e"
+                        "color": "#072a47"
                     }
                 ]
             },
@@ -121,7 +121,7 @@ async function initMap() {
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#193a55"
+                        "color": "#001526"
                     }
                 ]
             },

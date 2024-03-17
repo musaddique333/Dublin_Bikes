@@ -1,73 +1,75 @@
 import os
 import sys
+import pickle
+import pandas as pd
+from sqlalchemy import create_engine
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+import warnings
+
+warnings.filterwarnings("ignore")
+
+def save_model(model, scaler, preprocessor, location):
+    model_data = {
+        'model': model,
+        'scalar': scaler,
+        'preprocessor': preprocessor
+    }
+    with open(location, 'wb') as model_file:
+        pickle.dump(model_data, model_file)
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(script_dir, '..'))
 sys.path.append(project_root)
 
 from config import URI
-from sqlalchemy import create_engine
-import pandas as pd
-import numpy as np
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-import pickle
-import warnings
-warnings.filterwarnings("ignore")
 
 engine = create_engine(URI)
 query = "SELECT * FROM availability"
 df = pd.read_sql(query, engine)
 engine.dispose()
 
-for i in df['id'].unique():
-    data = df[df['id'] == i]
+result = df.groupby([df['time_stamp'], df['id']]).mean().reset_index()
+X = result[['time_stamp', 'id']]
+X['time_stamp'] = pd.to_datetime(X['time_stamp'])
+X['hour'] = X['time_stamp'].dt.hour
+X['date_only'] = X['time_stamp'].dt.day
+X['day_of_week'] = X['time_stamp'].dt.dayofweek
+X['month_number'] = X['time_stamp'].dt.month
+X = X.drop('time_stamp', axis=1)
 
-    X = data[['time_stamp']]
-    y = data[['bike_stands', 'bikes']]
+numeric_features = ['hour', 'date_only', 'day_of_week', 'month_number']
+numeric_transformer = Pipeline(steps=[
+    ('scaler', StandardScaler())
+])
 
-    X['time_stamp'] = pd.to_datetime(X['time_stamp']).dt.round('30min')
-    X['hour'] = X['time_stamp'].dt.hour
-    X['day_of_week'] = X['time_stamp'].dt.dayofweek
-    X['time_stamp'] = pd.to_datetime(X['time_stamp']).astype(int) // 10**9
+categorical_features = ['id']
+categorical_transformer = Pipeline(steps=[
+    ('onehot', OneHotEncoder())
+])
 
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ('num', StandardScaler(), ['time_stamp', 'hour']),
-            ('cat', OneHotEncoder(), ['day_of_week'])
-        ])
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features)
+    ])
 
-    X_processed = preprocessor.fit_transform(X)
+X_processed = preprocessor.fit_transform(X)
 
-    scalar = StandardScaler()
-    y_processed = scalar.fit_transform(y['bikes'].values.reshape(-1, 1))
+def transform_target(y):
+    scaler = StandardScaler()
+    y_processed = scaler.fit_transform(y.values.reshape(-1, 1))
+    return y_processed, scaler
 
-    regressor = KNeighborsRegressor(n_neighbors=2, n_jobs=-1)
-    regressor.fit(X_processed, y_processed)
+y_bikes_processed, scaler_bikes = transform_target(result['bikes'])
+y_bike_stands_processed, scaler_bike_stands = transform_target(result['bike_stands'])
 
-    model_data = {
-        'regressor': regressor,
-        'scaler': scalar,
-        'preprocessor': preprocessor
-    }
+regressor = KNeighborsRegressor(algorithm='brute', n_neighbors=2, p=1, weights='distance')
+regressor.fit(X_processed, y_bikes_processed)
+save_model(regressor, scaler_bikes, preprocessor, 'models/ava_time/bikes/KNearestNeighbors.pkl')
 
-    location = f'models/ava_time/bikes/{i}.pkl'
-    with open(location, 'wb') as model_file:
-        pickle.dump(model_data, model_file)
-
-    scalar = StandardScaler()
-    y_processed = scalar.fit_transform(y['bike_stands'].values.reshape(-1, 1))
-
-    regressor = KNeighborsRegressor(n_neighbors=2, n_jobs=-1)
-    regressor.fit(X_processed, y_processed)
-
-    model_data = {
-        'regressor': regressor,
-        'scaler': scalar,
-        'preprocessor': preprocessor
-    }
-
-    location = f'models/ava_time/stands/{i}.pkl'
-    with open(location, 'wb') as model_file:
-        pickle.dump(model_data, model_file)
+regressor = KNeighborsRegressor(algorithm='brute', n_neighbors=2, p=1, weights='distance')
+regressor.fit(X_processed, y_bike_stands_processed)
+save_model(regressor, scaler_bike_stands, preprocessor, 'models/ava_time/bike_stands/KNearestNeighbors.pkl')

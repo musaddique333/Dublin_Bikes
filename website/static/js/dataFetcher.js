@@ -28,8 +28,8 @@ function loadDataAndCreateMarkers(markers, map) {
             markerDict: markerDict,
             animation: google.maps.Animation.DROP,
             icon: {
-                url: '../static/img/icons/marker3.svg',
-                scaledSize: new google.maps.Size(40, 40),
+                url: '../static/img/icons/marker6.svg',
+                scaledSize: new google.maps.Size(35, 35),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(16, 16)
             },

@@ -25,52 +25,86 @@ body{
   backdrop-filter: blur(1px);
 }
 
+:root {
+  --red: #009A44;
+  --blue: #FFFFFF;
+  --cian: #FFFFFF;
+  --green: #FF8200;
+}
+
 .loader {
-  position: fixed;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 200px;
+  height: 200px;
+  animation: animate 1s linear infinite;
+}
+
+.loader-item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #f00;
+  box-shadow: 2px 2px 5px 1px #000;
+  animation: rotate 1s linear infinite;
+}
+
+.loader-item_1 {
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  background-image: url('../img/background_images/background6.webp');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transition: opacity 0.75s, visibility 0.75s;
+  background: var(--red);
 }
+
+.loader-item_2 {
+  top: 0;
+  right: 0;
+  background: var(--blue);
+}
+
+.loader-item_3 {
+  bottom: 0;
+  left: 0;
+  background: var(--cian);
+}
+
+.loader-item_4 {
+  bottom: 0;
+  right: 0;
+  background: var(--green);
+}
+
+@keyframes animate {
+  0%, 100% {
+    width: 200px;
+    height: 200px;
+  }
+  10%, 90% {
+    width: 200px;
+    height: 200px;
+  }
+  50% {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@keyframes rotate {
+  0%, 10% {
+    transform: rotate(0deg);
+  }
+  60%, 90%, 100% {
+    transform: rotate(90deg);
+  }
+}
+
 
 .loader--hidden {
   opacity: 0;
   visibility: hidden;
 }
 
-.loader::after {
-  content: '';
-  display: block;
-  width: 200px;
-  height: 200px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 12px solid;
-  border-color: #009A44 transparent #ffffff transparent;
-  animation: loading 1s infinite;
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-    border-color: #FF8200 transparent #ffffff transparent;
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 
 #google-map {
@@ -199,7 +233,7 @@ body{
 		box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
 	}
 	.toggle-checkbox:checked + & {
-		background: #4cc3ff;
+		background: #21649c;
 		&:before {
 			left: 30px;
 		}

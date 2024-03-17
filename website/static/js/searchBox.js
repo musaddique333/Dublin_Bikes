@@ -91,7 +91,6 @@ function searchBox(markers, map) {
             if (marker.getMap()) {
                 marker.setMap(null);
                 if (searchLocation.lat === 53.3470411 && searchLocation.lng === -6.2787019) {
-                    console.log('true')
                     map.setZoom(11);
                 }
                 else {
