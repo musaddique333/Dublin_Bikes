@@ -24,7 +24,7 @@ engine = create_engine(URI)
 query = "SELECT * FROM availability"
 df_bikes = pd.read_sql(query, engine)
 
-query = "SELECT * FROM HourlyWeather"
+query = "SELECT * FROM hourlyWeather"
 df_weather = pd.read_sql(query, engine)
 
 engine.dispose()
@@ -43,7 +43,7 @@ def create_sequences(data, target, seq_length):
         y.append(target[i + seq_length])
     return np.array(X), np.array(y)
 
-for i in df['id']:
+for i in df['id'].unique():
     df_rnn = df[df['id'] == i]
     df_rnn['time_stamp'] = pd.to_datetime(df_rnn['time_stamp'])
     df_rnn.set_index('time_stamp', inplace=True)
@@ -59,25 +59,24 @@ for i in df['id']:
     sequence_length = 24
     X_seq, y_seq = create_sequences(X_scaled, y_scaled, sequence_length)
 
-    X_train_rnn, X_test_rnn, y_train_rnn, y_test_rnn = train_test_split(X_seq, y_seq, test_size=0.2, random_state=42)
-
     model = Sequential([
-        LSTM(units=128, return_sequences=True, input_shape=(X_train_rnn.shape[1], X_train_rnn.shape[2])),
-        Dropout(0.1),
+        LSTM(units=256, return_sequences=True, input_shape=(X_seq.shape[1], X_seq.shape[2])),
+        Dropout(0.2),
         LSTM(units=128, return_sequences=False),
         Dense(units=2)
     ])
 
     model.compile(optimizer='adam', loss='mse')
 
-    model.fit(X_train_rnn, y_train_rnn, epochs=10, batch_size=16)
+    model.fit(X_seq, y_seq, epochs=20, batch_size=16)
 
     model_data = {
-        'model': model,
         'scaler_X': scaler_X,
         'scaler_y': scaler_y
     }
 
-    location = "models/ava_weather/RNN/rnn{i}.pkl"
+    model.save(f"models/ava_weather/RNN/rnn_{i}.keras")
+
+    location = f"models/ava_weather/RNN/model_data/scaler_{i}.pkl"
     with open(location, 'wb') as model_file:
         pickle.dump(model_data, model_file)
