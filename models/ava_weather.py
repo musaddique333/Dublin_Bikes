@@ -4,11 +4,11 @@ import pickle
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import LSTM, Dropout
+from tensorflow import keras
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import LSTM, Dropout
 
 import warnings
 warnings.filterwarnings("ignore")
