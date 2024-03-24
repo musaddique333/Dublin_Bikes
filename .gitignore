@@ -1,5 +1,1 @@
-keys/
-website/fetcher.py
-website/models.py
-website/scrapper.py
 .env
