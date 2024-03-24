@@ -56,7 +56,7 @@ function dropdownNearest(nearestMarkers, map, markers) {
             this.style.backgroundColor = '#f0f0f0';
         };
         option.onmouseout = function () {
-            this.style.backgroundColor = '#22a8eb';
+            this.style.backgroundColor = 'var(--options)';
         };
         option.onclick = function () {
             station.setAnimation(google.maps.Animation.BOUNCE);
@@ -92,7 +92,7 @@ function styleDropdown(dropdown){
     dropdown.style.left = 0;
     dropdown.style.width = '290px';
     dropdown.style.padding = '10px';
-    dropdown.style.backgroundColor = '#6d74a0c1';
+    dropdown.style.backgroundColor = 'var(--optionsWrapper)';
     dropdown.style.boxShadow = '-2px 2px 10px rgba(0, 0, 0, 0.5);';
     dropdown.style.borderRadius = '0px 0px 10px 10px';
     dropdown.style.paddingTop = '30px';

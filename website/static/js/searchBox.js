@@ -3,8 +3,7 @@ import { showNearestMarkers } from './nearestMarker.js';
 let searchLocation = { lat: 53.3470411, lng: -6.2787019 };
 function searchBox(markers, map) {
     const checkbox = document.getElementById('toggle-markers');
-    const label = document.querySelector('.toggle-label');
-
+    const checkbox_text = document.getElementById('toggle-text');
     const input = document.getElementById('map-search');
     const searchBox = new google.maps.places.SearchBox(input);
     const search_container = document.getElementById('search-container')
@@ -76,12 +75,16 @@ function searchBox(markers, map) {
         // const nearestMarkersData = showNearestMarkers(searchLocation, markers, map);
         nearestMarkersarr = showNearestMarkers(searchLocation, markers, map);
     });
-
+    checkbox.checked = false;
     checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
-            label.style.color = '#ff0000';
+            checkbox_text.textContent = 'ON';
+            checkbox_text.style.color = 'red';
+            checkbox_text.style.justifyContent = 'start';
         } else {
-            label.style.color = '#fff';
+            checkbox_text.textContent = 'OFF';
+            checkbox_text.style.color = 'black';
+            checkbox_text.style.justifyContent = 'end';
         }
     });
 

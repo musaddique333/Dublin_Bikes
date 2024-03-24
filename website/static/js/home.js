@@ -16,127 +16,97 @@ async function initMap() {
         styles: [
             {
                 "featureType": "all",
-                "elementType": "geometry",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#072a47"
-                    }
-                ]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "gamma": 0.01
+                        "saturation": "32"
                     },
                     {
-                        "lightness": 20
-                    },
-                    {
-                        "weight": "1.39"
-                    },
-                    {
-                        "color": "#ffffff"
-                    }
-                ]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.text.stroke",
-                "stylers": [
-                    {
-                        "weight": "0.96"
-                    },
-                    {
-                        "saturation": "9"
+                        "lightness": "-3"
                     },
                     {
                         "visibility": "on"
                     },
                     {
-                        "color": "#000000"
+                        "weight": "1.18"
                     }
                 ]
             },
             {
-                "featureType": "all",
-                "elementType": "labels.icon",
+                "featureType": "administrative",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "visibility": "off"
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "on"
                     }
                 ]
             },
             {
                 "featureType": "landscape",
-                "elementType": "geometry",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "lightness": 30
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "saturation": "-70"
                     },
                     {
-                        "saturation": "9"
+                        "lightness": "14"
                     },
                     {
-                        "color": "#29446b"
+                        "visibility": "on"
                     }
                 ]
             },
             {
                 "featureType": "poi",
-                "elementType": "geometry",
+                "elementType": "labels",
                 "stylers": [
                     {
-                        "saturation": 20
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "lightness": 20
-                    },
-                    {
-                        "saturation": -20
+                        "visibility": "on"
                     }
                 ]
             },
             {
                 "featureType": "road",
-                "elementType": "geometry",
+                "elementType": "labels",
                 "stylers": [
                     {
-                        "lightness": 10
-                    },
-                    {
-                        "saturation": -30
+                        "visibility": "on"
                     }
                 ]
             },
             {
-                "featureType": "road",
-                "elementType": "geometry.fill",
+                "featureType": "transit",
+                "elementType": "labels",
                 "stylers": [
                     {
-                        "color": "#001526"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "saturation": 25
-                    },
-                    {
-                        "lightness": 25
-                    },
-                    {
-                        "weight": "0.01"
+                        "visibility": "on"
                     }
                 ]
             },
@@ -145,7 +115,25 @@ async function initMap() {
                 "elementType": "all",
                 "stylers": [
                     {
-                        "lightness": -20
+                        "saturation": "100"
+                    },
+                    {
+                        "lightness": "-14"
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": "12"
                     }
                 ]
             }
@@ -200,7 +188,7 @@ async function initMap() {
 
 function loadGoogleMapsAPI() {
     const script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAJgQ81odB2Zh5Esp0Ewbg1PydaUSttZVM&libraries=places,geometry&callback=initMap&loading=async";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${maps_api}&libraries=places,geometry&callback=initMap&loading=async`;
     document.head.appendChild(script);
 }
 

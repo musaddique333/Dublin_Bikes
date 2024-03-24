@@ -39,7 +39,7 @@
 <main>
     <div class="start-loc">
         <div class="lat"></div>
-        <div class="lng"></div>
+        <div class="lng"></div>`
         <div class="name"></div>
     </div>
     <div id="search-container">
@@ -50,8 +50,7 @@
         </div>
         <label class="toggle">
             <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
-            <div class="toggle-switch"></div>
-            <span class="toggle-label"><strong>All Stations</strong></span>
+            <div class="toggle-switch"><label id="toggle-text">OFF</label></div>
         </label>
     </div>
     <div id="currentLocation">
@@ -61,7 +60,6 @@
 
     <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
     <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
-
 
     <div class="info-container">
         <div class="weather-app">
@@ -120,6 +118,10 @@
 
     <div id="google-map"></div>
 </main>
+<script>
+    const weather_api = "{{ weather_api }}";
+    const maps_api = "{{ maps_api }}";
+</script>
 <script src="../static/js/weather.js"></script>
 <script type="module" src="../static/js/home.js"></script>
 {% endblock %}

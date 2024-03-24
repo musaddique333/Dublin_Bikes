@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, jsonify
 from . import fetcher as session
 import json
+from dotenv import load_dotenv
+import os
 
 routes = Blueprint('routes', __name__)
 
@@ -13,7 +15,7 @@ def index():
 
 @routes.route('/home')
 def home():
-
+    load_dotenv()
     station_data = session.fetch_station_data()
     availability_data = session.fetch_availability_data()
-    return render_template('home.html', station_data=json.dumps(station_data), availability_data=json.dumps(availability_data))
+    return render_template('home.html', weather_api=os.getenv('weather_api'), maps_api=os.getenv('maps_api'), station_data=json.dumps(station_data), availability_data=json.dumps(availability_data))

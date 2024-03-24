@@ -1,10 +1,8 @@
 .info-container{
 	display: flex;
-	/* display: none; */
 	position: relative;
 	z-index: 2;
 	flex-direction: column;
-	/* background-color: rgba(0, 0, 0, 0.72);      */
 	width: 23vw;
 	height: 80vh;
 }
@@ -14,12 +12,12 @@
 	height: 24vh;
 	border-radius: 10px;
 	box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
-	background-color: #1f3a6ce8;
+	background-color: var(--options);
 	border: 2px solid rgba(0, 0, 0, 0.896);
 	display: flex;
 	gap: 1vh;
 	flex-direction: column;
-	color: white;
+	color: var(--weatherFont);
 }
 
 .weather-app-container{
@@ -148,14 +146,14 @@
 }
 
 .hours {
-	color: #009A44;
+	color: var(--green);
   }
   
   .minutes {
-	color: rgb(255, 255, 255);
+	color: var(--white);
   }
   
   .seconds {
-	color: #FF8200;
+	color: var(--red);
   }
   

@@ -1,3 +1,13 @@
+:root {
+  --green: #009A44;
+  --white: #FFFFFF;
+  --red: #FF8200;
+  --options: #a4e1ac;
+  --optionsBackground: #f3f4f6;
+  --optionsWrapper: #8ec0f9;
+  --weatherFont: #00000;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -18,19 +28,13 @@ html, body {
 }
 
 body{
-  background-image: url('../img/background_images/background6.webp');
+  background-image: url('../img/background_images/background2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   backdrop-filter: blur(1px);
 }
 
-:root {
-  --red: #009A44;
-  --blue: #FFFFFF;
-  --cian: #FFFFFF;
-  --green: #FF8200;
-}
 
 .loader {
   position: absolute;
@@ -54,25 +58,25 @@ body{
 .loader-item_1 {
   top: 0;
   left: 0;
-  background: var(--red);
+  background: var(--green);
 }
 
 .loader-item_2 {
   top: 0;
   right: 0;
-  background: var(--blue);
+  background: var(--white);
 }
 
 .loader-item_3 {
   bottom: 0;
   left: 0;
-  background: var(--cian);
+  background: var(--white);
 }
 
 .loader-item_4 {
   bottom: 0;
   right: 0;
-  background: var(--green);
+  background: var(--red);
 }
 
 @keyframes animate {
@@ -173,21 +177,21 @@ body{
   padding: 5px;
   width: 280px;
   font-size: 12px;
-  background-color: #22a8eb;
+  background-color: var(--options);
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
 
 .option:first-child{
   box-shadow: none;
-  background-color: #6d74a0c1;
+  background-color: var(--optionsBackground);
 }
 
 .option:last-child{
   border-radius: 0px 0px 7px 7px;
   height: 1px;
   box-shadow: none;
-  background-color: #6d74a0c1;
+  background-color: var(--optionsBackground);
   display: flex;
   justify-content: center;
 }
@@ -204,7 +208,7 @@ body{
 }
 .toggle-switch {
 	display: inline-block;
-	background: #ccc;
+	background: var(--optionsBackground);
   box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5);
 	border-radius: 16px;
 	width: 58px;
@@ -218,7 +222,7 @@ body{
 	}
 	&:before {
 		display: block;
-		background: linear-gradient(to bottom, #fff 0%,#eee 100%);
+		background: linear-gradient(to bottom, var(--optionsWrapper) 0%,var(--optionsWrapper) 100%);
 		border-radius: 50%;
 		box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
 		width: 24px;
@@ -229,11 +233,11 @@ body{
 		transition: left 0.25s;
 	}
 	.toggle:hover &:before {
-		background: linear-gradient(to bottom, #ffffff 0%,#fff 100%);
+		background: linear-gradient(to bottom, var(--optionsWrapper) 0%, var(--optionsWrapper) 100%);
 		box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
 	}
 	.toggle-checkbox:checked + & {
-		background: #21649c;
+		background: var(--options);
 		&:before {
 			left: 30px;
 		}
@@ -243,11 +247,13 @@ body{
 	position: absolute;
 	visibility: hidden;
 }
-.toggle-label {
-  color: #fff;
-	margin-left: 5px;
-	position: relative;
-	top: 2px;
+
+#toggle-text{
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0 6px;
 }
 
 #currentLocation{

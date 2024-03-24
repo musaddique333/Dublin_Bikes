@@ -1,5 +1,5 @@
 async function fetchWeatherForDublin() {
-    const apiKey = '1afd61b9571f4d8a8f7133239242702';
+    const apiKey = weather_api;
     const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=dublin`;
 
     try {
