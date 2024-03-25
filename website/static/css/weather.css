@@ -5,14 +5,15 @@
 	flex-direction: column;
 	width: 23vw;
 	height: 80vh;
+	gap: 0.5vh;
 }
 
 .weather-app{
 	width: 23vw;
-	height: 24vh;
+	height: 35%;
 	border-radius: 10px;
 	box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
-	background-color: var(--options);
+	background-color: var(--info_container_background);
 	border: 2px solid rgba(0, 0, 0, 0.896);
 	display: flex;
 	gap: 1vh;
@@ -22,6 +23,7 @@
 
 .weather-app-container{
 	display: flex;
+	height: 75%;
 }
 
 .weather-disp{
@@ -30,14 +32,15 @@
 }
 
 .weather-disp-container{
+	position: absolute;
+	height: 25%;
 	display: flex;
 	width: 13vw;
 	flex-direction: column;
-	border-right: solid 1px rgba(255, 255, 255, 0.672);
+	border-right: solid 1px var(--weatherFont);
 }
 
 .info{
-	height: 5vh;
 	display: flex;
 	flex-direction: column;
 	gap: 1vh;
@@ -49,8 +52,21 @@
 	align-items: center;
 }
 
-.wind-speed img{
-	width: 2vh;
+.sunrise, .sunset{
+	font-size: 15px;
+	display: flex;
+}
+
+.timings{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.sunrise img,
+.sunset img{
+	width: 20px;
 }
 
 .wind-speed{
@@ -59,16 +75,30 @@
 	align-items: center;
 }
 
+.pressure{
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+}
+
+.humidity{
+	height: 2vh;
+	display: flex;
+	align-items: center;
+}
+
 .weather-ico{
+	position: relative;
+	top: -3vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 13vh;
+	height: 15vh;
 }
 
 .weather-ico img{
 	width: auto;
-	height: 13vh;
+	height: 15vh;
 }
 
 .loc-temp{
@@ -76,7 +106,6 @@
 	padding: 1vh 1vh;
 	display: flex;
 	flex-direction: column;
-	gap: 1vh;
 }
 
 .loc-temp-down{

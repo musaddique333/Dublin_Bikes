@@ -3,9 +3,11 @@
   --white: #FFFFFF;
   --red: #FF8200;
   --options: #a4e1ac;
+  --info_container_background: #a4e1acc0;
   --optionsBackground: #f3f4f6;
   --optionsWrapper: #8ec0f9;
-  --weatherFont: #00000;
+  --optionsWrapperDark: #479cfe;
+  --weatherFont: #000000;
 }
 
 * {
@@ -35,6 +37,9 @@ body{
   backdrop-filter: blur(1px);
 }
 
+a {
+  text-decoration: none;
+}
 
 .loader {
   position: absolute;

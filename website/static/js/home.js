@@ -1,6 +1,7 @@
 import { currentLocation } from './currentLocation.js';
 import { searchBox } from './searchBox.js';
 import { loadDataAndCreateMarkers } from './dataFetcher.js';
+import { getNearestInfo } from './statistics.js';
 
 let map, markers = [];
 let currentLocationValue = null;
@@ -197,7 +198,6 @@ let timeoutId;
 function firstNearStartion(markers) {
     const lat = document.querySelector('.start-loc .lat');
     const lng = document.querySelector('.start-loc .lng');
-    const name = document.querySelector('.name');
 
     let currentLocation = {
         lat: parseFloat(lat.textContent),
@@ -215,13 +215,14 @@ function firstNearStartion(markers) {
         
             distances.sort((a, b) => a.distance - b.distance);
         
-            const nearestMarkers = distances.slice(0, 1).map(item => item.marker);
-            nearestMarkers.forEach(element => {
-                lat.textContent = element.markerDict.lat;
-                lng.textContent = element.markerDict.lng;
-                name.textContent = element.markerDict.location_name;
-
+            const nearestMarkers = distances.slice(0, 5).map(item => item.marker);
+            nearestMarkers[0].setAnimation(google.maps.Animation.BOUNCE);
+            // map.setCenter(nearestMarkers[0]);
+            map.setZoom(14);
+            nearestMarkers.forEach(marker => {
+                marker.setMap(map);
             });
+            getNearestInfo(nearestMarkers[0]);
         }
 
         clearTimeout(timeoutId);
@@ -230,6 +231,7 @@ function firstNearStartion(markers) {
     }
 }
 
-// Explicitly expose initMap to the global scope
-window.initMap = initMap;
-loadGoogleMapsAPI();
+document.addEventListener('DOMContentLoaded', function() {
+    window.initMap = initMap;
+    loadGoogleMapsAPI();
+});

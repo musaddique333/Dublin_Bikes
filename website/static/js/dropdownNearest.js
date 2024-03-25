@@ -1,4 +1,4 @@
-import { addInfoWindow } from "./dataFetcher.js";
+import  { getNearestInfo } from "./statistics.js";
 
 function dropdownNearest(nearestMarkers, map, markers) {
     const searchBarContainerEl = document.querySelector(".search-bar-container");
@@ -59,8 +59,8 @@ function dropdownNearest(nearestMarkers, map, markers) {
             this.style.backgroundColor = 'var(--options)';
         };
         option.onclick = function () {
+            getNearestInfo(station);
             station.setAnimation(google.maps.Animation.BOUNCE);
-            console.log('settttt')
             map.setCenter(station.position);
             nearestMarkers.forEach(marker => {
                 if (marker !== station){

@@ -1,8 +1,11 @@
+import { getNearestInfo } from './statistics.js';
+
 const station_data = JSON.parse(document.getElementById('stationData').getAttribute('data-station'));
 const availability_data = JSON.parse(document.getElementById('availabilityData').getAttribute('data-availability'));
+const station_info_bar = document.getElementById('station-info-bar');
+let currentInfoWindow = null;
 
 function loadDataAndCreateMarkers(markers, map) {
-    const station_info_bar = document.getElementById('station-info-bar');
     station_info_bar.style.display = 'none'
 
     station_data.forEach((markerData, index) => {
@@ -35,36 +38,58 @@ function loadDataAndCreateMarkers(markers, map) {
             },
         });
 
-        addInfoWindow(marker, map);
+        addInfoWindow(marker, map, markers);
 
         marker.addListener("click", () => {
-            station_info_bar.style.display = 'flex';
+            getNearestInfo(marker);
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            markers.forEach(element => {
+                if (marker !== element){
+                    element.setAnimation(null)
+                }
+            });
         });
 
         markers.push(marker);
     });
 }
 
-function addInfoWindow(marker, map) {
+function addInfoWindow(marker, map, markers) {
     const infoWindow = new google.maps.InfoWindow();
     const infoWindowContent = `
-    <div class="marker-content">
-        <strong>${marker.markerDict.location_name}</strong><br>
-        Address: ${marker.markerDict.address}<br>
-        Bikes Available: ${marker.markerDict.ava_bikes}<br>
-        Stands Available: ${marker.markerDict.ava_stands}<br>
-        Last Update: ${marker.markerDict.last_update}
+    <div class="marker-content-container">
+        <div class="marker-content">
+            <strong>${marker.markerDict.location_name}</strong><br>
+            Address: ${marker.markerDict.address}<br>
+            Bikes Available: ${marker.markerDict.ava_bikes}<br>
+            Stands Available: ${marker.markerDict.ava_stands}<br>
+            Last Update: ${marker.markerDict.last_update}
+        </div>
+        <button class="show-dir">Get Directions</button>
     </div>
     `;
 
-    marker.addListener('mouseover', function () {
+    marker.addListener('click', function () {
+        if (currentInfoWindow) {
+            currentInfoWindow.close();
+            station_info_bar.style.display = "none";
+        }
+        
         infoWindow.setContent(infoWindowContent);
         infoWindow.open(map, marker);
-    });
+        
+        google.maps.event.addListenerOnce(infoWindow, 'domready', function () {
+            const showDirButton = document.querySelector(".show-dir");
+            if (showDirButton) {
+                showDirButton.addEventListener("click", function () {
+                    station_info_bar.style.display = "flex";
+                });
+            }
+        });
 
-    marker.addListener('mouseout', function () {
-        infoWindow.close();
+        currentInfoWindow = infoWindow;
     });
 }
+
 
 export { loadDataAndCreateMarkers, addInfoWindow };

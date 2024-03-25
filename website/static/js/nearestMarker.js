@@ -1,4 +1,5 @@
 import { dropdownNearest } from "./dropdownNearest.js";
+import { getNearestInfo } from "./statistics.js";
 
 function showNearestMarkers(searchLocation, markers, map) {
     markers.forEach(marker => marker.setMap(null));
@@ -9,7 +10,8 @@ function showNearestMarkers(searchLocation, markers, map) {
 
     distances.sort((a, b) => a.distance - b.distance);
     const nearestMarkers = distances.slice(0, 5).map(item => item.marker);
-
+    getNearestInfo(nearestMarkers[0]);
+    nearestMarkers[0].setAnimation(google.maps.Animation.BOUNCE);
     // Display the 5 nearest markers
     // nearestMarkers.forEach(nearest => {
     //     nearest.marker.setMap(map);
@@ -26,7 +28,7 @@ function showNearestMarkers(searchLocation, markers, map) {
     //     title: nearest.marker.getTitle(),
     //     element: nearest.marker // Assuming getTitle() gives you the name or ID
     // }));
-    dropdownNearest(nearestMarkers, map, markers)
+    dropdownNearest(nearestMarkers, map, markers);
     return nearestMarkers;
 
 }

@@ -52,3 +52,9 @@
     padding: 7px;
     border-radius: 4vh;
 }
+
+.marker-content-container{
+    display: flex;
+    flex-direction: column;
+}
+
