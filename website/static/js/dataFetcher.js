@@ -1,4 +1,4 @@
-import { getNearestInfo } from './statistics.js';
+import { getNearestInfo } from './predictionsFromHour.js';
 
 const station_data = JSON.parse(document.getElementById('stationData').getAttribute('data-station'));
 const availability_data = JSON.parse(document.getElementById('availabilityData').getAttribute('data-availability'));

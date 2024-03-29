@@ -1,5 +1,5 @@
 import { dropdownNearest } from "./dropdownNearest.js";
-import { getNearestInfo } from "./statistics.js";
+import { getNearestInfo } from './predictionsFromHour.js';
 
 function showNearestMarkers(searchLocation, markers, map) {
     markers.forEach(marker => marker.setMap(null));

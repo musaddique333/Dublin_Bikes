@@ -30,6 +30,44 @@ body %}
         </div>
       </div>
     </div>
+
+    <div class="daily_prediction">
+      <div class="search">
+        <div class="date_from_wrapper">
+          <input type="date" id="from_date_search" />
+        </div>
+        <div class="date_to_wrapper">
+          <input type="date" id="to_date_search" />
+        </div>
+        <div class="daily_submit_btn_container">
+          <button id="daily_submit_btn">Get Prediction</button>
+        </div>
+      </div>
+      <div class="daily_plot_container">
+        <canvas class="plot_daily"></canvas>
+      </div>
+    </div>
+
+    <div class="only_pred">
+      <div class="header_container">Get Prediction For Specific Time</div>
+      <div class="inp_container">
+        <div class="only_date_wrapper">
+          <input type="date" id="date_only" />
+        </div>
+        <div class="only_time_wrapper">
+          <input type="time" id="time_only" value="00:00">
+        </div>
+        <div class="only_submit_btn_container">
+          <button id="only_pred_submit_btn">Get Prediction</button>
+        </div>
+      </div>
+      <div class="op_container">
+        <div class="header_op"></div>
+        <div class="bikes_op"></div>
+        <div class="stands_op"></div>
+      </div>
+    </div>
+
     <div class="hourly_prediction">
       <div class="search">
         <div class="date_wrapper">
@@ -49,23 +87,10 @@ body %}
         <canvas class="plot_hourly"></canvas>
       </div>
     </div>
+  </div>
 
-    <div class="daily_prediction">
-      <div class="search">
-        <div class="date_from_wrapper">
-          <input type="date" id="from_date_search" />
-        </div>
-        <div class="date_to_wrapper">
-          <input type="date" id="to_date_search" />
-        </div>
-        <div class="daily_submit_btn_container">
-          <button id="daily_submit_btn">Get Prediction</button>
-        </div>
-      </div>
-      <div class="daily_plot_container">
-        <canvas class="plot_daily"></canvas>
-      </div>
-    </div>
+  <div class="stats">
+    
   </div>
 
   <script>
@@ -73,8 +98,8 @@ body %}
       isNaN(parseInt("{{init_station}}")) || "{{init_station}}" === "null"
         ? 1
         : parseInt("{{init_station}}");
-    console.log(init_station);
   </script>
-  <script src="../static/js/weather_stats.js"></script>
+  <script src="../static/js/predictionFromWeather.js"></script>
+  <script src="../static/js/statistics.js"></script>
   {% endblock %}
 </main>

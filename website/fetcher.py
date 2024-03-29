@@ -1,4 +1,4 @@
-from .models import Station, Availability
+from .models import Station, Availability, HourlyWeather
 from sqlalchemy.exc import SQLAlchemyError
 from .import db
 
@@ -46,7 +46,6 @@ def fetch_availability_data():
             Availability.bike_stands,
             db.func.max(Availability.time_stamp).label('time_stamp')
         ).group_by(Availability.id).all()
-        print(len(availability_data))
         availability = [{
             'id': availability.id,
             'bikes': availability.bikes,
@@ -61,4 +60,64 @@ def fetch_availability_data():
     except Exception as e:
         print(f"Unexpected error: {e}")
         return []
-    
+
+def fetch_availability_data_all():
+    try:
+        availability_data = db.session.query(
+            Availability.id,
+            Availability.bikes,
+            Availability.bike_stands,
+            Availability.time_stamp
+        ).all()
+
+        availability = [{
+            'id': availability.id,
+            'bikes': availability.bikes,
+            'bike_stands': availability.bike_stands,
+            'time_stamp': availability.time_stamp.strftime('%Y-%m-%d %H:%M:%S')
+        } for availability in availability_data]
+
+        return availability
+    except SQLAlchemyError as e:
+        print(f"SQLAlchemy Error: {e}")
+        return []
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return []
+
+def fetch_weather_data_all():
+    try:
+        weather_data = db.session.query(
+            HourlyWeather.time_stamp,
+            HourlyWeather.temp_c,
+            HourlyWeather.feelslike_c,
+            HourlyWeather.wind_kph,
+            HourlyWeather.humidity,
+            HourlyWeather.precip_mm,
+            HourlyWeather.gust_kph,
+            HourlyWeather.wind_degree,
+            HourlyWeather.pressure_mb,
+            HourlyWeather.cloud,
+            HourlyWeather.uv
+            ).all()
+        weather = [{
+            'time_stamp': weather.time_stamp.strftime('%Y-%m-%d %H:%M:%S'),
+            'temp_c': weather.temp_c,
+            'feelslike_c': weather.feelslike_c,
+            'wind_kph': weather.wind_kph,
+            'humidity': weather.humidity,
+            'precip_mm': weather.precip_mm,
+            'gust_kph': weather.gust_kph,
+            'wind_degree': weather.wind_degree,
+            'pressure_mb': weather.pressure_mb,
+            'cloud': weather.cloud,
+            'uv': weather.uv
+            } for weather in weather_data]
+
+        return weather
+    except SQLAlchemyError as e:
+        print(f"SQLAlchemy Error: {e}")
+        return []
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return []

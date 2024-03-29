@@ -1,4 +1,4 @@
-import  { getNearestInfo } from "./statistics.js";
+import { getNearestInfo } from './predictionsFromHour.js';
 
 function dropdownNearest(nearestMarkers, map, markers) {
     const searchBarContainerEl = document.querySelector(".search-bar-container");

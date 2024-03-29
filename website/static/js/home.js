@@ -1,7 +1,7 @@
 import { currentLocation } from './currentLocation.js';
 import { searchBox } from './searchBox.js';
 import { loadDataAndCreateMarkers } from './dataFetcher.js';
-import { getNearestInfo } from './statistics.js';
+import { getNearestInfo } from './predictionsFromHour.js';
 
 let map, markers = [];
 let currentLocationValue = null;

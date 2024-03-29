@@ -1,5 +1,5 @@
 import { showNearestMarkers } from "./nearestMarker.js";
-import { getNearestInfo } from "./statistics.js";
+import { getNearestInfo } from './predictionsFromHour.js';
 
 let current;
 let searchLocation = { lat: 53.3470411, lng: -6.2787019 };

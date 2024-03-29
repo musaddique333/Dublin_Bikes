@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, jsonify, send_f
 from . import fetcher as session
 import json
 from dotenv import load_dotenv
-from . import predict_from_time, predict_from_weather
+from . import predict_from_time, predict_from_weather, statistics
 import os
 from datetime import datetime, timedelta
 
@@ -67,11 +67,18 @@ def one_day_forecast():
     end = data.get('end')
     
     if id is not None:
-        prediction_result = predict_from_weather.predict_hourly_from_weather(id, date, start, end)
+        prediction_result = predict_from_time.predict_range_from_time(id, date, start, end)
         return jsonify({'prediction': prediction_result})
     else:
         return jsonify({'error': 'error no id given'})
-
-@routes.route('/date_time_statistics', methods=['GET', 'POST'])
-def date_time():
-    return render_template('datetime.html')
+    
+@routes.route('/show_weather_stats', methods=['POST'])
+def show_weather_stats():
+    data = request.json
+    id = int(data.get('id'))
+    if id is not None:
+        stats = statistics.get_data_for_statistics(id)
+        stats = stats.to_dict(orient='records')
+        return jsonify({'prediction': stats})
+    else:
+        return jsonify({'error': 'error no id given'})
