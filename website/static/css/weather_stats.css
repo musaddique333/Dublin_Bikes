@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+header {
+  height: 5vh;
+}
+
+.main-plots{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1vh;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  height: 5vh;
+}
+
+.main-search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+  height: 5vh;
+}
+
+.dropdown_wrapper_name{
+  width: 350px;
+}
+
+.dropdown_wrapper_number{
+  width: 50px;
+}
+
+#station-name, #station-number{
+  display: flex;
+  align-items: center;
+}
+
+#station-name p{
+  font-size: 15px;
+  width: 100%;
+  text-align: left;
+}
+
+#station-number p{
+  font-size: 15px;
+  width: 50px;
+  text-align: left;
+}
+
+#station-name i, #station-number i{
+  text-align: end;
+  width: 15px;
+}
+
+.dropdown_station_name{
+  display: none;
+  position: absolute;
+  height: 40vh;
+  width: 350px;
+  overflow: auto;
+}
+
+.option{
+  font-size: 12px;
+  height: 15px;
+  width: 100%;
+  background-color: aqua;
+}
+
+.option:hover{
+  background-color: brown;
+}
+
+.active_name{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.dropdown_station_number{
+  display: none;
+  position: absolute;
+  height: 40vh;
+  width: 50px;
+  overflow: auto;
+}
+
+.active_id{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.daily_plot_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 1vh;
+  height: 90vh;
+}
+
+.plot_daily{
+  height: 100%;
+}
+
+.hourly_plot_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 1vh;
+  height: 90vh;
+}
+
+.plot_hourly{
+  height: 100%;
+}

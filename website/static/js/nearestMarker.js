@@ -10,7 +10,7 @@ function showNearestMarkers(searchLocation, markers, map) {
 
     distances.sort((a, b) => a.distance - b.distance);
     const nearestMarkers = distances.slice(0, 5).map(item => item.marker);
-    getNearestInfo(nearestMarkers[0]);
+    getNearestInfo(nearestMarkers[0], markers);
     nearestMarkers[0].setAnimation(google.maps.Animation.BOUNCE);
     // Display the 5 nearest markers
     // nearestMarkers.forEach(nearest => {

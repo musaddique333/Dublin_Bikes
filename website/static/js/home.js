@@ -222,7 +222,7 @@ function firstNearStartion(markers) {
             nearestMarkers.forEach(marker => {
                 marker.setMap(map);
             });
-            getNearestInfo(nearestMarkers[0]);
+            getNearestInfo(nearestMarkers[0], markers);
         }
 
         clearTimeout(timeoutId);

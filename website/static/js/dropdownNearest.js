@@ -59,7 +59,7 @@ function dropdownNearest(nearestMarkers, map, markers) {
             this.style.backgroundColor = 'var(--options)';
         };
         option.onclick = function () {
-            getNearestInfo(station);
+            getNearestInfo(station, markers);
             station.setAnimation(google.maps.Animation.BOUNCE);
             map.setCenter(station.position);
             nearestMarkers.forEach(marker => {

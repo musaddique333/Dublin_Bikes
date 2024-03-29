@@ -41,7 +41,7 @@ function loadDataAndCreateMarkers(markers, map) {
         addInfoWindow(marker, map, markers);
 
         marker.addListener("click", () => {
-            getNearestInfo(marker);
+            getNearestInfo(marker, markers);
             marker.setAnimation(google.maps.Animation.BOUNCE);
             markers.forEach(element => {
                 if (marker !== element){

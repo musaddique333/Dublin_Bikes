@@ -2,8 +2,9 @@ from flask import Blueprint, render_template, request, redirect, jsonify, send_f
 from . import fetcher as session
 import json
 from dotenv import load_dotenv
-from . import predict_from_time
+from . import predict_from_time, predict_from_weather
 import os
+from datetime import datetime, timedelta
 
 routes = Blueprint('routes', __name__)
 
@@ -26,8 +27,8 @@ def home():
     availability_data = session.fetch_availability_data()
     return render_template('home.html', weather_api=os.getenv('weather_api'), maps_api=os.getenv('maps_api'), station_data=json.dumps(station_data), availability_data=json.dumps(availability_data))
 
-@routes.route('/receive_variables', methods=['POST'])
-def receive_variables():
+@routes.route('/hour_plot_id', methods=['POST'])
+def hour_plot_id():
     data = request.json
 
     id = int(data.get('id'))
@@ -40,9 +41,36 @@ def receive_variables():
 
 @routes.route('/weather_statistics', methods=['GET', 'POST'])
 def weather_statistics():
-    variable1 = request.args.get('variable1')
-    print("jdhkvdgjkhwhkdljhvkjwklakdklwkhklvdjkawahkjlvkdwhekljkdvhkljwkbj ====================", variable1)
-    return render_template('weather.html', variable1=variable1)
+    init_station = request.args.get('init_station')
+    station_data = session.fetch_station_data()
+    return render_template('weather.html', init_station=init_station, station_data=json.dumps(station_data))
+
+@routes.route('/one_week_forecast', methods=['POST'])
+def one_week_forecast():
+    data = request.json
+    id = int(data.get('id'))
+    start = data.get('start')
+    end = data.get('end')
+
+    if id is not None:
+        prediction_result = predict_from_weather.predict_range_from_weather(id, start, end)
+        return jsonify({'prediction': prediction_result})
+    else:
+        return jsonify({'error': 'error no id given'})
+
+@routes.route('/one_day_forecast', methods=['POST'])
+def one_day_forecast():
+    data = request.json
+    id = int(data.get('id'))
+    date = data.get('date')
+    start = data.get('start')
+    end = data.get('end')
+    
+    if id is not None:
+        prediction_result = predict_from_weather.predict_hourly_from_weather(id, date, start, end)
+        return jsonify({'prediction': prediction_result})
+    else:
+        return jsonify({'error': 'error no id given'})
 
 @routes.route('/date_time_statistics', methods=['GET', 'POST'])
 def date_time():

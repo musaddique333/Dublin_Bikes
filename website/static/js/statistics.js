@@ -1,6 +1,6 @@
 let myChart;
 
-function getNearestInfo(nearest_station){
+function getNearestInfo(nearest_station, markers){
     const stationName = document.querySelector(".station-name");
     stationName.textContent = nearest_station.markerDict.location_name;
     
@@ -9,10 +9,10 @@ function getNearestInfo(nearest_station){
     };
 
     const weather_stats = document.querySelector(".weather-ava");
-    const variable1 = encodeURIComponent(nearest_station.markerDict.id);
-    weather_stats.href = `/weather_statistics?variable1=${variable1}`;  
+    const init_station = encodeURIComponent(nearest_station.markerDict.id);
+    weather_stats.href = `/weather_statistics?init_station=${init_station}`;  
     
-    fetch('/receive_variables', {
+    fetch('/hour_plot_id', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
