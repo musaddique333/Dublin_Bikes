@@ -31,23 +31,6 @@ body %}
       </div>
     </div>
 
-    <div class="daily_prediction">
-      <div class="search">
-        <div class="date_from_wrapper">
-          <input type="date" id="from_date_search" />
-        </div>
-        <div class="date_to_wrapper">
-          <input type="date" id="to_date_search" />
-        </div>
-        <div class="daily_submit_btn_container">
-          <button id="daily_submit_btn">Get Prediction</button>
-        </div>
-      </div>
-      <div class="daily_plot_container">
-        <canvas class="plot_daily"></canvas>
-      </div>
-    </div>
-
     <div class="only_pred">
       <div class="header_container">Get Prediction For Specific Time</div>
       <div class="inp_container">
@@ -89,8 +72,54 @@ body %}
     </div>
   </div>
 
+  <div class="daily_prediction">
+    <div class="search">
+      <div class="date_from_wrapper">
+        <input type="date" id="from_date_search" />
+      </div>
+      <div class="date_to_wrapper">
+        <input type="date" id="to_date_search" />
+      </div>
+      <div class="daily_submit_btn_container">
+        <button id="daily_submit_btn">Get Prediction</button>
+      </div>
+    </div>
+    <div class="daily_plot_container">
+      <canvas class="plot_daily"></canvas>
+    </div>
+  </div>
+
   <div class="stats">
-    
+
+    <div class="wind-plots">
+      <div class="wind-container">
+        <canvas class="wind-bikes"></canvas>
+        <canvas class="wind-stands"></canvas>
+      </div>
+      <div class="gust-container">
+        <canvas class="gust-bikes"></canvas>
+        <canvas class="gust-stands"></canvas>
+      </div>
+    </div>
+
+    <div class="temp-plots">
+      <div class="temp-container">
+        <canvas class="temp"></canvas>
+        <canvas class="feelslike"></canvas>
+      </div>
+    </div>
+
+    <div class="pressure-plots">
+      <div class="pressure-container">
+        <canvas class="pressure"></canvas>
+      </div>
+    </div>
+
+    <div class="precipitation-plots">
+      <div class="precipitation-container">
+        <canvas class="precipitation"></canvas>
+      </div>
+    </div>
   </div>
 
   <script>

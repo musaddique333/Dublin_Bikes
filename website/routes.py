@@ -78,7 +78,6 @@ def show_weather_stats():
     id = int(data.get('id'))
     if id is not None:
         stats = statistics.get_data_for_statistics(id)
-        stats = stats.to_dict(orient='records')
         return jsonify({'prediction': stats})
     else:
         return jsonify({'error': 'error no id given'})

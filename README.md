@@ -1,5 +1,8 @@
 export FLASK_ENVIRONMENT=Production
+# or
 export FLASK_ENVIRONMENT=Debug
+
+echo $FLASK_ENVIRONMENT
 
 
 echo $FLASK_ENVIRONMENT

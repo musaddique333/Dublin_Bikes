@@ -24,10 +24,17 @@ header {
 }
 
 body {
-  background-image: url('../img/background_images/background3.jpg');
+  background-image: url('../img/background_images/background3.png');
+  background-size: cover;
   background-repeat: repeat;
   background-position: center;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
 }
 
 .main-plots {
@@ -143,7 +150,9 @@ body {
   align-items: center;
   padding: 20px;
   gap: 1vh;
+  width: 80vw;
   height: 90vh;
+  margin: auto;
 }
 
 .plot_daily {
@@ -152,7 +161,7 @@ body {
   border-radius: 10px;
   border: black 2px solid;
   box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
-  background-color: var(--background1);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .hourly_plot_container {
@@ -161,7 +170,9 @@ body {
   align-items: center;
   padding: 20px;
   gap: 1vh;
+  width: 80vw;
   height: 90vh;
+  margin: auto;
 }
 
 .plot_hourly {
@@ -170,7 +181,7 @@ body {
   border-radius: 10px;
   border: black 2px solid;
   box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
-  background-color: var(--background2);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 #start_time_search,
@@ -244,6 +255,7 @@ body {
   margin: auto;
   border-radius: 5px;
   border: 2px black solid;
+  box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
 }
 
 .inp_container {
@@ -286,4 +298,37 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1vw;
+}
+
+.wind-container,
+.gust-container,
+.temp-container {
+  display: flex;
+  gap: 2vw;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 100vw;
+}
+
+.gust-container {
+  height: 90vh;
+}
+
+.temp-container {
+  height: 60vh;
+}
+
+.wind-bikes,
+.wind-stands,
+.gust-bikes,
+.gust-stands,
+.temp,
+.feelslike {
+  max-width: 47vw;
+  padding: 10px;
+  border-radius: 5px;
+  border: black 2px solid;
+  box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.95);
 }

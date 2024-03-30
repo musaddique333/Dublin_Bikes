@@ -45,6 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
     element.addEventListener('click', function () {
       station_id.textContent = `${this.textContent}`;
       station_name.textContent = `${markers[`station_${this.textContent}`]["location_name"]}`;
+      get_data();
+      daily_btn.click();
+      hourly_btn.click();
+      only_pred_btn.click();
       drp_number.click();
     });
   });
@@ -56,6 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (marker.location_name === this.textContent) {
           station_id.textContent = marker.id;
           station_name.textContent = marker.location_name;
+          get_data();
+          daily_btn.click();
+          hourly_btn.click();
+          only_pred_btn.click();
           drp_name.click();
         }
       });
@@ -195,19 +203,23 @@ function show_hourly_graph(data) {
       datasets: [{
         label: 'Bikes',
         data: bikesData,
-        borderColor: 'red',
-        borderWidth: 2,
-        tension: 0.1,
-        pointRadius: 8,
-        pointBackgroundColor: 'green'
+        borderColor: '#7eb0d5',
+        backgroundColor: '#7eb0d5cc',
+        borderWidth: 3,
+        tension: 0.4,
+        pointRadius: 10,
+        pointBackgroundColor: '#7eb0d5cc',
+        yAxisID: 'y',
       }, {
         label: 'Stands',
         data: standsData,
-        borderColor: 'blue',
-        borderWidth: 2,
-        tension: 0.1,
-        pointRadius: 8,
-        pointBackgroundColor: 'green'
+        borderColor: '#fd7f6f',
+        backgroundColor: '#fd7f6fcc',
+        borderWidth: 3,
+        tension: 0.4,
+        pointRadius: 10,
+        pointBackgroundColor: '#fd7f6fcc',
+        yAxisID: 'y1',
       }]
     },
     options: {
@@ -220,17 +232,20 @@ function show_hourly_graph(data) {
           title: {
             display: true,
             text: `Hours From ${start} To ${end}`,
-            color: 'red',
+            color: '#bd7ebe',
             font: {
               size: 20
             }
           },
           ticks: {
-            color: 'blue',
+            color: '#4421af',
             font: {
-              size: 10
+              size: 12
             }
-          }
+          },
+          grid: {
+            color: '#4421af',
+          },
         },
         y: {
           type: 'linear',
@@ -238,36 +253,63 @@ function show_hourly_graph(data) {
           title: {
             display: true,
             text: 'Predictions',
-            color: 'red',
+            color: '#bd7ebe',
             font: {
               size: 20
             }
           },
           ticks: {
-            color: 'blue',
+            color: '#4421af',
             font: {
-              size: 10
+              size: 12
             }
-          }
-        }
+          },
+          grid: {
+            color: '#4421af',
+          },
+        },
+        y1: {
+          type: 'linear',
+          display: true,
+          position: 'right',
+          grid: {
+            drawOnChartArea: false,
+          },
+          title: {
+            display: true,
+            text: 'Predictions',
+            color: '#bd7ebe',
+            font: {
+              size: 20
+            }
+          },
+          ticks: {
+            color: '#4421af',
+            font: {
+              size: 12
+            }
+          },
+        },
       },
       plugins: {
         legend: {
           display: true,
-          align: 'start',
+          align: 'center',
           labels: {
             font: {
               size: 20
             },
-            color: "black"
+            color: "#bd7ebe",
           }
         },
         title: {
           display: true,
           text: `Hourly Forecast on ${date} From ${start} To ${end}`,
           font: {
-            size: 30
+            size: 30,
+            weight: 'bold',
           },
+          color: '#1a53ff',
           position: 'top',
         },
         zoom: {
@@ -288,11 +330,11 @@ function show_hourly_graph(data) {
         tooltip: {
           callbacks: {
             title: (ctx) => {
-              return x_label.long[ctx[0].dataIndex]
+              return x_label.long[ctx[0].dataIndex];
             }
           }
         }
-      }
+      },
     }
   });
 }
@@ -323,19 +365,23 @@ function show_daily_graph(data) {
       datasets: [{
         label: 'Bikes',
         data: bikesData,
-        borderColor: 'red',
-        borderWidth: 2,
-        tension: 0.1,
-        pointRadius: 8,
-        pointBackgroundColor: 'green'
+        borderColor: '#7eb0d5',
+        backgroundColor: '#7eb0d5cc',
+        borderWidth: 3,
+        tension: 0.2,
+        pointRadius: 10,
+        pointBackgroundColor: '#7eb0d5cc',
+        yAxisID: 'y',
       }, {
         label: 'Stands',
         data: standsData,
-        borderColor: 'blue',
-        borderWidth: 2,
-        tension: 0.1,
-        pointRadius: 8,
-        pointBackgroundColor: 'green'
+        borderColor: '#fd7f6f',
+        backgroundColor: '#fd7f6fcc',
+        borderWidth: 3,
+        tension: 0.2,
+        pointRadius: 10,
+        pointBackgroundColor: '#fd7f6fcc',
+        yAxisID: 'y1',
       }]
     },
     options: {
@@ -348,17 +394,20 @@ function show_daily_graph(data) {
           title: {
             display: true,
             text: `Dates From ${start} To ${end}`,
-            color: 'red',
+            color: '#bd7ebe',
             font: {
               size: 20
             }
           },
           ticks: {
-            color: 'blue',
+            color: '#4421af',
             font: {
-              size: 10
+              size: 12
             }
-          }
+          },
+          grid: {
+            color: '#4421af',
+          },
         },
         y: {
           type: 'linear',
@@ -366,36 +415,63 @@ function show_daily_graph(data) {
           title: {
             display: true,
             text: 'Predictions',
-            color: 'red',
+            color: '#bd7ebe',
             font: {
               size: 20
             }
           },
           ticks: {
-            color: 'blue',
+            color: '#4421af',
             font: {
-              size: 10
+              size: 12
             }
-          }
-        }
+          },
+          grid: {
+            color: '#4421af',
+          },
+        },
+        y1: {
+          type: 'linear',
+          display: true,
+          position: 'right',
+          grid: {
+            drawOnChartArea: false,
+          },
+          title: {
+            display: true,
+            text: 'Predictions',
+            color: '#bd7ebe',
+            font: {
+              size: 20
+            }
+          },
+          ticks: {
+            color: '#4421af',
+            font: {
+              size: 12
+            }
+          },
+        },
       },
       plugins: {
         legend: {
           display: true,
-          align: 'start',
+          align: 'center',
           labels: {
             font: {
               size: 20
             },
-            color: "black"
+            color: "#bd7ebe",
           }
         },
         title: {
           display: true,
           text: `Availability Forecast From ${start} To ${end}`,
           font: {
-            size: 30
+            size: 30,
+            weight: 'bold',
           },
+          color: '#1a53ff',
           position: 'top',
         },
         zoom: {
@@ -416,11 +492,11 @@ function show_daily_graph(data) {
         tooltip: {
           callbacks: {
             title: (ctx) => {
-              return x_label.long[ctx[0].dataIndex]
+              return x_label.long[ctx[0].dataIndex];
             }
           }
         }
-      }
+      },
     }
   });
 }
@@ -450,7 +526,7 @@ function generateHourlyArray(startHour, endHour, dateString) {
   let datetimeList = [];
   let currentDatetime = new Date(start.getTime());
 
-  while (currentDatetime <= end) {
+  while (currentDatetime < end) {
     datetimeList.push(currentDatetime.getHours());
     currentDatetime.setHours(currentDatetime.getHours() + 1);
   }

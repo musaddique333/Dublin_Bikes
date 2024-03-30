@@ -1,55 +1,870 @@
-let bike_stands = [];
-let bikes = [];
-let cloud = [];
-let feelslike_c = [];
-let gust_kph = [];
-let humidity = [];
-let id = [];
-let precip_mm = [];
-let pressure_mb = [];
-let temp_c = [];
-let uv = [];
-let wind_degree = [];
-let wind_kph = [];
+let windBikesChart;
+let windStandsChart;
 
+let gustBikesChart;
+let gustStandsChart;
 
-    async function get_data() {
-        var dataToSend = {
-            id: station_id.textContent,
-        };
-        fetch('/show_weather_stats', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataToSend)
+let temperatureChart;
+let feelslikeChart;
+
+async function get_data() {
+    let dataToSend = {
+        id: station_id.textContent,
+    };
+    fetch('/show_weather_stats', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.prediction.temp);
+            plot_wind(data.prediction.wind.bikes, data.prediction.wind.bike_stands, data.prediction.wind.wind);
+            plot_gust(data.prediction.gust.bikes, data.prediction.gust.bike_stands, data.prediction.gust.gust);
+            plot_temprature(data.prediction.temp.bikes, data.prediction.temp.bike_stands, data.prediction.temp.temp, data.prediction.feelslike.bikes, data.prediction.feelslike.bike_stands, data.prediction.feelslike.feelslike);
         })
-            .then(response => response.json())
-            .then(data => {
-                bike_stands = [], bikes = [], cloud = [], feelslike_c = [], gust_kph = [], humidity = [], id = [], precip_mm = [], pressure_mb = [], temp_c = [], uv = [], wind_degree = [], wind_kph = [];
-                data['prediction'].forEach(element => {
-                    bike_stands.push(parseInt(element.bike_stands));
-                    bikes.push(parseInt(element.bikes));
-                    cloud.push(parseFloat(element.cloud));
-                    feelslike_c.push(parseFloat(element.feelslike_c));
-                    gust_kph.push(parseFloat(element.gust_kph));
-                    humidity.push(parseFloat(element.humidity));
-                    id.push(parseInt(element.id));
-                    precip_mm.push(parseFloat(element.precip_mm));
-                    pressure_mb.push(parseFloat(element.pressure_mb));
-                    temp_c.push(parseFloat(element.temp_c));
-                    uv.push(parseInt(element.uv));
-                    wind_degree.push(parseInt(element.wind_degree));
-                    wind_kph.push(parseFloat(element.wind_kph));
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     get_data();
 });
 
-function 
+function plot_wind(bikes, bike_stands, X) {
+    const wind_bikes = document.querySelector(".wind-bikes").getContext('2d');
+    const wind_stands = document.querySelector(".wind-stands").getContext('2d');
+
+    const labels = X;
+
+    const data = (plot, plotData) => ({
+        labels: labels,
+        datasets: [{
+            label: plot,
+            data: plotData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)'
+            ],
+            borderWidth: 1
+        }]
+    });
+
+    var bikesData = data('bikes', bikes);
+    var bikesConfig = {
+        type: 'bar',
+        data: bikesData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Wind Speeds`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 20
+                        },
+                        color: "#bd7ebe",
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Availability Of Bikes Based On Wind Speeds`,
+                    font: {
+                        size: 30,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                    position: 'top',
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                }
+            },
+        }
+    };
+
+    if (windBikesChart) windBikesChart.destroy();
+    windBikesChart = new Chart(wind_bikes, bikesConfig);
+
+    var standsData = data('Stands', bike_stands);
+    var standsConfig = {
+        type: 'bar',
+        data: standsData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Wind Speeds`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 20
+                        },
+                        color: "#bd7ebe",
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Availability Of Bikes Based On Wind Speeds`,
+                    font: {
+                        size: 30,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                    position: 'top',
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                }
+            },
+        },
+    };
+
+    if (windStandsChart) windStandsChart.destroy();
+    windStandsChart = new Chart(wind_stands, standsConfig);
+}
+
+function plot_gust(bikes, bike_stands, X) {
+    const gust_bikes = document.querySelector(".gust-bikes").getContext('2d');
+    const gust_stands = document.querySelector(".gust-stands").getContext('2d');
+
+    const labels = X;
+
+    const data = (plot, plotData) => ({
+        labels: labels,
+        datasets: [{
+            label: plot,
+            data: plotData,
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(75, 192, 192)',
+                'rgb(255, 205, 86)',
+                'rgb(201, 203, 207)',
+                'rgb(54, 162, 235)'
+            ]
+        }]
+    });
+
+    var bikesData = data('Bikes', bikes);
+    var bikesConfig = {
+        type: 'polarArea',
+        data: bikesData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Gust Speeds`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 20
+                        },
+                        color: "#bd7ebe",
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Availability Of Bikes Based On Gust Speeds`,
+                    font: {
+                        size: 25,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                    position: 'top',
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                }
+            },
+        }
+    };
+
+    if (gustBikesChart) gustBikesChart.destroy();
+    gustBikesChart = new Chart(gust_bikes, bikesConfig);
+
+    var standsData = data('Stands', bike_stands);
+    var standsConfig = {
+        type: 'polarArea',
+        data: standsData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Gust Speeds`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 20
+                        },
+                        color: "#bd7ebe",
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Availability Of Bikes Based On Gust Speeds`,
+                    font: {
+                        size: 25,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                    position: 'top',
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                }
+            },
+        },
+    };
+
+    if (gustStandsChart) gustStandsChart.destroy();
+    gustStandsChart = new Chart(gust_stands, standsConfig);
+}
+
+function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
+    let bikesData = temp_b;
+    let standsData = temp_s;
+    console.log(temp_s);
+    console.log(temp_b);
+
+    let x_axis = Xt
+    let XtWithCelsius = Xt.map(element => `${element}°C`);
+    const canvas = document.querySelector('.temp');
+    let x_label = {
+        short: x_axis,
+        long: XtWithCelsius,
+    }
+
+    if (temperatureChart) {
+        temperatureChart.destroy();
+    }
+
+    const ctx = canvas.getContext('2d');
+    temperatureChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: x_label.short,
+            datasets: [{
+                label: 'Bikes',
+                data: bikesData,
+                borderColor: '#7eb0d5',
+                backgroundColor: '#7eb0d5cc',
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 10,
+                pointBackgroundColor: '#7eb0d5cc',
+                yAxisID: 'y',
+            }, {
+                label: 'Stands',
+                data: standsData,
+                borderColor: '#fd7f6f',
+                backgroundColor: '#fd7f6fcc',
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 10,
+                pointBackgroundColor: '#fd7f6fcc',
+                yAxisID: 'y1',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Temperatures in (°C)`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#4421af',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Predictions',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#4421af',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Predictions',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 20
+                        },
+                        color: "#bd7ebe",
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Availability of Stands Based on Temperature`,
+                    font: {
+                        size: 30,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                    position: 'top',
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (ctx) => {
+                            return x_label.long[ctx[0].dataIndex];
+                        }
+                    }
+                }
+            },
+        }
+    });
+
+    bikesData = feel_b;
+    standsData = feel_s;
+
+    x_axis = Xf
+    let XfWithCelsius = Xf.map(element => `${element}°C`);
+
+    const canvas2 = document.querySelector('.feelslike');
+    x_label = {
+        short: x_axis,
+        long: XfWithCelsius,
+    }
+
+    if (feelslikeChart) {
+        feelslikeChart.destroy();
+    }
+
+    const ctx2 = canvas2.getContext('2d');
+    feelslikeChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: x_label.short,
+            datasets: [{
+                label: 'Bikes',
+                data: bikesData,
+                borderColor: '#7eb0d5',
+                backgroundColor: '#7eb0d5cc',
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 10,
+                pointBackgroundColor: '#7eb0d5cc',
+                yAxisID: 'y',
+            }, {
+                label: 'Stands',
+                data: standsData,
+                borderColor: '#fd7f6f',
+                backgroundColor: '#fd7f6fcc',
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 10,
+                pointBackgroundColor: '#fd7f6fcc',
+                yAxisID: 'y1',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Temperatures in (°C)`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#4421af',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#4421af',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Predictions',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'center',
+                    labels: {
+                        font: {
+                            size: 20
+                        },
+                        color: "#bd7ebe",
+                    }
+                },
+                title: {
+                    display: true,
+                    text: `Availability of Stands Based on Feels-Like Temperature`,
+                    font: {
+                        size: 30,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                    position: 'top',
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (ctx) => {
+                            return x_label.long[ctx[0].dataIndex];
+                        }
+                    }
+                }
+            },
+        }
+    });
+}
