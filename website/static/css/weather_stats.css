@@ -332,3 +332,21 @@ main {
   box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.95);
 }
+
+.precipitation-container, .pressure-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  padding: 10px;
+  margin: auto;
+}
+
+.precipitation, .pressure {
+  padding: 10px;
+  border-radius: 10px;
+  border: black 2px solid;
+  box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.95);
+}

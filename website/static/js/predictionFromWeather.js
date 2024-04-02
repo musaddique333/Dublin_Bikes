@@ -121,6 +121,8 @@ function daily_plot_predictions() {
     start: document.getElementById('from_date_search').value,
     end: document.getElementById('to_date_search').value,
   };
+
+  checkEndDate();           // limit of weather forecast -------------
   fetch('/one_week_forecast', {
     method: 'POST',
     headers: {
@@ -136,6 +138,22 @@ function daily_plot_predictions() {
       console.error('Error:', error);
     });
 }
+
+function checkEndDate() {
+
+  var today = new Date();
+
+  var endDate = new Date(document.getElementById("to_date_search").value);
+  today.setDate(today.getDate() + 14);
+  if (endDate > today) {
+    endDate.setDate(endDate.getDate() + 14);
+    document.getElementById("to_date_search").value = endDate.toISOString().split("T")[0];
+    alert("End date has been set to 14 days from today's date");
+  }
+
+}
+
+document.getElementById("EndDate").addEventListener("change", checkEndDate);
 
 function hourly_plot_predictions(plot = true) {
   var dataToSend = {

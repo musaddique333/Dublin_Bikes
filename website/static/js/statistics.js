@@ -7,6 +7,10 @@ let gustStandsChart;
 let temperatureChart;
 let feelslikeChart;
 
+let precipBikesChart;
+
+let pressureChart;
+
 async function get_data() {
     let dataToSend = {
         id: station_id.textContent,
@@ -24,6 +28,8 @@ async function get_data() {
             plot_wind(data.prediction.wind.bikes, data.prediction.wind.bike_stands, data.prediction.wind.wind);
             plot_gust(data.prediction.gust.bikes, data.prediction.gust.bike_stands, data.prediction.gust.gust);
             plot_temprature(data.prediction.temp.bikes, data.prediction.temp.bike_stands, data.prediction.temp.temp, data.prediction.feelslike.bikes, data.prediction.feelslike.bike_stands, data.prediction.feelslike.feelslike);
+            plot_precipitation(data.prediction.precipitation.bikes, data.prediction.precipitation.bike_stands, data.prediction.precipitation.precipitation);
+            plot_pressure(data.prediction.pressure.bikes, data.prediction.pressure.bike_stands, data.prediction.pressure.pressure);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -265,7 +271,7 @@ function plot_wind(bikes, bike_stands, X) {
                 },
                 title: {
                     display: true,
-                    text: `Availability Of Bikes Based On Wind Speeds`,
+                    text: `Availability Of Stands Based On Wind Speeds`,
                     font: {
                         size: 30,
                         weight: 'bold',
@@ -308,11 +314,11 @@ function plot_gust(bikes, bike_stands, X) {
             label: plot,
             data: plotData,
             backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(75, 192, 192)',
-                'rgb(255, 205, 86)',
-                'rgb(201, 203, 207)',
-                'rgb(54, 162, 235)'
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(255, 205, 86, 0.5)',
+                'rgba(201, 203, 207, 0.5)',
+                'rgba(54, 162, 235, 0.5)'
             ]
         }]
     });
@@ -324,6 +330,15 @@ function plot_gust(bikes, bike_stands, X) {
         options: {
             responsive: true,
             scales: {
+                r: {
+                    pointLabels: {
+                        display: true,
+                        centerPointLabels: true,
+                        font: {
+                            size: 18
+                        }
+                    }
+                },
                 x: {
                     type: 'category',
                     position: 'bottom',
@@ -439,6 +454,15 @@ function plot_gust(bikes, bike_stands, X) {
         options: {
             responsive: true,
             scales: {
+                r: {
+                    pointLabels: {
+                        display: true,
+                        centerPointLabels: true,
+                        font: {
+                            size: 18
+                        }
+                    }
+                },
                 x: {
                     type: 'category',
                     position: 'bottom',
@@ -517,7 +541,7 @@ function plot_gust(bikes, bike_stands, X) {
                 },
                 title: {
                     display: true,
-                    text: `Availability Of Bikes Based On Gust Speeds`,
+                    text: `Availability Of Stands Based On Gust Speeds`,
                     font: {
                         size: 25,
                         weight: 'bold',
@@ -551,8 +575,6 @@ function plot_gust(bikes, bike_stands, X) {
 function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
     let bikesData = temp_b;
     let standsData = temp_s;
-    console.log(temp_s);
-    console.log(temp_b);
 
     let x_axis = Xt
     let XtWithCelsius = Xt.map(element => `${element}°C`);
@@ -623,7 +645,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     position: 'left',
                     title: {
                         display: true,
-                        text: 'Predictions',
+                        text: 'Bikes Availability',
                         color: '#bd7ebe',
                         font: {
                             size: 20
@@ -648,7 +670,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     },
                     title: {
                         display: true,
-                        text: 'Predictions',
+                        text: 'Stands Availability',
                         color: '#bd7ebe',
                         font: {
                             size: 20
@@ -675,7 +697,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                 },
                 title: {
                     display: true,
-                    text: `Availability of Stands Based on Temperature`,
+                    text: `Availability Based on Temperature`,
                     font: {
                         size: 30,
                         weight: 'bold',
@@ -782,7 +804,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     position: 'left',
                     title: {
                         display: true,
-                        text: 'Stands Availability',
+                        text: 'Bikes Availability',
                         color: '#bd7ebe',
                         font: {
                             size: 20
@@ -807,7 +829,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     },
                     title: {
                         display: true,
-                        text: 'Predictions',
+                        text: 'Stands Availability',
                         color: '#bd7ebe',
                         font: {
                             size: 20
@@ -834,7 +856,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                 },
                 title: {
                     display: true,
-                    text: `Availability of Stands Based on Feels-Like Temperature`,
+                    text: `Availability Based on Feels-Like Temperature`,
                     font: {
                         size: 30,
                         weight: 'bold',
@@ -867,4 +889,290 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
             },
         }
     });
+}
+
+function plot_pressure(bikes, bike_stands, X) {
+
+    const pressure = document.querySelector(".pressure").getContext('2d');
+    const bikesData = bikes.map((y, index) => ({ x: X[index], y }));
+    const bikeStandsData = bike_stands.map((y, index) => ({ x: X[index], y }));
+    function transparentize(color, opacity) {
+        const alpha = opacity === undefined ? 0.5 : 1 - opacity;
+        return color.replace('rgb', 'rgba').replace(')', `, ${alpha})`);
+    }
+    const data = {
+        datasets: [
+            {
+                label: 'Bikes',
+                data: bikesData,
+                pointRadius: 6,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: transparentize('rgb(255, 99, 132)', 0.5),
+                borderWidth: 2,
+                yAxisID: 'y',
+            },
+            {
+                label: 'Stands',
+                data: bikeStandsData,
+                pointRadius: 6,
+                borderWidth: 2,
+                borderColor: 'rgb(255, 159, 64)',
+                backgroundColor: transparentize('rgb(255, 159, 64)', 0.5),
+                yAxisID: 'y2',
+            }
+        ]
+    };
+
+    const config = {
+        type: 'scatter',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Availability Based on Pressure',
+                    font: {
+                        size: 25,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                }
+            },
+            scales: {
+                x: {
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Precipitation (mm)`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 99, 132)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y2: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 159, 64)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            tooltip: {
+                mode: 'point',
+                intersect: true,
+                callbacks: {
+                    label: function (context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += `${context.parsed.y}`;
+                        }
+                        if (context.parsed.x !== null) {
+                            label += ` at ${context.parsed.x} mb`;
+                        }
+                        return label;
+                    }
+                }
+            }
+        },
+    };
+
+    if (pressureChart) pressureChart.destroy();
+    pressureChart = new Chart(pressure, config);
+}
+
+function plot_precipitation(bikes, bike_stands, X) {
+    const precipitation = document.querySelector(".precipitation").getContext('2d');
+
+    var scale_x = 1;
+    var scale_y = 0.3;
+
+    if (Math.max(bikes) > Math.max(bike_stands)) {
+        const temp = scale_x;
+        scale_x = scale_y;
+        scale_y = temp;
+    }
+    const bikeData = bikes.map((val, index) => ({ x: X[index], y: val, r: val * scale_x }));
+    const standData = bike_stands.map((val, index) => ({ x: X[index], y: val, r: val * scale_y }));
+
+    const data = {
+        datasets: [
+            {
+                label: 'Bikes',
+                data: bikeData,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(255, 99, 132, 0.5)',
+                yAxisID: 'y',
+            },
+            {
+                label: 'Bike Stands',
+                data: standData,
+                borderColor: 'rgb(255, 159, 64)',
+                backgroundColor: 'rgb(255, 159, 64, 0.5)',
+                yAxisID: 'y1',
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bubble',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Pressure (mb)`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: '#4421af',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 99, 132)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: '#00000030',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 159, 64)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Availability Based on Precipitation',
+                    font: {
+                        size: 25,
+                        weight: 'bold',
+                    },
+                    color: '#1a53ff',
+                },
+                tooltip: {
+                    mode: 'point',
+                    intersect: true,
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += `${context.parsed.y}`;
+                            }
+                            if (context.parsed.x !== null) {
+                                label += ` at ${context.parsed.x} mm`;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        },
+    };
+
+    if (precipBikesChart) precipBikesChart.destroy();
+    precipBikesChart = new Chart(precipitation, config);
 }

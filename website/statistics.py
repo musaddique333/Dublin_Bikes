@@ -65,7 +65,6 @@ def get_data_for_statistics(id):
     gust_df['bike_stands'] = gust_df['bike_stands'].apply(lambda x: round_nearest(x))
 
     pressure_df = df[['pressure_mb', 'bikes', 'bike_stands']].copy()
-    pressure_df['pressure_mb'] = pressure_df['pressure_mb'].round(-1)
     pressure_df = pressure_df.groupby('pressure_mb').mean().reset_index()
     pressure_df['bikes'] = pressure_df['bikes'].apply(lambda x: round_nearest(x))
     pressure_df['bike_stands'] = pressure_df['bike_stands'].apply(lambda x: round_nearest(x))
@@ -99,7 +98,7 @@ def get_data_for_statistics(id):
         "pressure" : {
             "pressure" : pressure_df['pressure_mb'].values.tolist(),
             "bikes": pressure_df['bikes'].values.tolist(),
-            "bike_stands": pressure_df['bikes'].values.tolist()
+            "bike_stands": pressure_df['bike_stands'].values.tolist()
         },
         "precipitation" : {
             "precipitation" : precipitation_df['precip_mm'].values.tolist(),
