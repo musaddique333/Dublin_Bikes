@@ -1,13 +1,33 @@
+# DUBLIN_BIKES Project
+
+## Environment Setup
+
+Set the Flask environment variable according to your setup:
+
+**For production:**
+
+\```bash
 export FLASK_ENVIRONMENT=Production
-# or
+\```
+
+**For debugging:**
+
+\```bash
 export FLASK_ENVIRONMENT=Debug
+\```
 
+To check the current Flask environment setting, run:
+
+\```bash
 echo $FLASK_ENVIRONMENT
+\```
 
-echo $FLASK_ENVIRONMENT
+## Project Structure
 
+Below is the structure of the project detailing the directories and files contained within:
+
+\```
 DUBLIN_BIKES/
-│
 ├── data/
 │   ├── availability_data/
 │   ├── stations_data/
@@ -16,14 +36,15 @@ DUBLIN_BIKES/
 │   └── hourlyWeather.py
 ├── models/
 │   ├── ava_time/
-│   │       ├── bikes/
-│   │       │       └── KNearestNeighbors.pkl
-│   │       └── bike_stands
-│   │               └── KNearestNeighbors.pkl
+│   │   ├── bikes/
+│   │   │   └── KNearestNeighbors.pkl
+│   │   └── bike_stands/
+│   │       └── KNearestNeighbors.pkl
 │   ├── ava_weather/
-│   │       ├── ANN.keras
-│   │       └── preprocessor.pkl
-│   ├── dir/trials...
+│   │   ├── ANN.keras
+│   │   └── preprocessor.pkl
+│   ├── dir/
+│   │   └── trials...
 │   ├── ava_time.py
 │   ├── ava_daily.py
 │   ├── ava_time.ipynb
@@ -36,11 +57,12 @@ DUBLIN_BIKES/
 │   │   │   ├── index.css
 │   │   │   ├── planFuture.css
 │   │   │   ├── side_info_bar.css
-│   │   │   ├── weather_stats.css
-│   │   │   └── weather.css
+│   │   │   └── weather_stats.css
 │   │   ├── img/
-│   │   │   ├── icons/images...
-│   │   │   └── background_images/images...
+│   │   │   ├── icons/
+│   │   │   │   └── images...
+│   │   │   └── background_images/
+│   │   │       └── images...
 │   │   └── js/
 │   │       ├── home.js
 │   │       ├── dataFetcher.js
@@ -76,3 +98,4 @@ DUBLIN_BIKES/
 ├── README.md
 ├── LICENSE
 └── app.py
+\```
