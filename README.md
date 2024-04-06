@@ -6,27 +6,27 @@ Set the Flask environment variable according to your setup:
 
 **For production:**
 
-\```bash
+```bash
 export FLASK_ENVIRONMENT=Production
-\```
+```
 
 **For debugging:**
 
-\```bash
+```bash
 export FLASK_ENVIRONMENT=Debug
-\```
+```
 
 To check the current Flask environment setting, run:
 
-\```bash
+```bash
 echo $FLASK_ENVIRONMENT
-\```
+```
 
 ## Project Structure
 
 Below is the structure of the project detailing the directories and files contained within:
 
-\```
+```
 DUBLIN_BIKES/
 ├── data/
 │   ├── availability_data/
@@ -98,4 +98,4 @@ DUBLIN_BIKES/
 ├── README.md
 ├── LICENSE
 └── app.py
-\```
+```
