@@ -143,6 +143,13 @@ async function initMap() {
 
     const { Map } = await google.maps.importLibrary("maps");
     map = new Map(document.getElementById("google-map"), mapOptions);
+    directionsService = new google.maps.DirectionsService();
+    var polylineOptions = {
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 6
+    };
+    directionsRenderer = new google.maps.DirectionsRenderer({ map, polylineOptions, panel: document.getElementById("directions") });
 
     google.maps.event.addListenerOnce(map, 'tilesloaded', function () {
         document.getElementById('search-container').style.display = 'flex';
@@ -181,9 +188,11 @@ async function initMap() {
     setInterval(async () => { await currentLocation(map, markers); }, 10000);
 
     const close_info_bar = document.getElementById('close-info-bar');
-    const station_info_bar = document.getElementById('station-info-bar');
+    const weather = document.querySelector('.info-container');
+    const station_info_bar = document.querySelector('aside');
     close_info_bar.addEventListener('click', () => {
         station_info_bar.style.display = 'none';
+        weather.style.display = 'flex';
     });
 }
 

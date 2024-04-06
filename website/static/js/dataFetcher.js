@@ -1,8 +1,10 @@
 import { getNearestInfo } from './predictionsFromHour.js';
+import { getDirections } from './route.js';
 
 const station_data = JSON.parse(document.getElementById('stationData').getAttribute('data-station'));
 const availability_data = JSON.parse(document.getElementById('availabilityData').getAttribute('data-availability'));
-const station_info_bar = document.getElementById('station-info-bar');
+const station_info_bar = document.querySelector('aside');
+const weather = document.querySelector('.info-container');
 let currentInfoWindow = null;
 
 function loadDataAndCreateMarkers(markers, map) {
@@ -44,7 +46,7 @@ function loadDataAndCreateMarkers(markers, map) {
             getNearestInfo(marker, markers);
             marker.setAnimation(google.maps.Animation.BOUNCE);
             markers.forEach(element => {
-                if (marker !== element){
+                if (marker !== element) {
                     element.setAnimation(null)
                 }
             });
@@ -73,16 +75,19 @@ function addInfoWindow(marker, map, markers) {
         if (currentInfoWindow) {
             currentInfoWindow.close();
             station_info_bar.style.display = "none";
+            weather.style.display = "flex";
         }
-        
+
         infoWindow.setContent(infoWindowContent);
         infoWindow.open(map, marker);
-        
+
         google.maps.event.addListenerOnce(infoWindow, 'domready', function () {
             const showDirButton = document.querySelector(".show-dir");
             if (showDirButton) {
                 showDirButton.addEventListener("click", function () {
                     station_info_bar.style.display = "flex";
+                    weather.style.display = "none";
+                    getDirections(map, markers, marker);
                 });
             }
         });

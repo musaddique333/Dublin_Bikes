@@ -90,13 +90,13 @@ function plot_wind(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -111,13 +111,13 @@ function plot_wind(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -136,7 +136,7 @@ function plot_wind(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
@@ -161,7 +161,7 @@ function plot_wind(bikes, bike_stands, X) {
                         size: 30,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                     position: 'top',
                 },
                 zoom: {
@@ -205,13 +205,13 @@ function plot_wind(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -226,13 +226,13 @@ function plot_wind(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -251,7 +251,7 @@ function plot_wind(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
@@ -276,7 +276,7 @@ function plot_wind(bikes, bike_stands, X) {
                         size: 30,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                     position: 'top',
                 },
                 zoom: {
@@ -351,13 +351,13 @@ function plot_gust(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -372,13 +372,13 @@ function plot_gust(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -397,7 +397,7 @@ function plot_gust(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
@@ -422,7 +422,7 @@ function plot_gust(bikes, bike_stands, X) {
                         size: 25,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                     position: 'top',
                 },
                 zoom: {
@@ -475,13 +475,13 @@ function plot_gust(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -496,13 +496,13 @@ function plot_gust(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -521,7 +521,7 @@ function plot_gust(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
@@ -546,7 +546,7 @@ function plot_gust(bikes, bike_stands, X) {
                         size: 25,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                     position: 'top',
                 },
                 zoom: {
@@ -617,7 +617,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 x: {
                     type: 'category',
@@ -631,13 +631,13 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -652,13 +652,13 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -677,12 +677,16 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                 },
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false
             },
             plugins: {
                 legend: {
@@ -702,7 +706,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         size: 30,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                     position: 'top',
                 },
                 zoom: {
@@ -721,6 +725,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     }
                 },
                 tooltip: {
+                    enabled: true,
                     callbacks: {
                         title: (ctx) => {
                             return x_label.long[ctx[0].dataIndex];
@@ -776,7 +781,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 x: {
                     type: 'category',
@@ -790,13 +795,13 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -811,13 +816,13 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -836,12 +841,16 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                 },
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false
             },
             plugins: {
                 legend: {
@@ -861,7 +870,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                         size: 30,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                     position: 'top',
                 },
                 zoom: {
@@ -880,6 +889,7 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     }
                 },
                 tooltip: {
+                    enabled: true,
                     callbacks: {
                         title: (ctx) => {
                             return x_label.long[ctx[0].dataIndex];
@@ -940,7 +950,7 @@ function plot_pressure(bikes, bike_stands, X) {
                         size: 25,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                 }
             },
             scales: {
@@ -955,13 +965,13 @@ function plot_pressure(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -982,7 +992,7 @@ function plot_pressure(bikes, bike_stands, X) {
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y2: {
@@ -1084,13 +1094,13 @@ function plot_precipitation(bikes, bike_stands, X) {
                         }
                     },
                     ticks: {
-                        color: '#4421af',
+                        color: 'rgba(255, 255, 255, 0.6)',
                         font: {
                             size: 12
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y: {
@@ -1111,7 +1121,7 @@ function plot_precipitation(bikes, bike_stands, X) {
                         }
                     },
                     grid: {
-                        color: '#00000030',
+                        color: 'rgba(255, 255, 255, 0.6)',
                     },
                 },
                 y1: {
@@ -1148,7 +1158,7 @@ function plot_precipitation(bikes, bike_stands, X) {
                         size: 25,
                         weight: 'bold',
                     },
-                    color: '#1a53ff',
+                    color: 'rgba(255, 255, 255, 1)',
                 },
                 tooltip: {
                     mode: 'point',

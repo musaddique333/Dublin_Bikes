@@ -10,7 +10,7 @@
 <link rel="shortcut icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer">
 <link
     href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&family=Dancing+Script:wght@600&family=Exo:wght@300&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu&display=swap"
     rel="stylesheet">
@@ -25,23 +25,6 @@
     <div class="loader-item loader-item_3"></div>
     <div class="loader-item loader-item_4"></div>
 </div>
-<aside>
-    <div id="station-info-bar">
-        <div class="route">
-            <div class="start-loc box">
-                <input class="source input-route" type="text" name="" placeholder="Source...">
-            </div>
-            <div class="end-loc box">
-                <input class="destination input-route" type="text" name="" placeholder="Destination...">
-            </div>
-            <div class="serch-route">Direction</div>
-        </div>
-        <div class="directions">
-
-        </div>
-        <div id="close-info-bar">⏏︎</div>
-    </div>
-</aside>
 
 <header>
     <h1>Dublin Bikes</h1>
@@ -54,20 +37,6 @@
         <div class="lat"></div>
         <div class="lng"></div>
     </div>
-    <div id="search-container">
-        <div class="search-bar-container active">
-            <img src="../static/img/icons/magnifier-512.webp" alt="magnifier" class="magnifier">
-            <input id="map-search" type="text" class="input" placeholder="Search ..." />
-        </div>
-        <label class="toggle">
-            <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
-            <div class="toggle-switch"><label id="toggle-text">OFF</label></div>
-        </label>
-    </div>
-    <div id="currentLocation">
-        <img src="../static/img/icons/currentLocation.svg" alt="X">
-    </div>
-
 
     <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
     <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
@@ -156,11 +125,50 @@
 
 
 
-    <div id="google-map"></div>
+    <div class="google-maps-container">
+        <div id="google-map"></div>
+    </div>
+    <div id="search-container">
+        <div class="search-bar-container active">
+            <img src="../static/img/icons/magnifier-512.webp" alt="magnifier" class="magnifier">
+            <input id="map-search" type="text" class="input" placeholder="Search ..." />
+        </div>
+        <label class="toggle">
+            <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
+            <div class="toggle-switch"><label id="toggle-text">OFF</label></div>
+        </label>
+    </div>
+    <div id="currentLocation">
+        <img src="../static/img/icons/currentLocation.svg" alt="X">
+    </div>
+
+
+    <aside>
+        <div id="station-info-bar">
+            <div class="route">
+                <div class="start-loc box">
+                    <div class="start-drop"></div>
+                    <div id="source" class="source input-route">Source...</div>
+                </div>
+                <div class="end-loc box">
+                    <div class="end-drop"></div>
+                    <div id="destination" class="destination input-route">Destination...</div>
+                </div>
+                <div class="serch-route"><i class="fa-solid fa-diamond-turn-right"></i></div>
+            </div>
+            <div class="directions-container">
+                <div id="directions"></div>
+            </div>
+            <div id="close-info-bar"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+    </aside>
+
+
 </main>
 <script>
     const weather_api = "{{ weather_api }}";
     const maps_api = "{{ maps_api }}";
+    let directionsService, directionsRenderer;
 </script>
 
 <script src="../static/js/weather.js"></script>

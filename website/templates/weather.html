@@ -12,7 +12,12 @@
 {% endblock %} {% block title %}Prediction From Weather{% endblock %} {% block
 body %}
 <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
-<header></header>
+<a a href="/home" type="submit" class="home-container">
+  <i class="fa-solid fa-house home"></i>
+</a>
+<header>
+  <h1>Prediction From Weather</h1>
+</header>
 <main>
   <div class="main-plots">
     <div class="main-search">
@@ -122,6 +127,13 @@ body %}
       isNaN(parseInt("{{init_station}}")) || "{{init_station}}" === "null"
         ? 1
         : parseInt("{{init_station}}");
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var bodyHeight = document.body.scrollHeight;
+      var homeContainer = document.querySelector('.home-container');
+      homeContainer.style.height = bodyHeight + 'px';
+    });
+
   </script>
   <script src="../static/js/predictionFromWeather.js"></script>
   <script src="../static/js/statistics.js"></script>

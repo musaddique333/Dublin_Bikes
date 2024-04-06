@@ -33,6 +33,7 @@ function searchBox(markers, map) {
   map.addListener("bounds_changed", function () {
     searchBox.setBounds(map.getBounds());
   });
+  directionsRenderer.setDirections({routes: []});
   let searchMarkers = [];
   let nearestMarkersarr = [];
 
@@ -89,9 +90,7 @@ function searchBox(markers, map) {
   // Add a listener to the toggle button
   checkbox.addEventListener("click", function () {
     markers.forEach((marker) => {
-      console.log(marker.animation);
       if (marker.animation === google.maps.Animation.BOUNCE) {
-        console.log("Yes");
         current = marker;
       }
       if (marker.getMap()) {
@@ -108,7 +107,6 @@ function searchBox(markers, map) {
           current.animation = google.maps.Animation.DROP;
           nearestMarkersarr.forEach((element) => {
             if (element.animation === google.maps.Animation.BOUNCE) {
-              console.log("Yes");
               current = element;
             }
             element.setAnimation(google.maps.Animation.DROP);
@@ -123,7 +121,6 @@ function searchBox(markers, map) {
         if (nearestMarkersarr.length !== 0) {
           nearestMarkersarr.forEach((element) => {
             if (element.animation === google.maps.Animation.BOUNCE) {
-              console.log("Yes");
               current = element;
             }
             element.setAnimation(google.maps.Animation.DROP);
@@ -134,7 +131,6 @@ function searchBox(markers, map) {
     });
     current.setMap(map);
     current.setAnimation(google.maps.Animation.BOUNCE);
-    // console.log(current.animation);
   });
 
   const dublinBounds = new google.maps.LatLngBounds(

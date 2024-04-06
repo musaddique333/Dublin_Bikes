@@ -72,6 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function set_dropdown() {
+  let first_drop = document.createElement('div');
+  first_drop.setAttribute('class', 'first-option');
+  first_drop.setAttribute('class', 'option');
+  first_drop.innerHTML = 'select';
+  // dropdown_station_name.appendChild(first_drop);
+  // dropdown_station_number.appendChild(first_drop);
   Object.keys(markers).forEach(key => {
     const marker = markers[key];
     const name = document.createElement("div");
@@ -122,38 +128,38 @@ function daily_plot_predictions() {
     end: document.getElementById('to_date_search').value,
   };
 
-  checkEndDate();           // limit of weather forecast -------------
-  fetch('/one_week_forecast', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dataToSend)
-  })
-    .then(response => response.json())
-    .then(data => {
-      show_daily_graph(data.prediction);
+  if (checkEndDate()) {
+    fetch('/one_week_forecast', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataToSend)
     })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
-function checkEndDate() {
-
-  var today = new Date();
-
-  var endDate = new Date(document.getElementById("to_date_search").value);
-  today.setDate(today.getDate() + 14);
-  if (endDate > today) {
-    endDate.setDate(endDate.getDate() + 14);
-    document.getElementById("to_date_search").value = endDate.toISOString().split("T")[0];
-    alert("End date has been set to 14 days from today's date");
+      .then(response => response.json())
+      .then(data => {
+        show_daily_graph(data.prediction);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
-}
+  function checkEndDate() {
 
-document.getElementById("EndDate").addEventListener("change", checkEndDate);
+    var today = new Date();
+
+    var endDate = new Date(document.getElementById("to_date_search").value);
+    today.setDate(today.getDate() + 14);
+    if (endDate > today) {
+      endDate.setDate(endDate.getDate() + 14);
+      document.getElementById("to_date_search").value = endDate.toISOString().split("T")[0];
+      alert("End date has been set to 14 days from today's date");
+      return false;
+    }
+    return true;
+  }
+}
 
 function hourly_plot_predictions(plot = true) {
   var dataToSend = {
@@ -256,13 +262,13 @@ function show_hourly_graph(data) {
             }
           },
           ticks: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
             font: {
               size: 12
             }
           },
           grid: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
           },
         },
         y: {
@@ -277,13 +283,13 @@ function show_hourly_graph(data) {
             }
           },
           ticks: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
             font: {
               size: 12
             }
           },
           grid: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
           },
         },
         y1: {
@@ -302,7 +308,7 @@ function show_hourly_graph(data) {
             }
           },
           ticks: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
             font: {
               size: 12
             }
@@ -327,7 +333,7 @@ function show_hourly_graph(data) {
             size: 30,
             weight: 'bold',
           },
-          color: '#1a53ff',
+          color: 'rgba(255, 255, 255, 1)',
           position: 'top',
         },
         zoom: {
@@ -418,13 +424,13 @@ function show_daily_graph(data) {
             }
           },
           ticks: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
             font: {
               size: 12
             }
           },
           grid: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
           },
         },
         y: {
@@ -439,13 +445,13 @@ function show_daily_graph(data) {
             }
           },
           ticks: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
             font: {
               size: 12
             }
           },
           grid: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
           },
         },
         y1: {
@@ -464,7 +470,7 @@ function show_daily_graph(data) {
             }
           },
           ticks: {
-            color: '#4421af',
+            color: 'rgba(255, 255, 255, 0.6)',
             font: {
               size: 12
             }
@@ -489,7 +495,7 @@ function show_daily_graph(data) {
             size: 30,
             weight: 'bold',
           },
-          color: '#1a53ff',
+          color: 'rgba(255, 255, 255, 1)',
           position: 'top',
         },
         zoom: {

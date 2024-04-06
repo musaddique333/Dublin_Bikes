@@ -16,6 +16,8 @@
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-style: normal;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 html,
@@ -43,7 +45,7 @@ body {
 
 header {
   box-sizing: border-box;
-  height: 10%;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,6 +55,7 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: shiftBorderColor 3s infinite ease-in-out;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 
@@ -153,6 +156,7 @@ main {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  overflow: hidden;
 }
 
 body {
@@ -250,14 +254,20 @@ a {
   visibility: hidden;
 }
 
-
-#google-map {
+.google-maps-container {
   align-self: flex-end;
-  width: 75%;
-  height: 585px;
+  width: 80%;
+  height: 100%;
   border-radius: 10px;
   border: black 2px solid;
   box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#google-map {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 #search-container {
@@ -291,7 +301,7 @@ a {
 .input {
   background-color: transparent;
   border: none;
-  margin: 10px 50px;
+  margin: 10px 35px;
   width: 100%;
   outline: none;
   color: rgb(100, 100, 100);
@@ -327,11 +337,17 @@ a {
 
 .option:last-child {
   border-radius: 0px 0px 7px 7px;
-  height: 1px;
+  height: 4px;
+  font-size: 15px;
   box-shadow: none;
   background-color: var(--optionsBackground);
   display: flex;
   justify-content: center;
+
+  &:hover {
+    background-color: royalblue;
+    color: white;
+  }
 }
 
 .option-name {
@@ -421,13 +437,19 @@ a {
   body {
     width: 100vw;
     height: unset;
+    overflow-y: scroll;
     background-image: url('../img/background_images/background3.jpeg');
     background-repeat: repeat;
   }
 
+  header {
+    height: 50px !important;
+  }
+
   main {
     width: 100%;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    overflow: unset !important;
   }
 
   .search-bar-container,
@@ -440,15 +462,30 @@ a {
     height: 150px;
   }
 
-  #google-map {
+  .google-maps-container {
     margin: auto;
+    align-self: unset;
     width: 100%;
+    height: 500px;
+  }
+
+  #google-map {
+    width: 100%;
+    height: 100%;
   }
 
   .info-container {
     margin: auto;
     width: 100% !important;
     height: 50% !important;
+  }
+
+  .planforFuture {
+    height: 380px !important;
+  }
+
+  #graph-hourly.graph-hourly {
+    height: 300px !important;
   }
 
   .weather-app {
@@ -465,6 +502,108 @@ a {
   }
 
   header img {
-    height: 50px;
+    width: 50px !important;
+  }
+
+
+  .search-bar-container {
+    width: 200px;
+    padding: unset;
+  }
+
+  .magnifier {
+    width: 20px;
+  }
+
+  .input {
+    margin: 10px 30px;
+    font-size: 10px !important;
+  }
+
+  /* .active.search-bar-container {
+    width: 30px;
+  }
+
+  .active .input {
+    width: 0;
+  } */
+
+
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .toggle-switch {
+    height: 30px;
+
+    &:before {
+      width: 22px;
+      height: 22px;
+    }
+
+    .toggle-checkbox:checked+& {
+      background: var(--options);
+
+      &:before {
+        left: 32px;
+      }
+    }
+  }
+
+  #toggle-text {
+    height: 30px;
+    font-size: 10px;
+  }
+
+  #search-dropdown {
+    width: 180px !important;
+    padding: 30px 12px 7px 8px !important;
+  }
+
+  .option {
+    font-size: 7px !important;
+    padding: 2px !important;
+    height: 25px !important;
+  }
+
+  .option:last-child {
+    height: 4px !important;
+  }
+
+  .option-name {
+    width: 100px;
+    text-wrap: wrap;
+  }
+
+  .option-status img {
+    width: 18px !important;
+  }
+
+  .option-bikes,
+  .option-stands,
+  .option-banking {
+    display: flex;
+  }
+
+  .option-bikes img {
+    width: 15px !important;
+  }
+
+  .option-stands img {
+    width: 12px !important;
+  }
+
+  .option-banking img {
+    width: 14px !important;
+  }
+
+  .option-bikes sub,
+  .option-stands sub,
+  .option-banking sub {
+    font-size: 5px !important;
+    align-self: flex-end;
   }
 }

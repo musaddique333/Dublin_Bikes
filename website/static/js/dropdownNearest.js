@@ -1,5 +1,4 @@
 import { getNearestInfo } from './predictionsFromHour.js';
-
 function dropdownNearest(nearestMarkers, map, markers) {
     const searchBarContainerEl = document.querySelector(".search-bar-container");
 
@@ -23,8 +22,11 @@ function dropdownNearest(nearestMarkers, map, markers) {
     dropdown_head.innerHTML = `<strong>Nearest Stations:</strong>`;
     dropdown.appendChild(dropdown_head);
 
-    let station_info_bar = document.getElementById('station-info-bar');
+    let station_info_bar = document.querySelector('aside');
     station_info_bar.style.display = 'none'
+    let weather = document.querySelector('.info-container');
+    weather.style.display = 'flex'
+    directionsRenderer.setDirections({ routes: [] });
 
     // Populate the dropdown with nearest stations
     nearestMarkers.forEach(station => {
@@ -61,9 +63,11 @@ function dropdownNearest(nearestMarkers, map, markers) {
         option.onclick = function () {
             getNearestInfo(station, markers);
             station.setAnimation(google.maps.Animation.BOUNCE);
+            // station_info_bar.style.display = 'flex';
+            // weather.style.display = 'none';
             map.setCenter(station.position);
             nearestMarkers.forEach(marker => {
-                if (marker !== station){
+                if (marker !== station) {
                     marker.setAnimation(null)
                 }
             });
@@ -73,7 +77,7 @@ function dropdownNearest(nearestMarkers, map, markers) {
 
     let dropdown_close = document.createElement('div');
     dropdown_close.classList.add('option');
-    dropdown_close.innerHTML = `⏏︎`;
+    dropdown_close.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     dropdown.appendChild(dropdown_close);
 
     dropdown_close.addEventListener('click', () => {
@@ -82,7 +86,7 @@ function dropdownNearest(nearestMarkers, map, markers) {
     });
 }
 
-function styleDropdown(dropdown){
+function styleDropdown(dropdown) {
     dropdown.style.display = 'flex';
     dropdown.style.flexDirection = 'column';
     dropdown.style.gap = '7px';
@@ -98,7 +102,7 @@ function styleDropdown(dropdown){
     dropdown.style.paddingTop = '30px';
 }
 
-function optionContent(option, class_name, inner_part){
+function optionContent(option, class_name, inner_part) {
     const option_sub = document.createElement('div');
     option_sub.setAttribute('class', class_name);
     option_sub.innerHTML = `${inner_part}`;
