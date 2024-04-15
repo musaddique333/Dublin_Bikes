@@ -103,7 +103,7 @@ dependencies:
       - flask==3.0
       - flask-login==0.6
       - flask-sqlalchemy==3.1
-      - flatbuffers==23.5
+      - flatbuffers
       - fonttools==4.49
       - gast==0.5
       - google-pasta==0.2
