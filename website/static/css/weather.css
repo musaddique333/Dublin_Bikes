@@ -9,17 +9,22 @@
 }
 
 .weather-app {
-	width: 100%;
-	height: fit-content;
-	border-radius: 10px;
-	box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5);
-	background-color: var(--info_container_background);
-	border: 2px solid rgba(0, 0, 0, 0.896);
-	display: flex;
-	gap: 10px;
-	flex-direction: column;
-	color: var(--weatherFont);
+    width: 100%;
+	box-sizing: border-box;
+    height: fit-content;
+    border-radius: 5px;
+    box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.6), /* Lighter highlight for more pronounced bevel */
+                inset 4px 4px 8px rgba(0, 0, 0, 0.6); /* Darker shadow for more pronounced bevel */
+    background-color: #DD5746;
+    /* border: 2px solid rgba(0, 0, 0, 0.9); */
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    color: var(--weatherFont);
+	padding: 10px;
 }
+
 
 .weather-app-container {
 	display: flex;
@@ -33,7 +38,7 @@
 .weather-disp-container {
 	position: absolute;
 	z-index: 1;
-	height: calc(100vh - 81vh);
+	height: calc(100% - 81%);
 	display: flex;
 	width: 60%;
 	flex-direction: column;

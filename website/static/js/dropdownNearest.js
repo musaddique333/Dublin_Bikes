@@ -58,7 +58,7 @@ function dropdownNearest(nearestMarkers, map, markers) {
             this.style.backgroundColor = '#f0f0f0';
         };
         option.onmouseout = function () {
-            this.style.backgroundColor = 'var(--options)';
+            this.style.backgroundColor = '#de2f20';
         };
         option.onclick = function () {
             getNearestInfo(station, markers);
@@ -91,13 +91,13 @@ function styleDropdown(dropdown) {
     dropdown.style.flexDirection = 'column';
     dropdown.style.gap = '7px';
     dropdown.style.position = 'absolute';
-    dropdown.style.zIndex = 3;
+    dropdown.style.zIndex = '3';
     dropdown.style.top = '15px';
-    dropdown.style.left = 0;
+    dropdown.style.left = '0';
     dropdown.style.width = '290px';
     dropdown.style.padding = '10px';
-    dropdown.style.backgroundColor = 'var(--optionsWrapper)';
-    dropdown.style.boxShadow = '-2px 2px 10px rgba(0, 0, 0, 0.5);';
+    dropdown.style.backgroundColor = '#4793AF'; // Soft teal, assuming --optionsWrapper is set to this
+    dropdown.style.boxShadow = 'inset -2px -2px 4px rgba(255, 255, 255, 0.6), inset 2px 2px 4px rgba(0, 0, 0, 0.6), 2px 2px 10px rgba(0, 0, 0, 0.5)';
     dropdown.style.borderRadius = '0px 0px 10px 10px';
     dropdown.style.paddingTop = '30px';
 }

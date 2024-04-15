@@ -12,9 +12,12 @@
 {% endblock %} {% block title %}Prediction From Weather{% endblock %} {% block
 body %}
 <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
-<a a href="/home" type="submit" class="home-container">
-  <i class="fa-solid fa-house home"></i>
-</a>
+
+<div class="home-container">
+  <a href="/home" type="submit">
+    <i class="fa-solid fa-backward home"></i>
+  </a>
+</div>
 <header>
   <h1>Prediction From Weather</h1>
 </header>
@@ -23,13 +26,13 @@ body %}
     <div class="main-search">
       <div class="dropdown_wrapper_number">
         <div id="station-number">
-          <p></p><i class="fa-solid fa-circle-chevron-down id"></i>
+          <p></p><img src="../static/img/icons/down.png" class="id" alt="Icon">
         </div>
         <div class="dropdown_station_number"></div>
       </div>
       <div class="dropdown_wrapper_name">
         <div id="station-name">
-          <p></p><i class="fa-solid fa-circle-chevron-down name"></i>
+          <p></p><img src="../static/img/icons/down.png" class="name" alt="Icon">
         </div>
         <div class="dropdown_station_name">
         </div>

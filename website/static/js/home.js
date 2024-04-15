@@ -10,86 +10,15 @@ async function initMap() {
     const mapOptions = {
         center: centerMap,
         zoom: 11,
-        disableDefaultUI: false,
+        disableDefaultUI: true,
         mapTypeControl: false,
         streetViewControl: false,
         // zoomControl: false,
         styles: [
             {
-                "featureType": "all",
-                "elementType": "all",
                 "stylers": [
                     {
-                        "saturation": "32"
-                    },
-                    {
-                        "lightness": "-3"
-                    },
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "weight": "1.18"
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape.man_made",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": "-70"
-                    },
-                    {
-                        "lightness": "14"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "on"
+                        "hue": "#dd0d0d"
                     }
                 ]
             },
@@ -98,54 +27,32 @@ async function initMap() {
                 "elementType": "labels",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "visibility": "off"
                     }
                 ]
             },
             {
-                "featureType": "transit",
-                "elementType": "labels",
+                "featureType": "road",
+                "elementType": "geometry",
                 "stylers": [
                     {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": "100"
+                        "lightness": 100
                     },
                     {
-                        "lightness": "-14"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    },
-                    {
-                        "lightness": "12"
+                        "visibility": "simplified"
                     }
                 ]
             }
         ]
+        
+        
     };
 
     const { Map } = await google.maps.importLibrary("maps");
     map = new Map(document.getElementById("google-map"), mapOptions);
     directionsService = new google.maps.DirectionsService();
     var polylineOptions = {
-        strokeColor: '#FF0000',
+        strokeColor: 'rgb(50, 100, 200)',
         strokeOpacity: 0.8,
         strokeWeight: 6
     };

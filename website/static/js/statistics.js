@@ -24,7 +24,6 @@ async function get_data() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data.prediction.temp);
             plot_wind(data.prediction.wind.bikes, data.prediction.wind.bike_stands, data.prediction.wind.wind);
             plot_gust(data.prediction.gust.bikes, data.prediction.gust.bike_stands, data.prediction.gust.gust);
             plot_temprature(data.prediction.temp.bikes, data.prediction.temp.bike_stands, data.prediction.temp.temp, data.prediction.feelslike.bikes, data.prediction.feelslike.bike_stands, data.prediction.feelslike.feelslike);
@@ -84,19 +83,19 @@ function plot_wind(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: `Wind Speeds`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -105,19 +104,19 @@ function plot_wind(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -130,15 +129,15 @@ function plot_wind(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -149,19 +148,19 @@ function plot_wind(bikes, bike_stands, X) {
                     align: 'center',
                     labels: {
                         font: {
-                            size: 20
+                            size: labelsize
                         },
-                        color: "#bd7ebe",
+                        color: "#4169e1",
                     }
                 },
                 title: {
                     display: true,
                     text: `Availability Of Bikes Based On Wind Speeds`,
                     font: {
-                        size: 30,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                     position: 'top',
                 },
                 zoom: {
@@ -199,19 +198,19 @@ function plot_wind(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: `Wind Speeds`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -220,19 +219,19 @@ function plot_wind(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -245,15 +244,15 @@ function plot_wind(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -264,19 +263,19 @@ function plot_wind(bikes, bike_stands, X) {
                     align: 'center',
                     labels: {
                         font: {
-                            size: 20
+                            size: labelsize
                         },
-                        color: "#bd7ebe",
+                        color: "#4169e1",
                     }
                 },
                 title: {
                     display: true,
                     text: `Availability Of Stands Based On Wind Speeds`,
                     font: {
-                        size: 30,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                     position: 'top',
                 },
                 zoom: {
@@ -335,7 +334,7 @@ function plot_gust(bikes, bike_stands, X) {
                         display: true,
                         centerPointLabels: true,
                         font: {
-                            size: 18
+                            size: labelsize
                         }
                     }
                 },
@@ -345,19 +344,19 @@ function plot_gust(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: `Gust Speeds`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -366,19 +365,19 @@ function plot_gust(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -391,15 +390,15 @@ function plot_gust(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -410,19 +409,19 @@ function plot_gust(bikes, bike_stands, X) {
                     align: 'center',
                     labels: {
                         font: {
-                            size: 20
+                            size: labelsize
                         },
-                        color: "#bd7ebe",
+                        color: "#4169e1",
                     }
                 },
                 title: {
                     display: true,
                     text: `Availability Of Bikes Based On Gust Speeds`,
                     font: {
-                        size: 25,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                     position: 'top',
                 },
                 zoom: {
@@ -459,7 +458,7 @@ function plot_gust(bikes, bike_stands, X) {
                         display: true,
                         centerPointLabels: true,
                         font: {
-                            size: 18
+                            size: labelsize
                         }
                     }
                 },
@@ -469,19 +468,19 @@ function plot_gust(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: `Gust Speeds`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -490,19 +489,19 @@ function plot_gust(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -515,15 +514,15 @@ function plot_gust(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -534,19 +533,19 @@ function plot_gust(bikes, bike_stands, X) {
                     align: 'center',
                     labels: {
                         font: {
-                            size: 20
+                            size: labelsize
                         },
-                        color: "#bd7ebe",
+                        color: "#4169e1",
                     }
                 },
                 title: {
                     display: true,
                     text: `Availability Of Stands Based On Gust Speeds`,
                     font: {
-                        size: 25,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                     position: 'top',
                 },
                 zoom: {
@@ -598,9 +597,9 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                 data: bikesData,
                 borderColor: '#7eb0d5',
                 backgroundColor: '#7eb0d5cc',
-                borderWidth: 3,
+                borderWidth: borderwidthsize,
                 tension: 0.4,
-                pointRadius: 10,
+                pointRadius: pointradiussize,
                 pointBackgroundColor: '#7eb0d5cc',
                 yAxisID: 'y',
             }, {
@@ -608,9 +607,9 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                 data: standsData,
                 borderColor: '#fd7f6f',
                 backgroundColor: '#fd7f6fcc',
-                borderWidth: 3,
+                borderWidth: borderwidthsize,
                 tension: 0.4,
-                pointRadius: 10,
+                pointRadius: pointradiussize,
                 pointBackgroundColor: '#fd7f6fcc',
                 yAxisID: 'y1',
             }]
@@ -625,19 +624,19 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     title: {
                         display: true,
                         text: `Temperatures in (°C)`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -646,19 +645,19 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -671,15 +670,15 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -694,19 +693,19 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     align: 'center',
                     labels: {
                         font: {
-                            size: 20
+                            size: labelsize
                         },
-                        color: "#bd7ebe",
+                        color: "#4169e1",
                     }
                 },
                 title: {
                     display: true,
                     text: `Availability Based on Temperature`,
                     font: {
-                        size: 30,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                     position: 'top',
                 },
                 zoom: {
@@ -762,9 +761,9 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                 data: bikesData,
                 borderColor: '#7eb0d5',
                 backgroundColor: '#7eb0d5cc',
-                borderWidth: 3,
+                borderWidth: borderwidthsize,
                 tension: 0.4,
-                pointRadius: 10,
+                pointRadius: pointradiussize,
                 pointBackgroundColor: '#7eb0d5cc',
                 yAxisID: 'y',
             }, {
@@ -772,9 +771,9 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                 data: standsData,
                 borderColor: '#fd7f6f',
                 backgroundColor: '#fd7f6fcc',
-                borderWidth: 3,
+                borderWidth: borderwidthsize,
                 tension: 0.4,
-                pointRadius: 10,
+                pointRadius: pointradiussize,
                 pointBackgroundColor: '#fd7f6fcc',
                 yAxisID: 'y1',
             }]
@@ -789,19 +788,19 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     title: {
                         display: true,
                         text: `Temperatures in (°C)`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -810,19 +809,19 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -835,15 +834,15 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -858,19 +857,19 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
                     align: 'center',
                     labels: {
                         font: {
-                            size: 20
+                            size: labelsize
                         },
-                        color: "#bd7ebe",
+                        color: "#4169e1",
                     }
                 },
                 title: {
                     display: true,
                     text: `Availability Based on Feels-Like Temperature`,
                     font: {
-                        size: 30,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                     position: 'top',
                 },
                 zoom: {
@@ -915,17 +914,17 @@ function plot_pressure(bikes, bike_stands, X) {
             {
                 label: 'Bikes',
                 data: bikesData,
-                pointRadius: 6,
+                pointRadius: pointradiussizesmall,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: transparentize('rgb(255, 99, 132)', 0.5),
-                borderWidth: 2,
+                borderWidth: borderwidthsize,
                 yAxisID: 'y',
             },
             {
                 label: 'Stands',
                 data: bikeStandsData,
-                pointRadius: 6,
-                borderWidth: 2,
+                pointRadius: pointradiussizesmall,
+                borderWidth: borderwidthsize,
                 borderColor: 'rgb(255, 159, 64)',
                 backgroundColor: transparentize('rgb(255, 159, 64)', 0.5),
                 yAxisID: 'y2',
@@ -947,10 +946,10 @@ function plot_pressure(bikes, bike_stands, X) {
                     display: true,
                     text: 'Availability Based on Pressure',
                     font: {
-                        size: 25,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                 }
             },
             scales: {
@@ -959,19 +958,19 @@ function plot_pressure(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: `Precipitation (mm)`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -980,19 +979,19 @@ function plot_pressure(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
                         color: 'rgb(255, 99, 132)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y2: {
@@ -1005,15 +1004,15 @@ function plot_pressure(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
                         color: 'rgb(255, 159, 64)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -1046,9 +1045,6 @@ function plot_pressure(bikes, bike_stands, X) {
 
 function plot_precipitation(bikes, bike_stands, X) {
     const precipitation = document.querySelector(".precipitation").getContext('2d');
-
-    var scale_x = 1;
-    var scale_y = 0.3;
 
     if (Math.max(bikes) > Math.max(bike_stands)) {
         const temp = scale_x;
@@ -1088,19 +1084,19 @@ function plot_precipitation(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: `Pressure (mb)`,
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y: {
@@ -1109,19 +1105,19 @@ function plot_precipitation(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Bikes Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
                         color: 'rgb(255, 99, 132)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                     grid: {
-                        color: 'rgba(255, 255, 255, 0.6)',
+                        color: 'rgba(0, 0, 0)',
                     },
                 },
                 y1: {
@@ -1134,15 +1130,15 @@ function plot_precipitation(bikes, bike_stands, X) {
                     title: {
                         display: true,
                         text: 'Stands Availability',
-                        color: '#bd7ebe',
+                        color: '#4169e1',
                         font: {
-                            size: 20
+                            size: labelsize
                         }
                     },
                     ticks: {
                         color: 'rgb(255, 159, 64)',
                         font: {
-                            size: 12
+                            size: tickssize
                         }
                     },
                 },
@@ -1155,10 +1151,10 @@ function plot_precipitation(bikes, bike_stands, X) {
                     display: true,
                     text: 'Availability Based on Precipitation',
                     font: {
-                        size: 25,
+                        size: titlesize,
                         weight: 'bold',
                     },
-                    color: 'rgba(255, 255, 255, 1)',
+                    color: 'rgb(230, 74, 2)',
                 },
                 tooltip: {
                     mode: 'point',

@@ -26,11 +26,11 @@
     <div class="loader-item loader-item_4"></div>
 </div>
 
-<header>
+<!-- <header>
     <h1>Dublin Bikes</h1>
     <img class="run-bike1" src="../static/img/icons/running.svg" alt="bike">
     <img class="run-bike2" src="../static/img/icons/running2.svg" alt="bike">
-</header>
+</header> -->
 
 <main>
     <div class="start-loc" style="display: none;">
@@ -122,9 +122,6 @@
         </div>
     </div>
 
-
-
-
     <div class="google-maps-container">
         <div id="google-map"></div>
     </div>
@@ -142,7 +139,13 @@
         <img src="../static/img/icons/currentLocation.svg" alt="X">
     </div>
 
-
+    <div id="customAlert" class="custom-alert hidden">
+        <div class="alert-content">
+            <p>Please select a destination</p>
+            <button onclick="closeAlert()">OK</button>
+        </div>
+    </div>
+    
     <aside>
         <div id="station-info-bar">
             <div class="route">
@@ -165,10 +168,22 @@
 
 
 </main>
+<!-- <footer>
+
+</footer> -->
 <script>
     const weather_api = "{{ weather_api }}";
     const maps_api = "{{ maps_api }}";
     let directionsService, directionsRenderer;
+    function showAlert() {
+    document.getElementById('customAlert').classList.remove('hidden');
+    document.getElementById('customAlert').classList.add('visible');
+    }
+
+    function closeAlert() {
+        document.getElementById('customAlert').classList.remove('visible');
+        document.getElementById('customAlert').classList.add('hidden');
+    }
 </script>
 
 <script src="../static/js/weather.js"></script>

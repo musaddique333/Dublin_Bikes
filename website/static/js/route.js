@@ -58,10 +58,11 @@ function getDirections(map, markers, currentMarker) {
             GetRoute(map, start.lat(), start.lng(), end.lat(), end.lng());
         }
         else {
-            alert('Please select a destination');
+            showAlert();
         }
     });
 }
+
 
 function GetRoute(map, lat, lng, destLat, destLng) {
     directionsRenderer.setDirections({ routes: [] });
@@ -72,7 +73,7 @@ function GetRoute(map, lat, lng, destLat, destLng) {
     var request = {
         origin: start,
         destination: end,
-        travelMode: 'BICYCLING'
+        travelMode: google.maps.TravelMode.BICYCLING
     };
     directionsService.route(request, function (result, status) {
         if (status == 'OK') {

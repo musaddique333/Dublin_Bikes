@@ -9,11 +9,42 @@ const only_pred_btn = document.getElementById('only_pred_submit_btn');
 const op_container = document.querySelector(".header_op");
 const bikes_op = document.querySelector(".bikes_op");
 const stands_op = document.querySelector(".stands_op");
-let drp_name = document.querySelector(".name");
-let drp_number = document.querySelector(".id");
+let drp_name = document.getElementById("station-name");
+let drp_number = document.getElementById("station-number");
 let markers = {};
 let hourlyChart;
 let dailyChart;
+
+let titlesize = 30;
+let tickssize = 12;
+let labelsize = 20;
+let borderwidthsize = 2;
+let pointradiussize = 6;
+let pointradiussizesmall = 6;
+let scale_x = 1;
+let scale_y = 0.3;
+
+function updateVariables() {
+  if (window.innerWidth <= 768) {
+      titlesize = 12;
+      tickssize = 6;
+      labelsize = 8;
+      borderwidthsize = 1;
+      pointradiussize = 4;
+      pointradiussizesmall = 3;
+      scale_x = 0.5;
+      scale_y = 0.15;
+  } else {
+      titlesize = 30;
+      tickssize = 12;
+      labelsize = 20;
+      borderwidthsize = 2;
+      pointradiussize = 8;
+      pointradiussizesmall = 6;
+      scale_x = 1;
+      scale_y = 0.3;
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   station_data.forEach((markerData, index) => {
@@ -29,15 +60,30 @@ document.addEventListener("DOMContentLoaded", () => {
       status: markerData.status,
     };
     markers[`station_${markerData.id}`] = markerDict;
+    updateVariables();
+  window.addEventListener('resize', updateVariables);
   });
   station_id.textContent = `${init_station}`;
   station_name.textContent = `${markers[`station_${station_id.textContent}`]["location_name"]}`;
 
   drp_name.addEventListener("click", () => {
     dropdown_station_name.classList.toggle("active_name");
+    const imageElement = document.querySelector(".name");
+    if (imageElement.src.endsWith("/img/icons/up.png")) {
+      imageElement.src = "../static/img/icons/down.png";
+    } else {
+      imageElement.src = "../static/img/icons/up.png";
+    }
   });
+  
   drp_number.addEventListener("click", () => {
     dropdown_station_number.classList.toggle("active_id");
+    const imageElement = document.querySelector(".id");
+    if (imageElement.src.endsWith("/img/icons/up.png")) {
+      imageElement.src = "../static/img/icons/down.png";
+    } else {
+      imageElement.src = "../static/img/icons/up.png";
+    }
   });
   set_dropdown(markers);
 
@@ -154,7 +200,7 @@ function daily_plot_predictions() {
     if (endDate > today) {
       endDate.setDate(endDate.getDate() + 14);
       document.getElementById("to_date_search").value = endDate.toISOString().split("T")[0];
-      alert("End date has been set to 14 days from today's date");
+      alert("End date can't exceed to 14 days from today's date");
       return false;
     }
     return true;
@@ -229,9 +275,9 @@ function show_hourly_graph(data) {
         data: bikesData,
         borderColor: '#7eb0d5',
         backgroundColor: '#7eb0d5cc',
-        borderWidth: 3,
+        borderWidth: borderwidthsize,
         tension: 0.4,
-        pointRadius: 10,
+        pointRadius: pointradiussize,
         pointBackgroundColor: '#7eb0d5cc',
         yAxisID: 'y',
       }, {
@@ -239,9 +285,9 @@ function show_hourly_graph(data) {
         data: standsData,
         borderColor: '#fd7f6f',
         backgroundColor: '#fd7f6fcc',
-        borderWidth: 3,
+        borderWidth: borderwidthsize,
         tension: 0.4,
-        pointRadius: 10,
+        pointRadius: pointradiussize,
         pointBackgroundColor: '#fd7f6fcc',
         yAxisID: 'y1',
       }]
@@ -256,19 +302,19 @@ function show_hourly_graph(data) {
           title: {
             display: true,
             text: `Hours From ${start} To ${end}`,
-            color: '#bd7ebe',
+            color: '#4169e1',
             font: {
-              size: 20
+              size: labelsize
             }
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
             font: {
-              size: 12
+              size: tickssize
             }
           },
           grid: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
           },
         },
         y: {
@@ -277,19 +323,19 @@ function show_hourly_graph(data) {
           title: {
             display: true,
             text: 'Predictions',
-            color: '#bd7ebe',
+            color: '#4169e1',
             font: {
-              size: 20
+              size: labelsize
             }
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
             font: {
-              size: 12
+              size: tickssize
             }
           },
           grid: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
           },
         },
         y1: {
@@ -302,15 +348,15 @@ function show_hourly_graph(data) {
           title: {
             display: true,
             text: 'Predictions',
-            color: '#bd7ebe',
+            color: '#4169e1',
             font: {
-              size: 20
+              size: labelsize
             }
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
             font: {
-              size: 12
+              size: tickssize
             }
           },
         },
@@ -321,19 +367,19 @@ function show_hourly_graph(data) {
           align: 'center',
           labels: {
             font: {
-              size: 20
+              size: labelsize
             },
-            color: "#bd7ebe",
+            color: "#4169e1",
           }
         },
         title: {
           display: true,
           text: `Hourly Forecast on ${date} From ${start} To ${end}`,
           font: {
-            size: 30,
+            size: titlesize,
             weight: 'bold',
           },
-          color: 'rgba(255, 255, 255, 1)',
+          color: 'rgb(230, 74, 2)',
           position: 'top',
         },
         zoom: {
@@ -391,9 +437,9 @@ function show_daily_graph(data) {
         data: bikesData,
         borderColor: '#7eb0d5',
         backgroundColor: '#7eb0d5cc',
-        borderWidth: 3,
-        tension: 0.2,
-        pointRadius: 10,
+        borderWidth: borderwidthsize,
+        tension: 0.4,
+        pointRadius: pointradiussize,
         pointBackgroundColor: '#7eb0d5cc',
         yAxisID: 'y',
       }, {
@@ -401,9 +447,9 @@ function show_daily_graph(data) {
         data: standsData,
         borderColor: '#fd7f6f',
         backgroundColor: '#fd7f6fcc',
-        borderWidth: 3,
-        tension: 0.2,
-        pointRadius: 10,
+        borderWidth: borderwidthsize,
+        tension: 0.4,
+        pointRadius: pointradiussize,
         pointBackgroundColor: '#fd7f6fcc',
         yAxisID: 'y1',
       }]
@@ -418,19 +464,19 @@ function show_daily_graph(data) {
           title: {
             display: true,
             text: `Dates From ${start} To ${end}`,
-            color: '#bd7ebe',
+            color: '#4169e1',
             font: {
-              size: 20
+              size: labelsize
             }
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
             font: {
-              size: 12
+              size: tickssize
             }
           },
           grid: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
           },
         },
         y: {
@@ -439,19 +485,19 @@ function show_daily_graph(data) {
           title: {
             display: true,
             text: 'Predictions',
-            color: '#bd7ebe',
+            color: '#4169e1',
             font: {
-              size: 20
+              size: labelsize
             }
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
             font: {
-              size: 12
+              size: tickssize
             }
           },
           grid: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
           },
         },
         y1: {
@@ -464,15 +510,15 @@ function show_daily_graph(data) {
           title: {
             display: true,
             text: 'Predictions',
-            color: '#bd7ebe',
+            color: '#4169e1',
             font: {
-              size: 20
+              size: labelsize
             }
           },
           ticks: {
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(0, 0, 0)',
             font: {
-              size: 12
+              size: tickssize
             }
           },
         },
@@ -483,19 +529,19 @@ function show_daily_graph(data) {
           align: 'center',
           labels: {
             font: {
-              size: 20
+              size: labelsize
             },
-            color: "#bd7ebe",
+            color: "#4169e1",
           }
         },
         title: {
           display: true,
           text: `Availability Forecast From ${start} To ${end}`,
           font: {
-            size: 30,
+            size: titlesize,
             weight: 'bold',
           },
-          color: 'rgba(255, 255, 255, 1)',
+          color: 'rgb(230, 74, 2)',
           position: 'top',
         },
         zoom: {
