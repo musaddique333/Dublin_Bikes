@@ -66,6 +66,7 @@ aside {
     justify-content: center;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 
 
@@ -102,9 +103,9 @@ aside {
     box-sizing: border-box;
     position: absolute;
     padding: 5px;
-    top: 38px;
+    top: 10px;
     height: 200px;
-    width: calc(20% - 20px);  /* Calculates the width after accounting for padding/margins */
+    width: 100%;  /* Calculates the width after accounting for padding/margins */
     overflow-y: scroll;
     -ms-overflow-style: none;  /* Hides scrollbar in IE/Edge */
     scrollbar-width: none;  /* Hides scrollbar in Firefox */
@@ -123,7 +124,6 @@ aside {
 
 .end-drop {
     z-index: 1;
-    top: 92px;
 }
 
 .dir-options {

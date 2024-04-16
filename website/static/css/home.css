@@ -579,7 +579,7 @@ a {
   }
 
   .planforFuture {
-    height: 380px !important;
+    height: 405px !important;
   }
 
   #graph-hourly.graph-hourly {
@@ -600,12 +600,6 @@ a {
     width: 100% !important;
     height: 700px !important;
   }
-
-  .start-drop,
-.end-drop {
-    top: calc(50% - 70px) !important;
-  width: calc(100% - 45px) !important;
-}
 
 .end-drop {
     top: calc(50% - 10px) !important;

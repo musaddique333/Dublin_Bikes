@@ -377,19 +377,19 @@ body {
 
     #text-drop {
         flex-direction: column;
-        font-size: 30px;
+        font-size: 50px;
     }
 
     .smile {
-        font-size: 30px;
+        font-size: 50px;
     }
 
     .dublinBikes span {
-        font-size: 30px;
+        font-size: 50px;
     }
 
     .groupProject {
-        font-size: 10px;
+        font-size: 20px;
     }
 
     .continuebtn a {
