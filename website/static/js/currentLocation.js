@@ -52,6 +52,44 @@ async function currentLocation(map) {
     }
 }
 
+async function currentLocationUCD(map) {
+    const ucdLocation = {
+        lat: 53.3089, // Latitude for UCD
+        lng: -6.2237  // Longitude for UCD
+    };
+
+    if (currentMarker) {
+        currentMarker.setMap(null);
+    }
+
+    currentMarker = new google.maps.Marker({
+        position: ucdLocation,
+        map: map,
+        title: "UCD Dublin",
+        icon: {
+            url: '../static/img/icons/current.svg',
+            scaledSize: new google.maps.Size(40, 40),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(20, 20)
+        },
+    });
+
+    const hoverContent = `<div class="marker-content"><br>UCD Dublin</div>`;
+    const hoverInfoWindow = new google.maps.InfoWindow({
+        content: hoverContent
+    });
+
+    google.maps.event.addListener(currentMarker, 'mouseover', function () {
+        hoverInfoWindow.open(map, currentMarker);
+    });
+
+    google.maps.event.addListener(currentMarker, 'mouseout', function () {
+        hoverInfoWindow.close();
+    });
+
+    initialSetup(ucdLocation);
+}
+
 function initialSetup(userLocation) {
     const lat = document.querySelector('.start-loc .lat');
     const lng = document.querySelector('.start-loc .lng');
@@ -69,4 +107,5 @@ function handleLocationError(browserHasGeolocation, pos) {
 }
 
 
-export { currentLocation };
+// export { currentLocation };
+export { currentLocationUCD as currentLocation };
