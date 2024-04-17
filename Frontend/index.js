@@ -188,6 +188,12 @@ function initMap() {
         map: map,
         icon: fehMarker
     });
+    const ctx = document.getElementById('charts'); // Select the charts container
+
+    marker.addListener('click', function() {
+        // Show the charts when the marker is clicked
+        ctx.style.display = 'block';
+    });
 
     const infoWindowContent = `
         <div class="feh-content">
@@ -203,17 +209,10 @@ function initMap() {
     // Add click event listener to marker to open info window
     marker.addListener('click', function() {
         infoWindow.open(map, marker);
+        ctx.style.display="block"
     });
 }
 
-const addBtn = document.querySelector('.add-btn');
-addBtn.addEventListener('click', () => {
-  // Create a new input field for additional dropoff location
-  const newInput = document.createElement('input');
-  newInput.type = 'text';
-  newInput.placeholder = 'Enter additional dropoff location';
-  addBtn.parentNode.insertBefore(newInput, addBtn.nextSibling);
-});
 
 // Make initMap available globally so the Google Maps callback can invoke it
 window.initMap = initMap;

@@ -7,8 +7,8 @@ body, html {
 }
 .head{
     font-weight: bold;
-    margin-left: 30px;
-    font-size: large;
+    margin-left: 95px;
+    font-size: xx-large;
 }
 .body{
     height:100%;
@@ -33,12 +33,16 @@ body, html {
     height: 90%;
     width: 90%;
     margin-right: 25px;;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px black;
+    margin:20px;
 }
 .sidebar {
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 7px 25px black;
+    margin:20px;
   }
   
   h2 {
@@ -61,29 +65,34 @@ body, html {
     flex-grow: 1;
     padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 10px;
   }
-  
-  .add-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
   input[type="checkbox"] {
     margin-right: 5px;
   }
   
   .search-btn {
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 3px;
+    padding: 10px 150px;
+    border-radius: 10px;
     cursor: pointer;
     margin-top: 10px;
   }
 
+   .charts{
+    display:grid;
+    grid-template-columns:2fs 1fr;
+    grid-gap:20px;
+    width:100%;
+    padding-top:20px;
+    
+  }
+  .chart{
+    background: white;
+    padding:20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px black;
+    margin:20px;
+  }
