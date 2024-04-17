@@ -1,26 +1,81 @@
-# DUBLIN_BIKES Project
+# DUBLIN_BIKES Project Setup Guide
+
+## Overview
+This guide provides detailed instructions for setting up the environment and deploying the DUBLIN_BIKES application on Windows, macOS, and Linux operating systems.
+
+## Prerequisites
+- Anaconda or Miniconda installed on your system. You can download it from [Anaconda's website](https://www.anaconda.com/products/distribution).
 
 ## Environment Setup
+First, navigate to your project directory where the `environment.yml` file is located.
 
-Set the Flask environment variable according to your setup:
-
-**For production:**
-
+### Windows
+Open Anaconda Prompt and run:
 ```bash
-export FLASK_ENVIRONMENT=Production
+conda env create -f environment.yml
+conda activate comp30830
 ```
 
-**For debugging:**
-
+### macOS and Linux
+Open Terminal and run:
 ```bash
-export FLASK_ENVIRONMENT=Debug
+conda env create -f environment.yml
+conda activate comp30830
 ```
 
-To check the current Flask environment setting, run:
+## Configuration File Setup
+Create a `.env` file in your project directory to store sensitive keys and configurations. Use your preferred text editor, for example:
 
+### Windows
+```bash
+notepad .env
+```
+
+### macOS and Linux
+```bash
+nano .env
+```
+
+### Add the following to your `.env` file:
+```plaintext
+RDS_KEY=YOUR_AWS_RDS_KEY
+DB_API=YOUR_JCDCUAX_API_KEY
+WEATHER_API=YOUR_WEATHER_API_KEY_FROM http://weather.api.com
+MAPS_API=YOUR_GOOGLE_MAPS_API
+URL=YOUR_AWS_RDS_URL
+PORT=3306 or YOUR_PREFERRED_PORT
+DB=YOUR_AWS_RDS_DATABASE_NAME
+USER=YOUR_AWS_RDS_USER_NAME
+FLASK_ENVIRONMENT=Production
+```
+
+## Set Flask Environment
+Configure the Flask environment variable according to your setup requirements.
+
+### For production:
+```bash
+export FLASK_ENVIRONMENT=production
+```
+
+### For debugging:
+```bash
+export FLASK_ENVIRONMENT=development
+```
+
+### To verify the current Flask environment setting, run:
 ```bash
 echo $FLASK_ENVIRONMENT
 ```
+
+## Running the Application
+Now that your environment and configuration files are set up, you can run the application.
+
+```bash
+python app.py
+```
+
+## Conclusion
+After following these steps, your DUBLIN_BIKES application should be up and running. For further configurations and troubleshooting, consult the official Flask and Anaconda documentation.
 
 ## Project Structure
 
@@ -28,12 +83,6 @@ Below is the structure of the project detailing the directories and files contai
 
 ```
 DUBLIN_BIKES/
-├── data/
-│   ├── availability_data/
-│   ├── stations_data/
-│   ├── weather_data/
-│   ├── dailyWeather.py
-│   └── hourlyWeather.py
 ├── models/
 │   ├── ava_time/
 │   │   ├── bikes/
@@ -92,9 +141,7 @@ DUBLIN_BIKES/
 ├── .gitignore
 ├── .env
 ├── config.py
-├── conda_packages.txt
 ├── environment.yml
-├── requirements.txt
 ├── README.md
 ├── LICENSE
 └── app.py
