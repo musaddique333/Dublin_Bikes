@@ -101,3 +101,205 @@ body {
         opacity: 1;
     }
 }
+.smile {
+    opacity: 0;
+    animation: drop .4s linear forwards 2.0s;
+    color: #9b5de5;
+    font-size: 7vw;
+}
+
+.dublinBikes {
+    position: relative;
+    z-index: 2;
+}
+
+.dublinBikes span {
+    opacity: 0;
+    animation: fadeIn 1s forwards 2s;
+    font-size: 9vw;
+    color: #00bbf9;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.dublinBikes span:nth-child(1) {
+    animation-delay: 2.5s;
+}
+
+.dublinBikes span:nth-child(2) {
+    animation-delay: 2.6s;
+}
+
+.dublinBikes span:nth-child(3) {
+    animation-delay: 2.7s;
+}
+
+.dublinBikes span:nth-child(4) {
+    animation-delay: 2.8s;
+}
+
+.dublinBikes span:nth-child(5) {
+    animation-delay: 2.9s;
+}
+
+.dublinBikes span:nth-child(6) {
+    animation-delay: 3s;
+}
+
+.dublinBikes span:nth-child(7) {
+    animation-delay: 3.1s;
+}
+
+.dublinBikes span:nth-child(8) {
+    animation-delay: 3.2s;
+}
+
+.dublinBikes span:nth-child(9) {
+    animation-delay: 3.3s;
+}
+
+.dublinBikes span:nth-child(10) {
+    animation-delay: 3.4s;
+}
+
+.dublinBikes span:nth-child(11) {
+    animation-delay: 3.5s;
+}
+
+
+.groupProject {
+    position: relative;
+    z-index: 2;
+    font-size: 2vw;
+    color: #fee440;
+}
+
+.continuebtn {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    animation: appear 0s linear 3.5s forwards;
+}
+
+@keyframes appear {
+    to {
+        visibility: visible;
+    }
+}
+
+.continuebtn a {
+    position: relative;
+    display: inline-block;
+    padding: 3vh 3vw;
+    color: #03e9f4;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.7s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    background-color: #f0f8ff08;
+    border-radius: 2px;
+}
+
+.continuebtn a:hover {
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 200px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.continuebtn a:nth-child(1) {
+    filter: hue-rotate(270deg);
+}
+
+.continuebtn a:nth-child(2) {
+    filter: hue-rotate(110deg);
+}
+
+.continuebtn a span {
+    position: absolute;
+    display: block;
+}
+
+.continuebtn a span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.continuebtn a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.continuebtn a span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+
+.continuebtn a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
