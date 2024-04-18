@@ -1,3 +1,4 @@
+
 {% extends "/layouts/base.html" %} {% block head %}
 <link rel="stylesheet" href="../static/css/weather_stats.css" />
 <link rel="shortcut icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}" />
@@ -12,9 +13,12 @@
 {% endblock %} {% block title %}Prediction From Weather{% endblock %} {% block
 body %}
 <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
-<a a href="/home" type="submit" class="home-container">
-  <i class="fa-solid fa-house home"></i>
-</a>
+
+<div class="home-container">
+  <a href="/home" type="submit">
+    <i class="fa-solid fa-backward home"></i>
+  </a>
+</div>
 <header>
   <h1>Prediction From Weather</h1>
 </header>
@@ -23,13 +27,13 @@ body %}
     <div class="main-search">
       <div class="dropdown_wrapper_number">
         <div id="station-number">
-          <p></p><i class="fa-solid fa-circle-chevron-down id"></i>
+          <p></p><img src="../static/img/icons/down.png" class="id" alt="Icon">
         </div>
         <div class="dropdown_station_number"></div>
       </div>
       <div class="dropdown_wrapper_name">
         <div id="station-name">
-          <p></p><i class="fa-solid fa-circle-chevron-down name"></i>
+          <p></p><img src="../static/img/icons/down.png" class="name" alt="Icon">
         </div>
         <div class="dropdown_station_name">
         </div>
@@ -68,74 +72,74 @@ body %}
           <input type="time" id="end_time_search" value="12:00">
         </div>
         <div class="hourly_submit_btn_container">
-            <button id="hourly_submit_btn">Get Prediction</button>
-          </div>
+          <button id="hourly_submit_btn">Get Prediction</button>
         </div>
-        <div class="hourly_plot_container">
-          <canvas class="plot_hourly"></canvas>
-        </div>
+      </div>
+      <div class="hourly_plot_container">
+        <canvas class="plot_hourly"></canvas>
       </div>
     </div>
-  
-    <div class="daily_prediction">
-      <div class="search">
-        <div class="date_from_wrapper">
-          <input type="date" id="from_date_search" />
-        </div>
-        <div class="date_to_wrapper">
-          <input type="date" id="to_date_search" />
-        </div>
-        <div class="daily_submit_btn_container">
-          <button id="daily_submit_btn">Get Prediction</button>
-        </div>
+  </div>
+
+  <div class="daily_prediction">
+    <div class="search">
+      <div class="date_from_wrapper">
+        <input type="date" id="from_date_search" />
       </div>
-      <div class="daily_plot_container">
-        <canvas class="plot_daily"></canvas>
+      <div class="date_to_wrapper">
+        <input type="date" id="to_date_search" />
+      </div>
+      <div class="daily_submit_btn_container">
+        <button id="daily_submit_btn">Get Prediction</button>
       </div>
     </div>
-  
-    <div class="stats">
-  
-      <div class="wind-container">
-        <canvas class="wind-bikes"></canvas>
-        <canvas class="wind-stands"></canvas>
-      </div>
-  
-      <div class="precipitation-container">
-        <canvas class="precipitation"></canvas>
-      </div>
-  
-      <div class="gust-container">
-        <canvas class="gust-bikes"></canvas>
-        <canvas class="gust-stands"></canvas>
-      </div>
-  
-  
-      <div class="temp-container">
-        <canvas class="temp"></canvas>
-        <canvas class="feelslike"></canvas>
-      </div>
-  
-      <div class="pressure-container">
-        <canvas class="pressure"></canvas>
-      </div>
-  
+    <div class="daily_plot_container">
+      <canvas class="plot_daily"></canvas>
     </div>
-  
-    <script>
-      init_station =
-        isNaN(parseInt("{{init_station}}")) || "{{init_station}}" === "null"
-          ? 1
-          : parseInt("{{init_station}}");
-  
-      document.addEventListener("DOMContentLoaded", function () {
-        var bodyHeight = document.body.scrollHeight;
-        var homeContainer = document.querySelector('.home-container');
-        homeContainer.style.height = bodyHeight + 'px';
-      });
-  
-    </script>
-    <script src="../static/js/predictionFromWeather.js"></script>
-    <script src="../static/js/statistics.js"></script>
-    {% endblock %}
-  </main>
+  </div>
+
+  <div class="stats">
+
+    <div class="wind-container">
+      <canvas class="wind-bikes"></canvas>
+      <canvas class="wind-stands"></canvas>
+    </div>
+
+    <div class="precipitation-container">
+      <canvas class="precipitation"></canvas>
+    </div>
+
+    <div class="gust-container">
+      <canvas class="gust-bikes"></canvas>
+      <canvas class="gust-stands"></canvas>
+    </div>
+
+
+    <div class="temp-container">
+      <canvas class="temp"></canvas>
+      <canvas class="feelslike"></canvas>
+    </div>
+
+    <div class="pressure-container">
+      <canvas class="pressure"></canvas>
+    </div>
+
+  </div>
+
+  <script>
+    init_station =
+      isNaN(parseInt("{{init_station}}")) || "{{init_station}}" === "null"
+        ? 1
+        : parseInt("{{init_station}}");
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var bodyHeight = document.body.scrollHeight;
+      var homeContainer = document.querySelector('.home-container');
+      homeContainer.style.height = bodyHeight + 'px';
+    });
+
+  </script>
+  <script src="../static/js/predictionFromWeather.js"></script>
+  <script src="../static/js/statistics.js"></script>
+  {% endblock %}
+</main>
