@@ -31,121 +31,49 @@ body {
   flex-direction: column;
 }
 
-/* @keyframes shiftBorderColor {
-
-  0%,
-  100% {
-    border-bottom-color: rgba(220, 243, 227, 0.764);
-  }
-
-  50% {
-    border-bottom-color: rgba(255, 53, 22, 0.8);
-  }
-}
 
 header {
   box-sizing: border-box;
-  height: 70px;
+  height: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   backdrop-filter: blur(3px);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
   padding: 0 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: shiftBorderColor 3s infinite ease-in-out;
   width: 100%;
-  margin-bottom: 10px;
-}
-
-
-@keyframes pulseTextShadow {
-
-  0%,
-  100% {
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  50% {
-    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
-  }
-}
-
-@keyframes colorPulse {
-
-  0%,
-  100% {
-    color: var(--options);
-    -webkit-text-stroke: 1px rgba(255, 53, 22, 0.8);
-  }
-
-  50% {
-    color: var(--optionsWrapper);
-    -webkit-text-stroke: 1px rgba(220, 243, 227, 0.764);
-  }
 }
 
 header h1 {
   position: relative;
   z-index: 2;
-  font-size: 50px;
   color: var(--options);
-  padding: 0.25em 0.5em;
+  padding: 0.25em 0;
   transition: all 0.3s ease;
   animation: pulseTextShadow 2s infinite ease-in-out;
   -webkit-text-stroke: 1px var(--info_container_background);
   animation: colorPulse 3s infinite ease-in-out;
 }
 
-header h1:hover {
-  color: #fff;
-  transform: translateY(-2px);
-  animation: none;
+@import "compass/css3";
+
+header h1 {
+  -webkit-text-stroke: 0.025em rgb(230, 74, 2);
+  -webkit-text-fill-color: transparent;
+  color: rgb(230, 74, 2); /* Converted hsla(300, 90%, 50%, 1) to rgba */
+  text-shadow:
+    0 0.025em 0.0375em rgb(230, 74, 2),
+    0 0 0 hsla(0, 0%, 100%, 1); /* Add bevel effect */
+  font: bold 35px/1 sans-serif;
 }
 
-
-@keyframes moveBike {
-  0% {
-    transform: translateX(-100%) rotate(0deg);
-  }
-
-  50% {
-    transform: translateX(50vw) rotate(-45deg);
-  }
-
-  100% {
-    transform: translateX(100vw) rotate(0deg);
-  }
+::selection {
+  -webkit-text-stroke: inherit;
+  -webkit-text-fill-color: inherit;
+  color: inherit;
+  background-color: hsla(0, 0%, 80%, 1);
 }
-
-@keyframes moveBike2 {
-  0% {
-    transform: translateX(100vw) rotate(0deg);
-  }
-
-  50% {
-    transform: translateX(50vw) rotate(45deg);
-  }
-
-  100% {
-    transform: translateX(-100%) rotate(0deg);
-  }
-}
-
-header .run-bike1 {
-  position: absolute;
-  left: 0;
-  height: 70px;
-  animation: moveBike 10s cubic-bezier(0.2, 0.8, 0.8, 1) infinite;
-}
-
-header .run-bike2 {
-  position: absolute;
-  left: 0;
-  height: 70px;
-  animation: moveBike2 10s cubic-bezier(0.2, 0.8, 0.8, 1) infinite;
-} */
-
 
 main {
   box-sizing: border-box;
@@ -167,11 +95,8 @@ body {
   background-repeat: repeat;
   background-position: center;
   backdrop-filter: blur(1px); */
-  background: rgb(131,58,180);
-  background: -moz-radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
-  background: -webkit-radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
-  background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#00308f",GradientType=1);  
+  background: rgb(28,181,224);
+  background: linear-gradient(0deg, rgba(28,181,224,1) 0%, rgba(0,8,81,1) 100%); 
 }
 
 a {
@@ -531,6 +456,29 @@ a {
               inset 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
+.info-ava{
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  padding: 10px;
+}
+
+.info-ava div{
+  display: flex;
+}
+
+.info-ava img{
+  width: 20px;
+}
+
+.info-ava p{
+  font-size: 12px;
+  color: #de2f20;
+}
+
 @media screen and (max-width: 768px) {
   body {
     width: 100vw;
@@ -538,6 +486,31 @@ a {
     overflow-y: scroll;
     background-image: url('../img/background_images/background3.jpeg');
     background-repeat: repeat;
+  }
+
+  .info-ava{
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    right: unset;
+    top: 30px;
+    padding: 10px;
+    margin: auto;
+  }
+  
+  .info-ava div{
+    display: flex;
+  }
+  
+  .info-ava img{
+    width: 15px;
+  }
+  
+  .info-ava p{
+    font-size: 10px;
+    color: #de2f20;
   }
 
   header {
@@ -611,6 +584,11 @@ a {
 
   header img {
     width: 50px !important;
+  }
+
+  header {
+    align-items: center;
+    justify-content: center;
   }
 
 

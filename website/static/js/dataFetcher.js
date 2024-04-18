@@ -25,6 +25,16 @@ function loadDataAndCreateMarkers(markers, map) {
             ava_stands: availability_data[index].stands,
             last_update: availability_data[index].lastUpdate
         };
+        let img;
+        if (availability_data[index].bikes * 100 / markerData.total <= 20){
+            img = "bikes_low";
+        }
+        else if (availability_data[index].stands * 100 / markerData.total <= 55){
+            img = "bikes_medium";
+        }
+        else {
+            img = "bikes_high";
+        }
 
         const marker = new google.maps.Marker({
             position: { lat: parseFloat(markerData.lat), lng: parseFloat(markerData.lng) },
@@ -33,7 +43,7 @@ function loadDataAndCreateMarkers(markers, map) {
             markerDict: markerDict,
             animation: google.maps.Animation.DROP,
             icon: {
-                url: '../static/img/icons/marker.png',
+                url: `../static/img/icons/${img}.png`,
                 scaledSize: new google.maps.Size(35, 35),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(16, 16)
