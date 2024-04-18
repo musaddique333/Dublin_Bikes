@@ -1039,3 +1039,145 @@ function plot_pressure(bikes, bike_stands, X) {
     if (pressureChart) pressureChart.destroy();
     pressureChart = new Chart(pressure, config);
 }
+function plot_precipitation(bikes, bike_stands, X) {
+    const precipitation = document.querySelector(".precipitation").getContext('2d');
+
+    var scale_x = 1;
+    var scale_y = 0.3;
+
+    if (Math.max(bikes) > Math.max(bike_stands)) {
+        const temp = scale_x;
+        scale_x = scale_y;
+        scale_y = temp;
+    }
+    const bikeData = bikes.map((val, index) => ({ x: X[index], y: val, r: val * scale_x }));
+    const standData = bike_stands.map((val, index) => ({ x: X[index], y: val, r: val * scale_y }));
+
+    const data = {
+        datasets: [
+            {
+                label: 'Bikes',
+                data: bikeData,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(255, 99, 132, 0.5)',
+                yAxisID: 'y',
+            },
+            {
+                label: 'Bike Stands',
+                data: standData,
+                borderColor: 'rgb(255, 159, 64)',
+                backgroundColor: 'rgb(255, 159, 64, 0.5)',
+                yAxisID: 'y1',
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bubble',
+        data: data,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Pressure (mb)`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 99, 132)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                    },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 159, 64)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Availability Based on Precipitation',
+                    font: {
+                        size: 25,
+                        weight: 'bold',
+                    },
+                    color: 'rgba(255, 255, 255, 1)',
+                },
+                tooltip: {
+                    mode: 'point',
+                    intersect: true,
+                    callbacks: {
+                        label: function (context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                label += `${context.parsed.y}`;
+                            }
+                            if (context.parsed.x !== null) {
+                                label += ` at ${context.parsed.x} mm`;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        },
+    };
+
+    if (precipBikesChart) precipBikesChart.destroy();
+    precipBikesChart = new Chart(precipitation, config);
+}
