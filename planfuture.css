@@ -1,0 +1,162 @@
+.planforFuture {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.6), /* Lighter highlight for more pronounced bevel */
+                inset 4px 4px 8px rgba(0, 0, 0, 0.6); /* Darker shadow for more pronounced bevel */
+    background-color: #4793AF; /* A complementing cool teal blue */
+    display: flex;
+    flex-direction: column;
+    color: var(--weatherFont);
+    border-radius: 5px;
+}
+
+
+.show-houly-data {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 100%;
+    gap: 5px;
+}
+
+.station-name {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Ensure content alignment starts from the left */
+    font-size: 16px; /* Adjust as necessary */
+    color: #121212; /* Dark grey for high readability */
+    padding: 10px; /* Adds some space around the text for better visual separation */
+    background-color: #ffffff; /* Light background to make text pop */
+    box-shadow: inset -1px -1px 2px rgba(255, 255, 255, 0.6), /* Subtle inset highlight for a lifted effect */
+                inset 1px 1px 2px rgba(0, 0, 0, 0.4); /* Subtle inset shadow for depth */
+    border-radius: 5px; /* Slight rounding of edges to soften the overall look */
+    transition: all 0.3s ease; /* Smooth transition for any hover or focus effects */
+
+    /* Adding beveled text effect */
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8),  /* Highlight part of the bevel */
+                 -1px -1px 0 rgba(0, 0, 0, 0.6),  /* Shadow part of the bevel */
+                 1px 1px 2px rgba(0, 0, 0, 0.3);  /* Soft shadow for depth */
+}
+
+
+
+.graph-hourly-container {
+    position: relative;
+    width: 100%;
+    height: 90% !important;
+}
+
+.graph-hourly {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: var(--optionsBackground); /* Using CSS variable for color flexibility */
+    width: 100%;
+    height: 100% !important;
+    box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.5),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Inset highlight for a beveled effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Inset shadow for depth */
+}
+
+
+.graph-hourly-container:-webkit-full-screen {
+    height: 100%;
+}
+
+.graph-hourly-container:-ms-fullscreen {
+    height: 100%;
+}
+
+.graph-hourly-container:fullscreen {
+    height: 100%;
+    background-color: aliceblue;
+}
+
+.graph-hourly-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.statistics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 5px;
+}
+
+.statistics-container button {
+    appearance: none;
+    background: rgb(210, 74, 2); /* Light gray background */
+    border: none;
+    cursor: pointer;
+    isolation: isolate;
+    box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Highlight for bevel effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+}
+
+
+.button {
+    box-sizing: border-box;
+    font-size: 10px;
+    line-height: 1.5;
+    font-weight: 500;
+    width: 100%;
+    border-radius: 9999rem; /* Fully rounded corners */
+    background: #efefef;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Highlight for bevel effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+    transition: transform 0.2s;
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &>span.text {
+        color: #121212;
+        width: 100%;
+        text-align: center;
+        padding-block: 12px;
+        z-index: 2;
+        transition: all 200ms ease;
+    }
+
+    &>div.overlay {
+        color: #ededed;
+        width: 0px;
+        height: calc(100% - 2px);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: inherit;
+        background: rgb(50, 100, 200);
+        box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Highlight for bevel effect */
+        inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+        position: absolute;
+        right: 1px;
+        z-index: 1;
+        transition: all 400ms ease;
+    }
+
+    &:is(:hover) {
+        &>span.text {
+            color: #ededed;
+        }
+
+        &>div.overlay {
+            width: calc(100% - 2px);
+            transition: width 200ms ease;
+        }
+    }
+}
