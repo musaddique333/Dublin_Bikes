@@ -75,7 +75,7 @@ function show_hourly_graph(data) {
                 backgroundColor: 'rgba(255, 0, 0)',
                 borderWidth: 1
             }]
-        }
+        },
         options: {
             responsive: true,
             maintainAspectRatio: false,
