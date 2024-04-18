@@ -1,0 +1,47 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+main{
+    display: flex;
+    padding: 5vh 3vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#google-map{
+    width: 94vw;
+    height: 90vh;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 8px 16px;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #ddd;
+  }
