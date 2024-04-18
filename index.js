@@ -1,3 +1,8 @@
+import { currentLocation } from './currentLocation.js';
+import { searchBox } from './searchBox.js';
+import { loadDataAndCreateMarkers } from './dataFetcher.js';
+import { getNearestInfo } from './predictionsFromHour.js';
+
 let map, markers = [];
 let currentLocationValue = null;
 async function initMap() {
@@ -97,3 +102,52 @@ async function initMap() {
         weather.style.display = 'flex';
     });
 }
+
+function loadGoogleMapsAPI() {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${maps_api}&libraries=places,geometry&callback=initMap&loading=async`;
+    document.head.appendChild(script);
+}
+
+let timeoutId;
+
+function firstNearStartion(markers) {
+    const lat = document.querySelector('.start-loc .lat');
+    const lng = document.querySelector('.start-loc .lng');
+
+    let currentLocation = {
+        lat: parseFloat(lat.textContent),
+        lng: parseFloat(lng.textContent)
+    };
+
+    if (!isNaN(currentLocation.lat) && !isNaN(currentLocation.lng)) {
+
+        if (typeof markers !== 'undefined'){
+
+            const distances = markers.map(marker => ({
+                marker: marker,
+                distance: google.maps.geometry.spherical.computeDistanceBetween(currentLocation, marker.getPosition())
+            }));
+        
+            distances.sort((a, b) => a.distance - b.distance);
+        
+            const nearestMarkers = distances.slice(0, 5).map(item => item.marker);
+            nearestMarkers[0].setAnimation(google.maps.Animation.BOUNCE);
+            // map.setCenter(nearestMarkers[0]);
+            map.setZoom(14);
+            nearestMarkers.forEach(marker => {
+                marker.setMap(map);
+            });
+            getNearestInfo(nearestMarkers[0], markers);
+        }
+
+        clearTimeout(timeoutId);
+    } else {
+        timeoutId = setTimeout(() => firstNearStartion(markers), 1000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    window.initMap = initMap;
+    loadGoogleMapsAPI();
+});
