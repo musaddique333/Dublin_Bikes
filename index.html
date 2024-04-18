@@ -1,8 +1,10 @@
 {% extends "/layouts/base.html" %}
-
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
+{% endblock %}
 {% block title %}Welcome{% endblock %}
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
 <div id="text-drop">
     <div class="h">H</div>
     <div class="e">e</div>
@@ -35,17 +37,20 @@
         </a>
     </div>
 </div>
-<div class="background">
-
-</div>
+<div class="background"></div>
 <script src="https://kit.fontawesome.com/66aa7c98b3.js" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function () {
-        $('#text-drop').mouseleave(function () {
-            $(this).removeClass('clicked');
-        }).click(function () {
-            $(this).addClass('clicked').html($(this).html());
+    document.addEventListener("DOMContentLoaded", function() {
+        const textDrop = document.getElementById('text-drop');
+    
+        textDrop.addEventListener('mouseleave', function() {
+            this.classList.remove('clicked');
         });
-    });
+    
+        textDrop.addEventListener('click', function() {
+            this.classList.add('clicked');
+            this.innerHTML = this.innerHTML;
+        });
+    });    
 </script>
 {% endblock %}
