@@ -45,3 +45,206 @@ main{
   .sidebar ul li a:hover {
     background-color: #ddd;
   }
+
+  header h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 50px;
+    color: var(--options);
+    padding: 0.25em 0.5em;
+    transition: all 0.3s ease;
+    animation: pulseTextShadow 2s infinite ease-in-out;
+    -webkit-text-stroke: 1px var(--info_container_background);
+    animation: colorPulse 3s infinite ease-in-out;
+  }
+  
+  header h1:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    animation: none;
+  }
+  
+  
+  @keyframes moveBike {
+    0% {
+      transform: translateX(-100%) rotate(0deg);
+    }
+  
+    50% {
+      transform: translateX(50vw) rotate(-45deg);
+    }
+  
+    100% {
+      transform: translateX(100vw) rotate(0deg);
+    }
+  }
+  
+  @keyframes moveBike2 {
+    0% {
+      transform: translateX(100vw) rotate(0deg);
+    }
+  
+    50% {
+      transform: translateX(50vw) rotate(45deg);
+    }
+  
+    100% {
+      transform: translateX(-100%) rotate(0deg);
+    }
+  }
+  
+  header .run-bike1 {
+    position: absolute;
+    left: 0;
+    height: 70px;
+    animation: moveBike 10s cubic-bezier(0.2, 0.8, 0.8, 1) infinite;
+  }
+  
+  header .run-bike2 {
+    position: absolute;
+    left: 0;
+    height: 70px;
+    animation: moveBike2 10s cubic-bezier(0.2, 0.8, 0.8, 1) infinite;
+  } */
+  
+  
+  main {
+    box-sizing: border-box;
+    display: flex;
+    /* flex-direction: column-reverse; */
+    padding: 20px 20px;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  
+  body {
+    /* background-image: url('../img/background_images/background2.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    backdrop-filter: blur(1px); */
+    background: rgb(131,58,180);
+    background: -moz-radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
+    background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#00308f",GradientType=1);  
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 200px;
+    height: 200px;
+    animation: animate 1s linear infinite;
+  }
+  
+  .loader-item {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #f00;
+    box-shadow: 2px 2px 5px 1px #000;
+    animation: rotate 1s linear infinite;
+  }
+  
+  .loader-item_1 {
+    top: 0;
+    left: 0;
+    background: var(--green);
+  }
+  
+  .loader-item_2 {
+    top: 0;
+    right: 0;
+    background: var(--white);
+  }
+  
+  .loader-item_3 {
+    bottom: 0;
+    left: 0;
+    background: var(--white);
+  }
+  
+  .loader-item_4 {
+    bottom: 0;
+    right: 0;
+    background: var(--red);
+  }
+  
+  @keyframes animate {
+  
+    0%,
+    100% {
+      width: 200px;
+      height: 200px;
+    }
+  
+    10%,
+    90% {
+      width: 200px;
+      height: 200px;
+    }
+  
+    50% {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  
+  @keyframes rotate {
+  
+    0%,
+    10% {
+      transform: rotate(0deg);
+    }
+  
+    60%,
+    90%,
+    100% {
+      transform: rotate(90deg);
+    }
+  }
+  
+  
+  .loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .google-maps-container {
+    box-sizing: border-box;
+    align-self: flex-end;
+    width: 80%;
+    height: 100%;
+    border-radius: 5px;
+    /* border: black 2px solid; */
+    box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5),
+                inset -5px -5px 10px rgba(255, 255, 255, 0.7), /* Light source top-left */
+                inset 5px 5px 10px rgba(0, 0, 0, 0.7); /* Shadow bottom-right */
+    overflow: hidden;
+  }
+  
+  #google-map {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+      /* border: black 2px solid; */
+      box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5),
+      inset -5px -5px 10px rgba(255, 255, 255, 0.7), /* Light source top-left */
+      inset 5px 5px 10px rgba(0, 0, 0, 0.7); /* Shadow bottom-right */
+      padding: 5px;
+      background-color: #DD5746;
+  }
+  
+  
