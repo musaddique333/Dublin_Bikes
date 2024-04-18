@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+aside {
+    display: none;
+    width: 20%;
+    height: 100%;
+}
+
+#station-info-bar {
+    /* position: fixed; */
+    /* top: calc(10% + 10px); */
+    /* right: 10px; */
+    /* z-index: 3; */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5),
+                    inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Inset highlight for a beveled effect */
+                    inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Inset shadow for depth */
+        background-color: rgb(71, 123, 255);  /* Bright blue to keep consistent with your design */
+    }
+    
+
+#close-info-bar {
+    width: 100%;
+    text-align: center;
+    border-radius: 0 0 5px 5px;  /* Rounded bottom edges */
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5),  /* Outer shadow for depth */
+                inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Inset highlight for bevel effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Inset shadow for bevel effect */
+    transition: background-color 0.2s, color 0.2s; /* Smooth transitions for color changes */
+
+    &:hover {
+        color: white;  /* Changes text color to white on hover */
+        box-shadow: -1px 1px 15px rgba(0, 0, 0, 0.6),  /* Deeper shadow on hover */
+                    inset -3px -3px 6px rgba(255, 255, 255, 0.7), /* More pronounced bevel on hover */
+                    inset 3px 3px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    &:active {
+        background-color: red;  /* Red background when clicked */
+        box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5),  /* Return to normal depth on active */
+                    inset -1px -1px 2px rgba(255, 255, 255, 0.8), /* Less pronounced bevel on active */
+                    inset 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+}
+
+
+.route {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+
+.input-route {
+    width: 100%;
+    background-color: rgb(255, 255, 255);  /* White background for clarity */
+    border-radius: 20px;  /* Rounded corners for a softer appearance */
+    text-align: left;  /* Text aligned to the left for standard input behavior */
+    padding: 10px;  /* Adequate padding for text inside the input */
+    font-size: 10px;  /* Smaller font size */
+    font-weight: 700;  /* Bold font for better readability */
+    /* border: 3px solid white;  White border for a subtle ridge effect */
+    /* border-style: ridge;  Embossed appearance to the border */
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5),  /* Outer shadow for depth */
+                inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Inset highlight for a raised look */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Inset shadow for a sunken effect */
+}
+
+
+.source {
+    position: relative;
+    z-index: 4;
+}
+
+.destination {
+    position: relative;
+    z-index: 2;
+}
+
+.start-drop,
+.end-drop {
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    padding: 5px;
+    top: 10px;
+    height: 200px;
+    width: 100%;  /* Calculates the width after accounting for padding/margins */
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Hides scrollbar in IE/Edge */
+    scrollbar-width: none;  /* Hides scrollbar in Firefox */
+    border-radius: 20px;
+    /* border: black 2px solid; */
+    box-shadow: -3px 3px 10px 1px rgba(0, 0, 0, 0.5),
+                inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Inset highlight for bevel effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Inset shadow for bevel effect */
+    background-color: rgb(71, 123, 255);  /* Deep blue background color */
+}
+
+
+.start-drop {
+    z-index: 3;
+}
+
+.end-drop {
+    z-index: 1;
+}
+
+.dir-options {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    font-size: 10px;
+    font-weight: 500;
+    background-color: aliceblue;  /* Light pale blue */
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5),  /* Regular shadow for depth */
+                inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Inset highlight for bevel effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Inset shadow for bevel effect */
+    transition: background-color 0.2s, color 0.2s, transform 0.2s; /* Smooth transitions for interactive states */
+
+    &:active {
+        transform: scale(0.9); /* Scales down on active click */
+    }
+
+    &:hover {
+        background-color: rgb(71, 123, 255); /* Deep blue background on hover */
+        color: rgb(255, 255, 255); /* White text on hover */
+        box-shadow: -1px 1px 15px rgba(0, 0, 0, 0.6), /* Deeper shadow on hover for more depth */
+                    inset -3px -3px 6px rgba(255, 255, 255, 0.7), /* More pronounced bevel effect on hover */
+                    inset 3px 3px 6px rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* Applies a border radius to the top left and top right corners of the first element */
+.dir-options:first-child {
+    border-top-left-radius: 15px; /* Adjust the radius size as needed */
+    border-top-right-radius: 15px; /* Adjust the radius size as needed */
+    background-color: rgb(71, 123, 255);  /* Deep blue background color */
+    box-shadow: none;
+  }
+  
+  /* Applies a border radius to the bottom left and bottom right corners of the last element */
+  .dir-options:last-child {
+    border-bottom-left-radius: 15px; /* Adjust the radius size as needed */
+    border-bottom-right-radius: 15px; /* Adjust the radius size as needed */
+  }
+  
+
+.serch-route {
+    width: 40%;
+    text-align: center;
+    background-color: blue;  /* Primary blue background */
+    color: aliceblue;  /* Light blue text color for contrast */
+    font-size: 12px;
+    padding: 7px;
+    border-radius: 20px;
+    /* border: 2px solid white; */
+    /* border-style: ridge;  Gives a 3D embossed look */
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.5),  /* Shadow for depth */
+                inset -2px -2px 4px rgba(255, 255, 255, 0.6), /* Highlight for bevel effect */
+                inset 2px 2px 4px rgba(0, 0, 0, 0.6); /* Shadow for bevel effect */
+    transition: transform 0.2s, background-color 0.2s;  /* Smooth transition for scale and color changes */
+
+    &:hover {
+        transform: scale(1.1);  /* Enlarges button on hover for visual feedback */
+        box-shadow: -2px 2px 15px rgba(0, 0, 0, 0.6),  /* Deeper shadow on hover */
+                    inset -3px -3px 6px rgba(255, 255, 255, 0.7), /* More pronounced bevel on hover */
+                    inset 3px 3px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    &:active {
+        background-color: rgb(255, 71, 71);  /* Red background on click */
+        color: aliceblue;  /* Maintains light blue text on active state */
+        transform: scale(0.9);  /* Shrinks slightly on click for a button press effect */
+        box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.5),  /* Return to normal depth on active */
+                    inset -1px -1px 2px rgba(255, 255, 255, 0.8), /* Less pronounced bevel on active */
+                    inset 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+}
+
+
+.marker-content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.directions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    padding: 1vw;
+    height: 100%;
+    background-color: aliceblue;
+    overflow-y: scroll;
+}
