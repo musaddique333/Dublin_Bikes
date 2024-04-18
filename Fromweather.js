@@ -246,3 +246,313 @@ function show_hourly_graph(data) {
         yAxisID: 'y1',
       }]
     },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: 'category',
+        position: 'bottom',
+        title: {
+          display: true,
+          text: `Hours From ${start} To ${end}`,
+          color: '#bd7ebe',
+          font: {
+            size: 20
+          }
+        },
+        ticks: {
+          color: 'rgba(255, 255, 255, 0.6)',
+          font: {
+            size: 12
+          }
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.6)',
+        },
+      },
+      y: {
+        type: 'linear',
+        position: 'left',
+        title: {
+          display: true,
+          text: 'Predictions',
+          color: '#bd7ebe',
+          font: {
+            size: 20
+          }
+        },
+        ticks: {
+          color: 'rgba(255, 255, 255, 0.6)',
+          font: {
+            size: 12
+          }
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.6)',
+        },
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+        title: {
+          display: true,
+          text: 'Predictions',
+          color: '#bd7ebe',
+          font: {
+            size: 20
+          }
+        },
+        ticks: {
+          color: 'rgba(255, 255, 255, 0.6)',
+          font: {
+            size: 12
+          }
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+        align: 'center',
+        labels: {
+          font: {
+            size: 20
+          },
+          color: "#bd7ebe",
+        }
+      },
+      title: {
+        display: true,
+        text: `Hourly Forecast on ${date} From ${start} To ${end}`,
+        font: {
+          size: 30,
+          weight: 'bold',
+        },
+        color: 'rgba(255, 255, 255, 1)',
+        position: 'top',
+      },
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pinch: {
+            enabled: true
+          },
+          mode: 'xy',
+        },
+        pan: {
+          enabled: true,
+          mode: 'xy',
+        }
+      },
+      tooltip: {
+        callbacks: {
+          title: (ctx) => {
+            return x_label.long[ctx[0].dataIndex];
+          }
+        }
+      }
+    },
+  }
+});
+}
+
+function show_daily_graph(data) {
+const bikesData = data.bikes;
+const standsData = data.stands;
+
+let start = document.getElementById('from_date_search').value;
+let end = document.getElementById('to_date_search').value;
+const x_axis = generateDateArray(start, end);
+const canvas = document.querySelector('.plot_daily');
+
+const x_label = {
+  short: x_axis,
+  long: x_axis,
+}
+
+if (dailyChart) {
+  dailyChart.destroy();
+}
+
+const ctx = canvas.getContext('2d');
+dailyChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: x_label.short,
+    datasets: [{
+      label: 'Bikes',
+      data: bikesData,
+      borderColor: '#7eb0d5',
+      backgroundColor: '#7eb0d5cc',
+      borderWidth: 3,
+      tension: 0.2,
+      pointRadius: 10,
+      pointBackgroundColor: '#7eb0d5cc',
+      yAxisID: 'y',
+    }, {
+      label: 'Stands',
+      data: standsData,
+      borderColor: '#fd7f6f',
+      backgroundColor: '#fd7f6fcc',
+      borderWidth: 3,
+      tension: 0.2,
+      pointRadius: 10,
+      pointBackgroundColor: '#fd7f6fcc',
+      yAxisID: 'y1',
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: 'category',
+        position: 'bottom',
+        title: {
+          display: true,
+          text: `Dates From ${start} To ${end}`,
+          color: '#bd7ebe',
+          font: {
+            size: 20
+          }
+        },
+        ticks: {
+          color: 'rgba(255, 255, 255, 0.6)',
+          font: {
+            size: 12
+          }
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.6)',
+        },
+      },
+      y: {
+        type: 'linear',
+        position: 'left',
+        title: {
+          display: true,
+          text: 'Predictions',
+          color: '#bd7ebe',
+          font: {
+            size: 20
+          }
+        },
+        ticks: {
+          color: 'rgba(255, 255, 255, 0.6)',
+          font: {
+            size: 12
+          }
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.6)',
+        },
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+        title: {
+          display: true,
+          text: 'Predictions',
+          color: '#bd7ebe',
+          font: {
+            size: 20
+          }
+        },
+        ticks: {
+          color: 'rgba(255, 255, 255, 0.6)',
+          font: {
+            size: 12
+          }
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+        align: 'center',
+        labels: {
+          font: {
+            size: 20
+          },
+          color: "#bd7ebe",
+        }
+      },
+      title: {
+        display: true,
+        text: `Availability Forecast From ${start} To ${end}`,
+        font: {
+          size: 30,
+          weight: 'bold',
+        },
+        color: 'rgba(255, 255, 255, 1)',
+        position: 'top',
+      },
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true,
+          },
+          pinch: {
+            enabled: true
+          },
+          mode: 'xy',
+        },
+        pan: {
+          enabled: true,
+          mode: 'xy',
+        }
+      },
+      tooltip: {
+        callbacks: {
+          title: (ctx) => {
+            return x_label.long[ctx[0].dataIndex];
+          }
+        }
+      }
+    },
+  }
+});
+}
+
+function addDays(date, days) {
+const result = new Date(date);
+result.setDate(result.getDate() + days);
+return result;
+}
+
+function generateDateArray(startDateStr, endDateStr) {
+const dateArray = [];
+let currentDate = new Date(startDateStr);
+const endDate = new Date(endDateStr);
+
+while (currentDate <= endDate) {
+  dateArray.push(currentDate.toISOString().split('T')[0]);
+  currentDate = addDays(currentDate, 1);
+}
+
+return dateArray;
+}
+
+function generateHourlyArray(startHour, endHour, dateString) {
+let start = new Date(`${dateString}T${startHour}`);
+let end = new Date(`${dateString}T${endHour}`);
+let datetimeList = [];
+let currentDatetime = new Date(start.getTime());
+
+while (currentDatetime < end) {
+  datetimeList.push(currentDatetime.getHours());
+  currentDatetime.setHours(currentDatetime.getHours() + 1);
+}
+
+return datetimeList;
+}
