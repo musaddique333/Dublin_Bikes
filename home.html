@@ -1,0 +1,192 @@
+{% extends "/layouts/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="../static/css/home.css">
+<link rel="stylesheet" href="../static/css/side_info_bar.css">
+<link rel="stylesheet" href="../static/css/weather.css">
+<link rel="stylesheet" href="../static/css/planFuture.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/weather-icons/css/weather-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+<link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&family=Dancing+Script:wght@600&family=Exo:wght@300&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu&display=swap"
+    rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% endblock %}
+{% block title %}Dublin Bikes{% endblock %}
+{% block body %}
+<div class="loader">
+    <div class="loader-item loader-item_1"></div>
+    <div class="loader-item loader-item_2"></div>
+    <div class="loader-item loader-item_3"></div>
+    <div class="loader-item loader-item_4"></div>
+</div>
+
+<!-- <header>
+    <h1>Dublin Bikes</h1>
+    <img class="run-bike1" src="../static/img/icons/running.svg" alt="bike">
+    <img class="run-bike2" src="../static/img/icons/running2.svg" alt="bike">
+</header> -->
+
+<main>
+    <div class="start-loc" style="display: none;">
+        <div class="lat"></div>
+        <div class="lng"></div>
+    </div>
+
+    <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
+    <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
+
+    <div class="info-container">
+        <div class="weather-app">
+            <div class="weather-app-container">
+                <div class="weather-disp">
+                    <div class="weather-disp-container">
+                        <div class="info">
+                            <div class="weather-text">
+                            </div>
+                            <div class="wind-speed">
+                            </div>
+                            <div class="humidity">
+                            </div>
+                        </div>
+                        <div class="weather-ico">
+                        </div>
+                    </div>
+                </div>
+                <div class="loc-temp">
+                    <div class="loc-temp-up">
+                        <div class="day-name">
+
+                        </div>
+                        <div class="location-name">
+                            Dublin, Ireland
+                        </div>
+                    </div>
+                    <div class="loc-temp-down">
+                        <div class="loc-temp-info">
+                            <div class="temp">
+                                <div class="temp-head">Temperature</div>
+                                <div class="temp-value">10'C</div>
+                            </div>
+                            <div class="feel-temp">
+                                <div class="temp-head">Feels Like</div>
+                                <div class="temp-value">10'C</div>
+                            </div>
+                        </div>
+                        <div class="temp-img">
+                            <img src="../static/img/icons/temp.svg" alt="temp-icon">
+                        </div>
+                    </div>
+                    <div class="pressure">
+                    </div>
+                </div>
+            </div>
+            <div class="timings">
+                <div class="sunrise">sunrise</div>
+                <div class="sunset">seunset</div>
+            </div>
+            <div class="time-date">
+                <div class="date">
+
+                </div>
+                <div class="time">
+                </div>
+            </div>
+        </div>
+
+        <div class="planforFuture">
+            <div class="show-houly-data">
+                <div class="station-name">
+                    Nearest Station
+                </div>
+                <div class="graph-hourly-container">
+                    <canvas class="graph-hourly" id="graph-hourly"></canvas>
+                    <i class="graph-hourly-button fa-solid fa-maximize fa-spin" style="color: #e3000c;"></i>
+                </div>
+            </div>
+
+            <div class="statistics-container">
+                <a href="/weather_statistics" type="submit" class="weather-ava">
+                    <button class="button">
+                        <span class="text">Predict Availability By Weather or Get Statistics</span>
+                        <div class="overlay">
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="google-maps-container">
+        <div id="google-map"></div>
+    </div>
+    <div id="search-container">
+        <div class="search-bar-container active">
+            <img src="../static/img/icons/magnifier-512.webp" alt="magnifier" class="magnifier">
+            <input id="map-search" type="text" class="input" placeholder="Search ..." />
+        </div>
+        <label class="toggle">
+            <input class="toggle-checkbox" id="toggle-markers" type="checkbox">
+            <div class="toggle-switch"><label id="toggle-text">OFF</label></div>
+        </label>
+    </div>
+    <div id="currentLocation">
+        <img src="../static/img/icons/currentLocation.svg" alt="X">
+    </div>
+
+    <div id="customAlert" class="custom-alert hidden">
+        <div class="alert-content">
+            <p>Please select a destination</p>
+            <button onclick="closeAlert()">OK</button>
+        </div>
+    </div>
+    
+    <aside>
+        <div id="station-info-bar">
+            <div class="route">
+                <div class="start-loc box">
+                    <div class="start-drop"></div>
+                    <div id="source" class="source input-route">Source...</div>
+                </div>
+                <div class="end-loc box">
+                    <div class="end-drop"></div>
+                    <div id="destination" class="destination input-route">Destination...</div>
+                </div>
+                <div class="serch-route"><i class="fa-solid fa-diamond-turn-right"></i></div>
+            </div>
+            <div class="directions-container">
+                <div id="directions"></div>
+            </div>
+            <div id="close-info-bar"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+    </aside>
+
+
+</main>
+<!-- <footer>
+
+</footer> -->
+<script>
+    const weather_api = "{{ weather_api }}";
+    const maps_api = "{{ maps_api }}";
+    let directionsService, directionsRenderer;
+    function showAlert() {
+    document.getElementById('customAlert').classList.remove('hidden');
+    document.getElementById('customAlert').classList.add('visible');
+    }
+
+    function closeAlert() {
+        document.getElementById('customAlert').classList.remove('visible');
+        document.getElementById('customAlert').classList.add('hidden');
+    }
+</script>
+
+<script src="../static/js/weather.js"></script>
+<script type="module" src="../static/js/home.js"></script>
+
+{% endblock %}
