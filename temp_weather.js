@@ -49,7 +49,6 @@ function insertWeatherData(data) {
     const wind_speed = document.querySelector('.wind-speed');
     const weather_ico = document.querySelector('.weather-ico');
 
-
     pressure.innerHTML = `<i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp${data.current.pressure_mb}mb`;
     humidity.innerHTML = `<i class="fa-solid fa-droplet-slash"></i>&nbsp${data.current.humidity}%`;
 
