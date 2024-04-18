@@ -48,7 +48,11 @@ function insertWeatherData(data) {
     const weather_text = document.querySelector('.weather-text');
     const wind_speed = document.querySelector('.wind-speed');
     const weather_ico = document.querySelector('.weather-ico');
-
+    const act_temp = document.querySelector('.temp .temp-value');
+    const feel_temp = document.querySelector('.feel-temp .temp-value');
+    const humidity = document.querySelector(".humidity");
+    const pressure = document.querySelector(".pressure");
+    const uv_index = document.querySelector(".uv");
 
     pressure.innerHTML = `<i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp${data.current.pressure_mb}mb`;
     humidity.innerHTML = `<i class="fa-solid fa-droplet-slash"></i>&nbsp${data.current.humidity}%`;
