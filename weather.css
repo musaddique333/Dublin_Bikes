@@ -63,6 +63,13 @@
 	display: flex;
 }
 
+.timings {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
 .sunrise img,
 .sunset img {
 	width: 20px;
@@ -183,6 +190,12 @@
 	width: 150%;
 }
 
+.time-date {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 @keyframes blink {
 
 	0%,
@@ -195,3 +208,20 @@
 	}
 }
 
+.hours,
+.minutes,
+.seconds {
+	animation: blink 1s infinite;
+}
+
+.hours {
+	color: var(--green);
+}
+
+.minutes {
+	color: var(--white);
+}
+
+.seconds {
+	color: red;
+}
