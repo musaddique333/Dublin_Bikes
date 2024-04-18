@@ -1,130 +1,56 @@
 {% extends "/layouts/base.html" %}
 {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
 <link rel="shortcut icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-<link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&family=Dancing+Script:wght@600&family=Exo:wght@300&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Ubuntu&display=swap"
-    rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}
-{% block title %}Dublin Bikes{% endblock %}
+{% block title %}Welcome{% endblock %}
 {% block body %}
-<div class="loader">
-    <div class="loader-item loader-item_1"></div>
-    <div class="loader-item loader-item_2"></div>
-    <div class="loader-item loader-item_3"></div>
-    <div class="loader-ite{% extends "/layouts/base.html" %}
-    {% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
-    {% endblock %}
-    {% block title %}Welcome{% endblock %}
-    {% block body %}
-    <div id="text-drop">
-        <div class="h">H</div>
-        <div class="e">e</div>
-        <div class="l">l</div>
-        <div class="l2">l</div>
-        <div class="o">o</div>
-        <div class="smile">:)</div>
-    </div>
-    <div class="dublinBikes">
-        <span>D</span><span>u</span><span>b</span><span>l</span><span>i</span><span>n</span>
-        <span>B</span><span>i</span><span>k</span><span>e</span><span>s</span>
-    </div>
-    
-    <div class="groupProject">
-        A Group project...
-    </div>
-    <div class="continuebtn">
-        <a href="/home" type="submit">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            Take Me There
-        </a>
-    </div>
-    <div>
-        <div class="social-menu">
-            <a href="https://github.com/SWEsem2/Dublin_Bikes/tree/main" target="blank">
-                <i class="fab fa fa-github"></i>
-            </a>
-        </div>
-    </div>
-    <div class="background"></div>
-    <script src="https://kit.fontawesome.com/66aa7c98b3.js" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const textDrop = document.getElementById('text-drop');
-        
-            textDrop.addEventListener('mouseleave', function() {
-                this.classList.remove('clicked');
-            });
-        
-            textDrop.addEventListener('click', function() {
-                this.classList.add('clicked');
-                this.innerHTML = this.innerHTML;
-            });
-        });    
-    </script>
-    {% endblock %}m loader-item_4"></div>
+<div id="text-drop">
+    <div class="h">H</div>
+    <div class="e">e</div>
+    <div class="l">l</div>
+    <div class="l2">l</div>
+    <div class="o">o</div>
+    <div class="smile">:)</div>
+</div>
+<div class="dublinBikes">
+    <span>D</span><span>u</span><span>b</span><span>l</span><span>i</span><span>n</span>
+    <span>B</span><span>i</span><span>k</span><span>e</span><span>s</span>
 </div>
 
-<!-- <header>
-    <h1>Dublin Bikes</h1>
-    <img class="run-bike1" src="../static/img/icons/running.svg" alt="bike">
-    <img class="run-bike2" src="../static/img/icons/running2.svg" alt="bike">
-</header> -->
-
-<main>
-    <div class="start-loc" style="display: none;">
-        <div class="lat"></div>
-        <div class="lng"></div>
+<div class="groupProject">
+    A Group project...
+</div>
+<div class="continuebtn">
+    <a href="/home" type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Take Me There
+    </a>
+</div>
+<div>
+    <div class="social-menu">
+        <a href="https://github.com/SWEsem2/Dublin_Bikes/tree/main" target="blank">
+            <i class="fab fa fa-github"></i>
+        </a>
     </div>
-
-    <div id="stationData" data-station='{{ station_data|safe }}' style="display:none;"></div>
-    <div id="availabilityData" data-availability='{{ availability_data|safe }}' style="display:none;"></div>
-
-    <div class="info-container">
-        <div class="weather-app">
-            <div class="weather-app-container">
-                <div class="weather-disp">
-                    <div class="weather-disp-container">
-                        <div class="info">
-                            <div class="weather-text">
-                            </div>
-                            <div class="wind-speed">
-                            </div>
-                            <div class="humidity">
-                            </div>
-                        </div>
-                        <div class="weather-ico">
-                        </div>
-                    </div>
-                </div>
-
-            <div class="timings">
-                <div class="sunrise">sunrise</div>
-                <div class="sunset">seunset</div>
-            </div>
-            <div class="time-date">
-                <div class="date">
-
-                </div>
-                <div class="time">
-                </div>
-            </div>
-        </div>
+</div>
+<div class="background"></div>
+<script src="https://kit.fontawesome.com/66aa7c98b3.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const textDrop = document.getElementById('text-drop');
     
-
-
-</main>
-
-<script src="../static/js/weather.js"></script>
-<script type="module" src="../static/js/home.js"></script>
-
+        textDrop.addEventListener('mouseleave', function() {
+            this.classList.remove('clicked');
+        });
+    
+        textDrop.addEventListener('click', function() {
+            this.classList.add('clicked');
+            this.innerHTML = this.innerHTML;
+        });
+    });    
+</script>
 {% endblock %}
