@@ -897,3 +897,145 @@ function plot_temprature(temp_b, temp_s, Xt, feel_b, feel_s, Xf) {
         }
     });
 }
+function plot_pressure(bikes, bike_stands, X) {
+
+    const pressure = document.querySelector(".pressure").getContext('2d');
+    const bikesData = bikes.map((y, index) => ({ x: X[index], y }));
+    const bikeStandsData = bike_stands.map((y, index) => ({ x: X[index], y }));
+    function transparentize(color, opacity) {
+        const alpha = opacity === undefined ? 0.5 : 1 - opacity;
+        return color.replace('rgb', 'rgba').replace(')', `, ${alpha})`);
+    }
+    const data = {
+        datasets: [
+            {
+                label: 'Bikes',
+                data: bikesData,
+                pointRadius: 6,
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: transparentize('rgb(255, 99, 132)', 0.5),
+                borderWidth: 2,
+                yAxisID: 'y',
+            },
+            {
+                label: 'Stands',
+                data: bikeStandsData,
+                pointRadius: 6,
+                borderWidth: 2,
+                borderColor: 'rgb(255, 159, 64)',
+                backgroundColor: transparentize('rgb(255, 159, 64)', 0.5),
+                yAxisID: 'y2',
+            }
+        ]
+    };
+
+    const config = {
+        type: 'scatter',
+        data: data,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Availability Based on Pressure',
+                    font: {
+                        size: 25,
+                        weight: 'bold',
+                    },
+                    color: 'rgba(255, 255, 255, 1)',
+                }
+            },
+            scales: {
+                x: {
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: `Precipitation (mm)`,
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                    },
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Bikes Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 99, 132)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                    },
+                },
+                y2: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stands Availability',
+                        color: '#bd7ebe',
+                        font: {
+                            size: 20
+                        }
+                    },
+                    ticks: {
+                        color: 'rgb(255, 159, 64)',
+                        font: {
+                            size: 12
+                        }
+                    },
+                },
+            },
+            tooltip: {
+                mode: 'point',
+                intersect: true,
+                callbacks: {
+                    label: function (context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        if (context.parsed.y !== null) {
+                            label += `${context.parsed.y}`;
+                        }
+                        if (context.parsed.x !== null) {
+                            label += ` at ${context.parsed.x} mb`;
+                        }
+                        return label;
+                    }
+                }
+            }
+        },
+    };
+
+    if (pressureChart) pressureChart.destroy();
+    pressureChart = new Chart(pressure, config);
+}
