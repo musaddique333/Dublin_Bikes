@@ -76,3 +76,90 @@ function show_hourly_graph(data) {
                 borderWidth: 1
             }]
         }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'category',
+                    position: 'bottom',
+                    title: {
+                        display: true,
+                        text: 'Availability Forecast For Every Hour',
+                        color: 'red',
+                        font: {
+                            size: 10
+                        }
+                    },
+                    ticks: {
+                        color: 'blue',
+                        font: {
+                            size: 6
+                        }
+                    }
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    ticks: {
+                        color: 'blue',
+                        font: {
+                            size: 7
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    align: 'start',
+                    labels: {
+                        font: {
+                            size: 10
+                        },
+                        color: "black"
+                    }
+                },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'xy',
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (ctx) => {
+                            return x_label.long[ctx[0].dataIndex]
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
+    const fullscreenButton = document.querySelector('.graph-hourly-button');
+    fullscreenButton.addEventListener('click', () => {
+        if (chartContainer.requestFullscreen) {
+            chartContainer.requestFullscreen();
+        } else if (chartContainer.webkitRequestFullscreen) {
+            chartContainer.webkitRequestFullscreen();
+        } else if (chartContainer.msRequestFullscreen) { 
+            chartContainer.msRequestFullscreen();
+        }
+    });
+}
+
+
+
+
+export { getNearestInfo };
