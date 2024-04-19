@@ -10,11 +10,6 @@ routes = Blueprint('routes', __name__)
 
 from sqlalchemy import text
 
-@routes.route('/favicon.ico')
-def favicon():
-    favicon_path = os.path.join(app.root_path, 'static', 'img', 'icons', 'favicon.ico')
-    return send_from_directory(os.path.dirname(favicon_path), os.path.basename(favicon_path), mimetype='image/vnd.microsoft.icon')
-
 
 @routes.route('/', methods=['GET', 'POST'])
 def index():
