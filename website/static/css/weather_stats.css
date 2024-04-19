@@ -56,12 +56,9 @@ header h1 {
 }
 
 body {
-  backdrop-filter: blur(1px); */
-  background: rgb(131,58,180);
-  background: -moz-radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
-  background: -webkit-radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
-  background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(44,96,198,1) 50%, rgba(0,48,143,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#00308f",GradientType=1);  
+  backdrop-filter: blur(1px);
+  background: rgb(28,181,224);
+  background: linear-gradient(0deg, rgba(28,181,224,1) 0%, rgba(0,8,81,1) 100%);  
   min-height: 100vh;
 }
 

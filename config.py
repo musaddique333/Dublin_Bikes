@@ -25,10 +25,10 @@ config_dict = {
 }
 
 
-URL = os.getenv('URL')
-PORT = os.getenv('PORT')
-DB = os.getenv('DB')
-USER = os.getenv('USER')
+URL = 'comp3080.cho0moo0yp7i.us-east-1.rds.amazonaws.com'
+PORT = '3306'
+DB = 'dublinBikes29'
+USER = 'musaddique333'
 PASSWORD = os.getenv('rds_key')
 URI = f'mysql+pymysql://{USER}:{PASSWORD}@{URL}:{PORT}/{DB}'
 

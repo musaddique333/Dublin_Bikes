@@ -486,8 +486,6 @@ a {
     width: 100vw;
     height: unset;
     overflow-y: scroll;
-    background-image: url('../img/background_images/background3.jpeg');
-    background-repeat: repeat;
   }
 
   .info-ava{
