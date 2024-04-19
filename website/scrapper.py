@@ -24,11 +24,11 @@ def fetch_station(app):
         data['banking'] = data['banking'].astype(int)
         data['bonus'] = data['bonus'].astype(int)
 
-        filename = f"data/stations_data/station.csv"
-        if os.path.exists(filename):
-            data.to_csv(filename, mode='a', index=False, header=False)
-        else:
-            data.to_csv(filename, index=False)
+        # filename = f"data/stations_data/station.csv"
+        # if os.path.exists(filename):
+        #     data.to_csv(filename, mode='a', index=False, header=False)
+        # else:
+        #     data.to_csv(filename, index=False)
         
         with app.app_context():
             for index, row in data.iterrows():
@@ -78,9 +78,9 @@ def fetch_availability(app):
         data = json.loads(data)
         data = pd.json_normalize(data)
 
-        now = now.strftime('%d-%m-%Y_and_%H:%M')
-        filename = f"data/availability_data/{now_}-availability.csv"
-        data.to_csv(filename, index=True)
+        # now = now.strftime('%d-%m-%Y_and_%H:%M')
+        # filename = f"data/availability_data/{now}-availability.csv"
+        # data.to_csv(filename, index=True)
 
 
         with app.app_context():
@@ -89,7 +89,7 @@ def fetch_availability(app):
                     id=row['number'],
                     bikes=row['available_bikes'],
                     bike_stands=row['available_bike_stands'],
-                    time_stamp=now.timestamp()
+                    time_stamp=now.strftime("%Y-%m-%d %H:%M:%S")
                 )
                 db.session.add(availability)
             db.session.commit()
@@ -126,7 +126,7 @@ def fetch_hourly_weather_data(app):
         data = pd.json_normalize(data)
 
         weather_data = {
-        'time_stamp': now.timestamp(),
+        'time_stamp': now.strftime("%Y-%m-%d %H:%M:%S"),
         'temp_c': data['current.temp_c'].iloc[0],
         'feelslike_c': data['current.feelslike_c'].iloc[0],
         'humidity': data['current.humidity'].iloc[0],
@@ -166,7 +166,7 @@ def fetch_daily_weather_data(app):
         data = pd.json_normalize(data)
 
         weather_data = {
-        'time_stamp': now.timestamp(),
+        'time_stamp': now.strftime("%Y-%m-%d %H:%M:%S"),
         'maxtemp_c': data['current.feelslike_c'].iloc[0],
         'mintemp_c': data['current.wind_kph'].iloc[0],
         'avgtemp_c': data['current.wind_degree'].iloc[0],

@@ -81,3 +81,8 @@ def show_weather_stats():
         return jsonify({'prediction': stats})
     else:
         return jsonify({'error': 'error no id given'})
+
+@routes.route('/retrain', methods=['POST'])
+def retrain():
+       from . import ava_daily, ava_time
+       return jsonify({'message': 'Models Retained Successfully'})

@@ -20,7 +20,7 @@ def get_data_for_statistics(id):
 
     df_weather = session.fetch_weather_data_all()
     df_weather = pd.DataFrame(df_weather)
-    df_weather['time_stamp'] = pd.to_datetime(df_weather['time_stamp']).dt.round('h')
+    df_weather['time_stamp'] = pd.to_datetime(df_weather['time_stamp'], format='%Y-%m-%d %H:%M:%S').dt.round('h')
     df = pd.merge(df_bikes, df_weather, on='time_stamp', how='inner')
 
     df = df[df['id'] == id]

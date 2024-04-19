@@ -37,6 +37,22 @@ async function get_data() {
 
 document.addEventListener("DOMContentLoaded", () => {
     get_data();
+    const retrainBtn = document.querySelector(".retrain-btn");
+    retrainBtn.addEventListener('click', () => {
+        fetch('/retrain', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(message => {
+                console.log(message)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
 });
 
 function plot_wind(bikes, bike_stands, X) {

@@ -101,7 +101,7 @@ def fetch_weather_data_all():
             HourlyWeather.uv
             ).all()
         weather = [{
-            'time_stamp': weather.time_stamp.strftime('%Y-%m-%d %H:%M:%S'),
+            'time_stamp': weather.time_stamp if isinstance(weather.time_stamp, str) else weather.time_stamp.strftime('%Y-%m-%d %H:%M:%S'),
             'temp_c': weather.temp_c,
             'feelslike_c': weather.feelslike_c,
             'wind_kph': weather.wind_kph,

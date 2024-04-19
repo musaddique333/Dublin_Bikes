@@ -14,76 +14,45 @@ async function initMap() {
         mapTypeControl: false,
         streetViewControl: false,
         // zoomControl: false,
-        styles: [
-            {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#f7f1df"
-                    }
-                ]
-            },
+        styles: 
+
+        [
             {
                 "featureType": "landscape.natural",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#d0e3b4"
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape.natural.terrain",
-                "elementType": "geometry",
+                "elementType": "geometry.fill",
                 "stylers": [
                     {
                         "visibility": "on"
+                    },
+                    {
+                        "color": "#e0efef"
                     }
                 ]
             },
             {
                 "featureType": "poi",
-                "elementType": "labels",
+                "elementType": "geometry.fill",
                 "stylers": [
                     {
                         "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.business",
-                "elementType": "all",
-                "stylers": [
+                    },
                     {
-                        "visibility": "on"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.medical",
-                "elementType": "geometry",
-                "stylers": [
+                        "hue": "#1900ff"
+                    },
                     {
-                        "color": "#fbd3da"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "color": "#bde6ab"
+                        "color": "#c0e8e8"
                     }
                 ]
             },
             {
                 "featureType": "road",
-                "elementType": "geometry.stroke",
+                "elementType": "geometry",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "lightness": 100
+                    },
+                    {
+                        "visibility": "simplified"
                     }
                 ]
             },
@@ -97,60 +66,28 @@ async function initMap() {
                 ]
             },
             {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
+                "featureType": "transit.line",
+                "elementType": "geometry",
                 "stylers": [
                     {
-                        "color": "#ffe15f"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [
+                        "visibility": "on"
+                    },
                     {
-                        "color": "#efd151"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#ffffff"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "black"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit.station.airport",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#cfb2db"
+                        "lightness": 700
                     }
                 ]
             },
             {
                 "featureType": "water",
-                "elementType": "geometry",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#a2daf2"
+                        "color": "#7dcdcd"
                     }
                 ]
             }
         ]
+        
     };
 
     const { Map } = await google.maps.importLibrary("maps");

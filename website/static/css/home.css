@@ -464,10 +464,12 @@ a {
   justify-content: center;
   right: 0;
   padding: 10px;
+  gap: 10px;
 }
 
 .info-ava div{
   display: flex;
+  gap: 4px;
 }
 
 .info-ava img{
@@ -505,7 +507,9 @@ a {
   }
   
   .info-ava img{
-    width: 15px;
+    align-self: center;
+    width: 20px;
+    height: 17px;
   }
   
   .info-ava p{

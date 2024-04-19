@@ -44,7 +44,7 @@ function loadDataAndCreateMarkers(markers, map) {
             animation: google.maps.Animation.DROP,
             icon: {
                 url: `../static/img/icons/${img}.png`,
-                scaledSize: new google.maps.Size(35, 35),
+                scaledSize: new google.maps.Size(30, 25),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(16, 16)
             },
